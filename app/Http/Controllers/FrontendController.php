@@ -1,70 +1,40 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Province;
+use App\Models\District;
+use App\Models\LocalBody;
 use App\Http\Requests\AddProperty\StoreAddPropertyRequest;
 use App\Models\AddProperty;
-use App\Models\District;
-use App\Models\Province;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index()
-    {
-        return view('welcome');
-    }
-
+    // Display the Add Property form
     public function addProperty()
     {
-        $provinces = Province::with('district')->get();
-        $districts = District::all();
-        // dd($districts);
-        return view('frontend.addProperty',compact('provinces','districts'));
+        $provinces = Province::all();  // Fetch all provinces to populate the dropdown
+        return view('frontend.addProperty', compact('provinces'));  // Pass provinces to view
     }
+
+    // Fetch districts based on the selected province
+    public function getDistricts($provinceId)
+    {
+        $districts = District::where('province_id', $provinceId)->pluck('name', 'id');
+        return response()->json($districts);  // Return districts as JSON response
+    }
+
+    // Fetch local bodies based on the selected district
+    public function getLocalBodies($districtId)
+    {
+        $localBodies = LocalBody::where('district_id', $districtId)->pluck('name', 'id');
+        return response()->json($localBodies);  // Return local bodies as JSON response
+    }
+
+    // Handle property creation logic
     public function storeProperty(StoreAddPropertyRequest $request)
     {
-        // dd($request);
-
-        $propertyPhotoPath = null;
-        if ($request->hasFile('property_photo')) {
-            $propertyPhotoPath = $request->file('property_photo')->store('property', 'public');
-        }
-
-        // Prepare the property data
-        $propertyData = $request->validated();
-        if ($propertyPhotoPath) {
-            $propertyData['property_photo'] = $propertyPhotoPath;
-        }
-
-        // Create the new property record
-        AddProperty::create($propertyData);
-
-        // Optionally, show a success message
-        // toast('Added Successfully!', 'success');
-
-        return redirect()->route('home');
+        $propertyData = $request->validated();  // Validate form data
+        AddProperty::create($propertyData);  // Store the property data
+        return redirect()->route('home');  // Redirect to the homepage after storing
     }
-
-
-    // public function showProfile()
-    // {
-    //     return view('pages.userProfile');
-    // }
-
-    public function searchPage()
-    {
-        $properties = AddProperty::latest()->get();
-        // dd($properties->toArray());
-        return view('pages.searchPage',compact('properties'));
-    }
-
-    public function propertyDetail()
-    {
-        return view('pages.propertyDetail');
-    }
-
-
 }

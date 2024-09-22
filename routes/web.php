@@ -14,8 +14,8 @@ Route::get('addProperty', [FrontendController::class,'addProperty'])->middleware
 Route::post('storeProperty', [FrontendController::class,'storeProperty'])->middleware('auth')->name('storeProperty');
 Route::get('searchPage', [FrontendController::class,'searchPage'])->middleware('auth')->name('searchPage');
 Route::get('propertyDetail', [FrontendController::class,'propertyDetail'])->middleware('auth')->name('propertyDetail');
-Route::get('/districts/{province_Id}', [LocationController::class, 'getDistricts']);
-Route::get('/local-bodies/{district_Id}', [LocationController::class, 'getLocalBodies']);
+Route::get('/get-districts/{province_Id}', [LocationController::class, 'getDistricts']);
+Route::get('/get-local-bodies/{district_Id}', [LocationController::class, 'getLocalBodies']);
 
 // Route::get('userProfile', [UserController::class,'edit'])->middleware('auth')->name('userProfile');
 // Route::patch('userProfile/update', [UserController::class,'update'])->middleware('auth')->name('userProfile.update');

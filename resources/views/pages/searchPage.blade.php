@@ -17,7 +17,7 @@
                             <option value="apartment">Apartment</option>
                             <option value="house">House</option>
                             <option value="villa">Villa</option>
-                            <option value="office">Office</option>
+                            <option value="bungalow">Bungalow</option>
                         </select>
                     </div>
 
@@ -84,7 +84,7 @@
                     </div>
 
                     <button type="submit"
-                        class=" text-center w-full bg-orange-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-orange-600">
+                        class=" text-center font-semibold w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700">
                         Search
                     </button>
                 </div>
@@ -92,52 +92,6 @@
                 <!-- Property Details Section -->
                 <div class="card w-3/4">
 
-                    {{-- <div
-                        class="md:w-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row ml-0 md:ml-6 h-80 mb-4">
-                        <!-- Property Image -->
-                        <div class="md:w-1/2 overflow-hidden">
-                            <img src="{{ asset('assets/frontend/images/house1.jpg') }}" alt="Property Image"
-                                class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
-                        </div>
-
-                        <!-- Property Details -->
-                        <div class="md:w-1/2 p-6 flex flex-col ">
-                            <div class="flex items-center  justify-between mb-4">
-                                <div class="flex gap-4 uppercase ">
-                                    <span class="bg-gray-200  px-2  w-fit rounded-full ">House</span>
-                                    <span class="bg-green-500 text-white px-2 pb-0.5 w-fit rounded-full ">Sale</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
-                                    <!-- Share Icon -->
-                                    <a href=""><ion-icon name="share-outline"
-                                            class="cursor-pointer text-xl"></ion-icon></a>
-                                </div>
-                            </div>
-                            <h2 class="text-2xl font-semibold mb-4">Bungalow House for Sale</h2>
-                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs 12 Cr</p>
-                            <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
-                                    class="mr-2"></ion-icon> Hattigaudi, Kathmandu</p>
-
-                            <ul class="flex gap-6 text-gray-600 mb-8">
-                                <li class="flex items-center gap-1 font-semibold"><ion-icon name="bed"></ion-icon>Bedrooms: 7</li>
-                                <li class="flex items-center gap-1 font-semibold"><ion-icon name="rainy"></ion-icon>Bathrooms: 2</li>
-                                <li class="flex items-center gap-1 font-semibold"><ion-icon name="home"></ion-icon>Floors: 2.5</li>
-                            </ul>
-
-                            <div class="flex justify-between items-center">
-                                <a href="tel:+1234567890"
-                                    class="bg-green-500 font-semibold h-9 text-white px-3 rounded-lg flex items-center gap-2 hover:bg-green-600 transition-colors">
-                                    <ion-icon name="call"></ion-icon> Call
-                                </a>
-                                <a href="{{route('propertyDetail')}}"
-                                    class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center hover:bg-blue-700 transition-colors">
-                                    <ion-icon name="eye"></ion-icon>View Details
-                                </a>
-                            </div>
-
-                        </div>
-                    </div> --}}
                     @foreach ($properties as $property)
                         <div
                             class="md:w-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row ml-0 md:ml-6 h-80 mb-4">
@@ -198,51 +152,6 @@
                         </div>
                     @endforeach
 
-                    {{-- <div
-                        class="md:w-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row ml-0 md:ml-6 h-80">
-                        <!-- Property Image -->
-                        <div class="md:w-1/2 overflow-hidden">
-                            <img src="{{ asset('assets/frontend/images/house2.jpg') }}" alt="Property Image"
-                                class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
-                        </div>
-
-                        <!-- Property Details -->
-                        <div class="md:w-1/2 p-6 flex flex-col ">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex gap-4 uppercase ">
-                                    <span class="bg-gray-200  px-2  w-fit rounded-full ">House</span>
-                                    <span class="bg-[#f5663b] text-white px-2 pb-0.5 w-fit rounded-full ">Rent</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
-                                    <!-- Share Icon -->
-                                    <a href=""><ion-icon name="share-outline"
-                                            class="cursor-pointer text-xl"></ion-icon></a>
-                                </div>
-                            </div>
-                            <h2 class="text-2xl font-semibold mb-4">House for Rent</h2>
-                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs 1 Lakh/Month</p>
-                            <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
-                                    class="mr-2"></ion-icon> Bhangal, Kathmandu</p>
-
-                            <ul class="flex gap-6 text-gray-600 mb-8 font-semibold">
-                                <li class="flex items-center gap-1"><ion-icon name="bed"></ion-icon>Bedrooms: 7</li>
-                                <li class="flex items-center gap-1 font-semibold"><ion-icon name="rainy"></ion-icon>Bathrooms: 4</li>
-                                <li class="flex items-center gap-1 font-semibold"><ion-icon name="home"></ion-icon>Floors: 2.5</li>
-                            </ul>
-
-                            <div class="flex justify-between items-center">
-                                <a href="tel:+1234567890"
-                                    class="bg-green-500 font-semibold h-9 text-white px-3 rounded-lg flex items-center gap-2 hover:bg-green-600 transition-colors">
-                                    <ion-icon name="call"></ion-icon> Call
-                                </a>
-                                <a href="/property-details"
-                                    class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center hover:bg-blue-700 transition-colors">
-                                    <ion-icon name="eye"></ion-icon>View Details
-                                </a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
 
             </div>
@@ -257,7 +166,7 @@
                     </div>
 
                     <a href="{{route('searchPage')}}" class="bg-white text-orange-500 py-3 px-4 flex items-center justify-center hover:bg-gray-800 hover:text-white transition-transform duration-200 hover:scale-105">
-                        <span class="mr-2  font-semibold">Contact Us Today</span>
+                        <span class="mr-2 font-semibold">Contact Us Today</span>
                         <ion-icon name="arrow-forward-outline" class="text-xl font-semibold"></ion-icon>
                     </a>
                 </div>

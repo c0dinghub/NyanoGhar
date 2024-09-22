@@ -148,7 +148,8 @@
                                 class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 <option value="">Select Province</option>
                                 @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}" onclick="selectedProvince({{ $province->id }})">{{ $province->name }}</option>
+                                    <option value="{{ $province->id }}" onclick="selectedProvince({{ $province->id }})">
+                                        {{ $province->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -183,71 +184,51 @@
                     </div>
                 </div>
 
-                <!-- Include jQuery -->
+                <!-- Include Ajax-->
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
                 <script>
-
-                    const provinceSelected = '';
-                    function selectedProvince(provinceId){
-                        provinceSelected = provinceId;
-                        console.log(provinceSelected);
-                    }
-                    $(document).ready(function() {
-                        // When province is selected, fetch districts
-                        $('#province').on('change', function() {
+                    $(document).ready(function () {
+                        // Fetch districts when a province is selected
+                        $('#province').change(function () {
                             var provinceId = $(this).val();
+                            $('#district').html('<option value="">-- Select District --</option>'); // Clear district dropdown
+                            $('#local_body').html('<option value="">-- Select Local Body --</option>'); // Clear local body dropdown
+
                             if (provinceId) {
                                 $.ajax({
-                                    url: '/districts/' + provinceId,
+                                    url: '/get-districts/' + provinceId,
                                     type: 'GET',
-                                    dataType: 'json',
-                                    success: function(data) {
-                                        $('#district').empty();
-                                        $('#district').append(
-                                            '<option value="" disabled selected>Select District</option>'
-                                        );
-                                        $.each(data, function(key, district) {
-                                            $('#district').append('<option value="' + district.id +
-                                                '">' + district.name + '</option>');
+                                    success: function (data) {
+                                        $.each(data, function (key, district) {
+                                            $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
                                         });
                                     }
                                 });
-                            } else {
-                                $('#district').empty();
-                                $('#local_body').empty();
                             }
                         });
 
-                        // When district is selected, fetch local bodies
-                        $('#district').on('change', function() {
+                        // Fetch local bodies when a district is selected
+                        $('#district').change(function () {
                             var districtId = $(this).val();
+                            $('#local_body').html('<option value="">-- Select Local Body --</option>'); // Clear local body dropdown
 
                             if (districtId) {
                                 $.ajax({
-                                    url: '/local-bodies/' + districtId,
+                                    url: '/get-local-bodies/' + districtId,
                                     type: 'GET',
-                                    success: function(data) {
-                                        $('#local_body').empty();
-                                        $('#local_body').append(
-                                            '<option value="" disabled selected>Select Local Body</option>'
-                                        );
-
-                                        $.each(data, function(key, value) {
-                                            $('#local_body').append('<option value="' + value.id +
-                                                '">' + value.name + '</option>');
+                                    success: function (data) {
+                                        $.each(data, function (key, localBody) {
+                                            $('#local_body').append('<option value="' + localBody.id + '">' + localBody.name + '</option>');
                                         });
                                     }
                                 });
-                            } else {
-                                $('#local_body').empty();
-                                $('#local_body').append(
-                                    '<option value="" disabled selected>Select Local Body</option>');
                             }
                         });
-
                     });
                 </script>
+
+
+
 
 
                 <!-- Amenities -->
@@ -289,7 +270,8 @@
                     <div>
                         <label for="bike_parking" class="block text-lg font-medium text-black">Bike Parking
                             Spaces:</label>
-                        <input type="number" id="bike_parking" name="bike_parking_spaces" min="0" value="0"
+                        <input type="number" id="bike_parking" name="bike_parking_spaces" min="0"
+                            value="0"
                             class="mt-1 block w-full bg-gray-50 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                 </div>

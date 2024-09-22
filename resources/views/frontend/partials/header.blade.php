@@ -42,8 +42,8 @@
                 <a href="/" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="home-outline" class="text-lg"></ion-icon>Home</a>
                 <a href="{{ route('searchPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
                 <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="book-outline" class="text-lg"></ion-icon>Blog</a>
-                <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="call-outline" class="text-lg"></ion-icon>Customer Care</a>
-                <a href="#about" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="information-circle-outline" class="text-lg"></ion-icon>About Us</a>
+                <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="headset-outline" class="text-lg"></ion-icon>Services</a>
+                <a href="#about_us" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="information-circle-outline" class="text-lg"></ion-icon>About Us</a>
             </nav>
 
             <!-- Mobile Menu & Profile Dropdown -->
