@@ -26,6 +26,10 @@ class ProfileUpdateRequest extends FormRequest
             'photo' => ['nullable', 'mimes:png,jpg,jpeg,gif'],
             'date_of_birth' => ['nullable', 'string', 'max:255'],
             'address' => ['nullable', 'string', 'max:255'],
+            'facebook_url' => ['nullable', 'url'],
+            'instagram_url' => ['nullable', 'url'],
+            'linkedin_url' => ['nullable', 'url'],
+            'twitter_url' => ['nullable', 'url']
         ];
     }
 }

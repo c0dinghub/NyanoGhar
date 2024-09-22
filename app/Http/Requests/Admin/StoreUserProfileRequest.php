@@ -28,6 +28,10 @@ class StoreUserProfileRequest extends FormRequest
             'photo' =>['required','mimes:png,jpg,jpeg'],
             'date_of_birth' =>['required','string'],
             'address' =>['required','string'],
+            'facebook_url' => ['nullable', 'url'],
+            'instagram_url' => ['nullable', 'url'],
+            'linkedin_url' => ['nullable', 'url'],
+            'twitter_url' => ['nullable', 'url']
         ];
     }
 

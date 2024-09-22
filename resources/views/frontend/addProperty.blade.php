@@ -160,9 +160,9 @@
                             <select id="district" name="district_id"
                                 class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 <option value="" disabled selected>Select District</option>
-                                @foreach ($districts as $district)
+                                {{-- @foreach ($districts as $district)
                                     <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
 
@@ -190,13 +190,13 @@
                     $(document).ready(function () {
                         // Fetch districts when a province is selected
                         $('#province').change(function () {
-                            var provinceId = $(this).val();
+                            var province_Id = $(this).val();
                             $('#district').html('<option value="">-- Select District --</option>'); // Clear district dropdown
                             $('#local_body').html('<option value="">-- Select Local Body --</option>'); // Clear local body dropdown
 
-                            if (provinceId) {
+                            if (province_Id) {
                                 $.ajax({
-                                    url: '/get-districts/' + provinceId,
+                                    url: '/get-districts/' + province_Id,
                                     type: 'GET',
                                     success: function (data) {
                                         $.each(data, function (key, district) {
@@ -209,12 +209,12 @@
 
                         // Fetch local bodies when a district is selected
                         $('#district').change(function () {
-                            var districtId = $(this).val();
+                            var district_Id = $(this).val();
                             $('#local_body').html('<option value="">-- Select Local Body --</option>'); // Clear local body dropdown
 
-                            if (districtId) {
+                            if (district_Id) {
                                 $.ajax({
-                                    url: '/get-local-bodies/' + districtId,
+                                    url: '/get-local-bodies/' + district_Id,
                                     type: 'GET',
                                     success: function (data) {
                                         $.each(data, function (key, localBody) {

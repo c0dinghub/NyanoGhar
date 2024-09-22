@@ -56,9 +56,9 @@ class AddProperty extends Model
     }
 
 
-    public function province(): HasMany
+    public function province()
     {
-        return $this->hasMany(Province::class);
+        return $this->belongsTo(Province::class);
     }
 
 

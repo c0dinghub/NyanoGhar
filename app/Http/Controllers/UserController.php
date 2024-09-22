@@ -18,9 +18,7 @@ class UserController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        // dd($user);
-        return view('pages.userProfile',compact('user'));
-
+        return view('pages.userProfile', compact('user'));
     }
 
     /**
@@ -28,7 +26,6 @@ class UserController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // dd($request);
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -52,12 +49,31 @@ class UserController extends Controller
         $user = $request->user();
 
         Auth::logout();
-
         $user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Display the user's properties.
+     */
+    public function properties()
+    {
+        $user = Auth::user();
+        $properties = $user->properties; // Assuming you have a relationship set up
+        return view('pages.userProperties', compact('properties'));
+    }
+
+    /**
+     * Display the user's favourites.
+     */
+    public function favourites()
+    {
+        $user = Auth::user();
+        $favourites = $user->favourites; // Assuming you have a relationship set up
+        return view('pages.userFavourites', compact('favourites'));
     }
 }

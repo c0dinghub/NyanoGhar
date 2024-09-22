@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('address')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('linkedin_url')->nullable();
+            $table->string('twitter_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

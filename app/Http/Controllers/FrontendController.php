@@ -17,16 +17,16 @@ class FrontendController extends Controller
     }
 
     // Fetch districts based on the selected province
-    public function getDistricts($provinceId)
+    public function getDistricts($province_Id)
     {
-        $districts = District::where('province_id', $provinceId)->pluck('name', 'id');
+        $districts = District::where('province_id', $province_Id)->pluck('name', 'id');
         return response()->json($districts);  // Return districts as JSON response
     }
 
     // Fetch local bodies based on the selected district
-    public function getLocalBodies($districtId)
+    public function getLocalBodies($district_Id)
     {
-        $localBodies = LocalBody::where('district_id', $districtId)->pluck('name', 'id');
+        $localBodies = LocalBody::where('district_id', $district_Id)->pluck('name', 'id');
         return response()->json($localBodies);  // Return local bodies as JSON response
     }
 

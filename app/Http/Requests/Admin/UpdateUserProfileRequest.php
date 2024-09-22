@@ -28,6 +28,10 @@ class UpdateUserProfileRequest extends FormRequest
             'photo' =>['nullable','mimes:png,jpg,jpeg'],
             'date_of_birth' =>['nullable','string'],
             'address' =>['nullable','string'],
+            'facebook_url' => ['nullable', 'url'],
+            'instagram_url' => ['nullable', 'url'],
+            'linkedin_url' => ['nullable', 'url'],
+            'twitter_url' => ['nullable', 'url']
         ];
     }
 }

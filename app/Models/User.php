@@ -23,7 +23,11 @@ class User extends Authenticatable
         'phone',
         'photo',
         'date_of_birth',
-        'address'
+        'address',
+        'facebook_url',
+        'instagram_url',
+        'linkedin_url',
+        'twitter_url',
     ];
 
     public function getPhotoAttribute($value): string

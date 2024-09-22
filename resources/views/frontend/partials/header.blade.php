@@ -49,11 +49,11 @@
             <!-- Mobile Menu & Profile Dropdown -->
             <div class="flex space-x-4 items-center">
                 @auth
-                    <div class="relative group p-1 rounded-full">
-                        <button class="bg-gray-200 p-2 rounded-full focus:outline-none  active:bg-orange-500  flex items-center text-gray-800 hover:text-white hover:bg-orange-500 transition ease-in duration-150">
-                            <ion-icon name="person"></ion-icon>
+                    <div class="relative group rounded-full">
+                        <button class="bg-gray-200 rounded-full border-[3px] border-green-500 focus:outline-none active:bg-orange-500 flex items-center transition ease-in duration-150">
+                            <img src="{{ $user->photo }}" alt="Profile Photo" class="h-12 w-12 rounded-full object-cover">
                         </button>
-                        <div class="hidden group-hover:block absolute -right-9 top-[40px] z-10 w-32 bg-white shadow-md rounded-lg ">
+                        <div class="hidden group-hover:block absolute -right-9 top-[52px] z-10 w-32 bg-white shadow-md rounded-lg ">
                             <a href="{{ route('userProfile') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">My Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
