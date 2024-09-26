@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('add_properties', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('property_title');
             $table->enum('status',['for_rent','for_sale']);
             $table->string('rent_price')->nullable();
             $table->string('sale_price')->nullable();
-            $table->enum('property_type',['house','apartment','villa','bungalow']);
+            $table->enum('property_type', ['house', 'apartment']);
+            $table->enum('house_category', ['2bhk', 'duplex', 'bungalow', 'villa', '4bhk', 'triplex', 'others'])->nullable();
+            $table->string('apartment_name')->nullable();
+            $table->enum('apartment_category', ['studio', '2bhk', '3bhk', 'duplex', '4bhk', 'penthouse'])->nullable();
+            $table->integer('build_year')->nullable();
+            $table->enum('year_type', ['bs', 'ad'])->nullable();
             $table->integer('property_area');
             $table->integer('bedrooms');
             $table->integer('bathrooms');
@@ -46,5 +52,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('add_properties');
+
     }
+
+
 };

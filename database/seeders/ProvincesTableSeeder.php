@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Province;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB as FacadesDB;
 
 class ProvincesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        FacadesDB::table('provinces')->insert([
+        $provinces= [
             ['name' => 'Province 1'],
             ['name' => 'Province 2'],
             ['name' => 'Province 3'],
@@ -21,6 +21,10 @@ class ProvincesTableSeeder extends Seeder
             ['name' => 'Lumbini Province'],
             ['name' => 'Karnali Province'],
             ['name' => 'Sudurpashchim Province'],
-        ]);
+        ];
+
+        foreach ($provinces as $province) {
+            Province::create($province);
+        }
     }
 }

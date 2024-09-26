@@ -26,16 +26,16 @@
                             <div class="absolute w-full h-full transition-transform duration-700 ease-in-out" id="carousel-items">
                                 <!-- Item 1 -->
                                 <div class="carousel-item float-left w-full h-full">
-                                    <img src="{{ asset('assets/frontend/images/house1.jpg') }}" class="w-full h-full object-contain" alt="image 1">
+                                    <img src="{{ $property->property_photo }}" class="w-full h-full object-contain" alt="image 1">
                                 </div>
-                                <!-- Item 2 -->
+                                {{-- <!-- Item 2 -->
                                 <div class="carousel-item float-left w-full h-full hidden">
                                     <img src="{{ asset('assets/frontend/images/house1.1.jpg') }}" class="w-full h-full object-contain" alt="image 2">
                                 </div>
                                 <!-- Item 3 -->
                                 <div class="carousel-item float-left w-full h-full hidden">
                                     <img src="{{ asset('assets/frontend/images/house1.2.jpg') }}" class="w-full h-full object-contain" alt="image 3">
-                                </div>
+                                </div> --}}
                                 <!-- Additional Items as needed -->
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                         <span class="flex items-center me-2 text-4xl"><ion-icon name="compass-outline"></ion-icon></span>
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Facing:</h4>
-                            <span class=" flex items-center text-md font-semibold"> South</span>
+                            <span class=" flex items-center text-md font-semibold">{{ $property->house_facing }}</span>
                         </div>
                     </li>
                     <li
@@ -123,7 +123,7 @@
                         <span class="flex items-center me-2 text-4xl"><ion-icon name="home-outline"></ion-icon></span>
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Floor:</h4>
-                            <span class=" flex items-center text-md font-semibold"> 2.5</span>
+                            <span class=" flex items-center text-md font-semibold"> {{$property->no_of_floors}}</span>
                         </div>
                     </li>
                     <li
@@ -131,7 +131,7 @@
                         <span class="flex items-center me-2 text-4xl"><ion-icon name="bed-outline"></ion-icon></span>
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Bedrooms:</h4>
-                            <span class=" flex items-center text-md font-semibold"> 7</span>
+                            <span class=" flex items-center text-md font-semibold"> {{$property->bedrooms}}</span>
                         </div>
                     </li>
                     <li
@@ -139,7 +139,7 @@
                         <span class="flex items-center me-2 text-4xl"><ion-icon name="water-outline"></ion-icon></span>
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Bathrooms:</h4>
-                            <span class=" flex items-center text-md font-semibold"> 4</span>
+                            <span class=" flex items-center text-md font-semibold"> {{$property->bathrooms}}</span>
                         </div>
                     </li>
                     <li
@@ -149,8 +149,8 @@
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Parking:</h4>
                             <div class="flex gap-1">
-                                <span class=" flex items-center text-md font-semibold">Car: 4</span>
-                                <span class=" flex items-center text-md font-semibold">Bike: 4</span>
+                                <span class=" flex items-center text-md font-semibold">Car: {{$property->car_parking_spaces}}</span>
+                                <span class=" flex items-center text-md font-semibold">Bike: {{$property->bike_parking_spaces}}</span>
                             </div>
                         </div>
                     </li>
@@ -173,13 +173,13 @@
                     </h1>
                     <ul class="grid grid-cols-2 ">
                         <li class="flex items-center"><ion-icon name="arrow-forward" class="py-4 me-2"></ion-icon>A 2.5
-                            storied House with 16 aana of land is for sale at Hepali Height.</li>
+                            storied House with 16 aana of land is for sale.</li>
                         <li class="flex items-center"><ion-icon name="arrow-forward" class="me-2"></ion-icon>Boring
                             water facilities and it has a connected drinking water line as well.</li>
                         <li class="flex items-center"><ion-icon name="arrow-forward" class="me-2"></ion-icon>This
                             property faces East and has a 16 feet road access.</li>
                         <li class="flex items-center"><ion-icon name="arrow-forward" class="me-2"></ion-icon>Please
-                            click at call agency button to directly contact the agency.</li>
+                            click at call button to directly contact the seller.</li>
                     </ul>
                 </div>
 

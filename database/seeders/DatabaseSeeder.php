@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run(): void
+    public function run()
     {
         $this->call([
             ProvincesTableSeeder::class,
@@ -23,11 +23,11 @@ class DatabaseSeeder extends Seeder
         ]);
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'phone'=>'1234567890'
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        //     'phone'=>'1234567890'
+        // ]);
 
 
         // District::factory()->create([

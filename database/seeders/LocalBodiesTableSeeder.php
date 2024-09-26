@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\LocalBody;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class LocalBodiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('local_bodies')->insert([
+        $localBodies = [
             //Province 1
             // Bhojpur District (ID: 1)
             ['name' => 'Bhojpur Municipality', 'district_id' => 1,],
@@ -751,6 +751,10 @@ class LocalBodiesTableSeeder extends Seeder
                ['name' => 'Thabang Rural Municipality', 'district_id' => 11],
 
 
-        ]);
+        ];
+
+        foreach ($localBodies as $localBody) {
+            LocalBody::create($localBody);
+        }
     }
 }

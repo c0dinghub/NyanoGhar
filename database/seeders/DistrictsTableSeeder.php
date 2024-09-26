@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\District;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DistrictsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('districts')->insert([
+        $districts= [
             // Province 1
             ['name' => 'Bhojpur', 'province_id' => 1],
             ['name' => 'Dhankuta', 'province_id' => 1],
@@ -104,6 +104,10 @@ class DistrictsTableSeeder extends Seeder
             ['name' => 'Doti', 'province_id' => 7],
             ['name' => 'Kailali', 'province_id' => 7],
             ['name' => 'Kanchanpur', 'province_id' => 7],
-        ]);
+        ];
+
+        foreach ($districts as $district) {
+            District::create($district);
+        }
     }
 }

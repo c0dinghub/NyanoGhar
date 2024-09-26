@@ -4,8 +4,8 @@
     <main>
         <article>
             <!--
-                    - #HERO
-                    -->
+                        - #HERO
+                        -->
             <section class="relative bg-cover bg-center"
                 style="background-image: url('{{ asset('assets/frontend/images/pexels-binyaminmellish-186077.jpg') }}');">
 
@@ -83,8 +83,8 @@
 
 
             <!--
-                    - #ABOUT
-                    -->
+                        - #ABOUT
+                        -->
 
             <section id="about_us" class=" bg-blue-50 py-8">
                 <div class="container mx-auto px-4">
@@ -117,8 +117,8 @@
 
 
             <!--
-                    - #SERVICE
-                    -->
+                        - #SERVICE
+                        -->
 
             <section class="py-8 bg-gray-50" id="service">
                 <div class="container mx-auto px-4">
@@ -193,8 +193,8 @@
 
 
             <!--
-                    - #FEATURES
-                    -->
+                        - #FEATURES
+                        -->
 
             <section class="featured-listings bg-gray-100 py-8">
                 <div class="container mx-auto px-4">
@@ -214,17 +214,23 @@
                                 <p class="text-gray-600 mb-4">4 Beds · 3 Baths · 1,200 sq ft</p>
                                 <p class="text-gray-800 font-bold text-xl mb-2">Rs 4 Cr</p>
 
-                                <div class="flex justify-end">
-                                    <a href="{{ route('propertyDetail') }}"
-                                        class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
-                                        <ion-icon name="eye"></ion-icon>View Details
-                                    </a>
-                                </div>
+                                @if (isset($properties) && count($properties) > 0)
+                                    @foreach ($properties as $property)
+                                        <div class="flex justify-end">
+                                            <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
+                                                class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
+                                                <ion-icon name="eye"></ion-icon>View Details
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>No properties available.</p>
+                                @endif
                             </div>
                         </div>
 
                         <!-- Property 2 -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                             <img src="{{ asset('assets/frontend/images/house1.jpg') }}" alt="Property 2"
                                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" />
                             <div class="p-6 flex flex-col">
@@ -233,16 +239,16 @@
                                 <p class="text-gray-800 font-bold text-xl mb-2">Rs 12 Cr</p>
 
                                 <div class="flex justify-end">
-                                    <a href="{{ route('propertyDetail') }}"
+                                    <a href="{{ route('propertyDetail',['id' => $property->id]) }}"
                                         class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
                                         <ion-icon name="eye"></ion-icon>View Details
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Property 3 -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                             <img src="{{ asset('assets/frontend/images/house3.jpg') }}" alt="Property 3"
                                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" />
                             <div class="p-6">
@@ -257,15 +263,15 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </section>
 
 
             <!--
-                    - #BLOG
-                    -->
+                        - #BLOG
+                        -->
             <section class="bg-gray-50 py-8" id="blog">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
@@ -340,8 +346,8 @@
 
 
             <!--
-                    - #CTA
-                    -->
+                        - #CTA
+                        -->
 
             <section class=" py-6 bg-gray-100">
                 <div class="container1 mx-auto px-4 h-32">

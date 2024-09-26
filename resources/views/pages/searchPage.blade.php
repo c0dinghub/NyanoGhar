@@ -16,8 +16,6 @@
                             <option value="any">Any</option>
                             <option value="apartment">Apartment</option>
                             <option value="house">House</option>
-                            <option value="villa">Villa</option>
-                            <option value="bungalow">Bungalow</option>
                         </select>
                     </div>
 
@@ -129,7 +127,7 @@
                                 <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{$property->rent_price ??''}}/m</p>
                                 @endif
                                 <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
-                                        class="mr-2"></ion-icon> {{$property->address_area}}, {{$property->district->name}}</p>
+                                        class="mr-2"></ion-icon> {{$property->address_area}}, {{$property->district?->name}}</p>
 
                                 <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
                                     <li class="flex items-center gap-1 font-semibold"><ion-icon name="bed"></ion-icon>Bedrooms: {{$property->bedrooms}}</li>
@@ -142,7 +140,7 @@
                                         class="bg-green-500 font-semibold h-9 text-white px-3 rounded-lg flex items-center gap-2 hover:bg-green-600 transition-colors">
                                         <ion-icon name="call"></ion-icon> Call
                                     </a>
-                                    <a href="{{route('propertyDetail')}}"
+                                    <a href="{{route('propertyDetail', ['id' =>$property->id])}}"
                                         class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center hover:bg-blue-700 transition-colors">
                                         <ion-icon name="eye"></ion-icon>View Details
                                     </a>

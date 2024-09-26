@@ -30,14 +30,12 @@
     </div>
 
     <!-- Sticky Navbar (Header Bottom) -->
-    <div class="bg-white shadow-md "> <!-- Ensure sticky is applied here -->
+    <div class="bg-white shadow-md ">
         <div class="container mx-auto py-1 px-2 flex justify-between items-center">
-            <!-- Logo -->
             <a href="/" class="text-2xl font-bold text-gray-800">
                 <img src="{{ asset('assets/frontend/images/logoimg.jpg') }}" alt="nyanoghar logo" class="w-40">
             </a>
 
-            <!-- Navbar Links -->
             <nav class="hidden w-1/2 md:flex font-semibold justify-evenly">
                 <a href="/" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="home-outline" class="text-lg"></ion-icon>Home</a>
                 <a href="{{ route('searchPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
@@ -46,12 +44,11 @@
                 <a href="#about_us" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="information-circle-outline" class="text-lg"></ion-icon>About Us</a>
             </nav>
 
-            <!-- Mobile Menu & Profile Dropdown -->
             <div class="flex space-x-4 items-center">
                 @auth
                     <div class="relative group rounded-full">
                         <button class="bg-gray-200 rounded-full border-[3px] border-green-500 focus:outline-none active:bg-orange-500 flex items-center transition ease-in duration-150">
-                            <img src="{{ $user->photo }}" alt="Profile Photo" class="h-12 w-12 rounded-full object-cover">
+                            <img src="{{ Auth::user()->photo }}" alt="Photo" class="h-12 w-12 rounded-full object-cover">
                         </button>
                         <div class="hidden group-hover:block absolute -right-9 top-[52px] z-10 w-32 bg-white shadow-md rounded-lg ">
                             <a href="{{ route('userProfile') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">My Profile</a>

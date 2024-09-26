@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -30,14 +31,33 @@ class User extends Authenticatable
         'twitter_url',
     ];
 
+    public function userProfile()
+{
+    $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login');
+    }
+
+    $properties = $user->properties; // Get properties associated with the user
+
+    return view('pages.userProfile', compact('user', 'properties'));
+}
+
+
     public function getPhotoAttribute($value): string
     {
-        return $this->attributes['photo'] ? asset('storage/' . $this->attributes['photo']) : asset('assets/frontend/images/author.jpg');
+        return $this->attributes['photo'] ? asset('storage/' . $this->attributes['photo']) : asset('assets/frontend/images/Untitled.png');
     }
 
     public function setPhotoAttribute($value): void
     {
         $this->attributes['photo'] = $value->store('user','public');
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(AddProperty::class);
     }
 
     /**

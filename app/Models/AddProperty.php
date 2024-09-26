@@ -16,11 +16,17 @@ class AddProperty extends Model
 
     protected $fillable = [
 
+        'user_id',
         'property_title',
         'status',
         'rent_price',
         'sale_price',
         'property_type',
+        'house_category',
+        'apartment_name',
+        'apartment_category',
+        'build_year',
+        'year_type',
         'property_area',
         'bedrooms',
         'bathrooms',
@@ -37,7 +43,8 @@ class AddProperty extends Model
         'bike_parking_spaces',
         'property_photo',
         'property_video',
-        'description'
+        'description',
+
     ];
 
     public function localBody(): HasMany
@@ -59,6 +66,11 @@ class AddProperty extends Model
     public function province()
     {
         return $this->belongsTo(Province::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class); // Define the relationship to User
     }
 
 

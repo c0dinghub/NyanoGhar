@@ -1,99 +1,105 @@
 @extends('layouts.frontendLayout')
 @section('addcontent')
-
-    <div class="bg-gray-300">
-        <div class="container1 mx-auto  rounded-lg max-w-7xl">
-            <div class="flex max-sm:flex-col w-full">
-                <!-- Sidebar -->
-                <div class=" sm:w-1/4 rounded-lg bg-white mt-6 sticky sm:shadow-md max-sm:mb-4  h-96">
-                    <div class="flex flex-col items-center">
-                        <div class="h-32 w-32 my-3">
-                            <img class="h-full w-full object-cover border-[3px] border-green-500 rounded-full" src="{{ $user->photo }}" alt="Profile Photo">
-                        </div>
-                        <h4 class="font-semibold text-gray-800 mb-1">{{ $user->name }}</h4>
+<div class="bg-gray-300">
+    <div class="container1 mx-auto rounded-lg max-w-7xl">
+        <div class="flex max-sm:flex-col w-full">
+            <!-- Sidebar -->
+            <div class="sm:w-1/4 rounded-lg bg-white mt-6 mb-6 sm:shadow-md max-sm:mb-4 sticky top-5 h-96">
+                <div class="flex flex-col items-center">
+                    <div class="h-32 w-32 mt-3 mb-2">
+                        <img class="h-full w-full object-cover border-[3px] border-green-500 rounded-full"
+                             src="{{ $user->photo }}" alt="Profile Photo">
                     </div>
-
-                    <div class="max-sm:w-full">
-                        <ul class="items-center flex sm:flex-col max-sm:flex text-md max-sm:justify-center">
-                            <li class="w-full border-y">
-                                <a href="{{ route('userProfile') }}"
-                                   class="flex w-full justify-center font-semibold px-4 py-2 text-gray-800 {{ request()->is('profile') ? 'text-green-600  underline font-bold' : '' }} transition duration-300 ease-in">
-                                    My Profile
-                                </a>
-                            </li>
-                            <li class="w-full">
-                                <a href="{{ route('userProperties') }}"
-                                   class="flex w-full justify-center font-semibold text-nowrap px-4 py-2 text-gray-800 {{ request()->is('properties') ? 'text-green-600  underline font-bold' : ''  }} transition duration-300 ease-in">
-                                    My Properties
-                                </a>
-                            </li>
-                            <li class="w-full border-y">
-                                <a href="{{ route('userFavourites') }}"
-                                   class="flex w-full justify-center font-semibold px-4 py-2 text-gray-800 {{ request()->is('favourites') ? 'text-green-600  underline font-bold' : ''  }} transition duration-300 ease-in">
-                                    My Favourites
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                    <div class="social-media flex w-full h-16">
-                        <ul class="flex justify-evenly w-full items-center">
-                            <li>
-                                @if($user->facebook_url)
-                                    <a href="{{ $user->facebook_url }}" target="_blank" rel="noopener noreferrer">
-                                        <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}" alt="Facebook">
-                                    </a>
-                                @else
-                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}" alt="Facebook">
-                                @endif
-                            </li>
-                            <li>
-                                @if($user->twitter_url)
-                                    <a href="{{ $user->twitter_url }}" target="_blank" rel="noopener noreferrer">
-                                        <img id="twitter_url" class="h-8 cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/twitter.png') }}">
-                                    </a>
-                                @else
-                                    <img id="twitter_url" class="h-8 cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/twitter.png') }}">
-                                @endif
-                            </li>
-                            <li>
-                                @if($user->linkedin_url)
-                                    <a href="{{ $user->linkedin_url }}" target="_blank" rel="noopener noreferrer">
-                                        <img id="linkedin_url" class="h-8 cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/linkedin.png') }}">
-                                    </a>
-                                @else
-                                    <img id="linkedin_url" class="h-8 cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/linkedin.png') }}">
-                                @endif
-                            </li>
-                            <li>
-                                @if($user->instagram_url)
-                                    <a href="{{ $user->instagram_url }}" target="_blank" rel="noopener noreferrer">
-                                        <img id="instagram_url" class="h-8 bg-white cursor-pointer transition-transform hover:scale-110 rounded-lg" src="{{ asset('assets/frontend/images/instagram.png') }}">
-                                    </a>
-                                @else
-                                    <img id="instagram_url" class="h-8 bg-white cursor-pointer transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/instagram.png') }}">
-                                @endif
-                            </li>
-                        </ul>
-                    </div>
-
+                    <h4 class="font-semibold text-gray-800 mb-2">{{ $user->name }}</h4>
                 </div>
+                <div class="max-sm:w-full">
+                    <ul class="items-center flex sm:flex-col max-sm:flex text-md max-sm:justify-center">
+                        <li class="w-full border-y">
+                            <a href="javascript:void(0);" onclick="showContent('my_profile', this)"
+                               class="flex w-full justify-center items-center gap-1 font-semibold px-4 py-2 text-gray-800 {{ request()->is('profile') ? 'text-green-600 font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
+                                <ion-icon name="person"></ion-icon>My Profile
+                            </a>
+                        </li>
+                        <li class="w-full">
+                            <a href="javascript:void(0);" onclick="showContent('my_properties', this)"
+                               class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold text-nowrap px-4 py-2 text-gray-800 {{ request()->is('properties') ? 'text-green-600 underline font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
+                                <ion-icon name="business-outline"></ion-icon> My Properties
+                            </a>
+                        </li>
+                        <li class="w-full border-y">
+                            <a href="javascript:void(0);" onclick="showContent('my_favourites', this)"
+                               class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold px-4 py-2 text-gray-800 {{ request()->is('favourites') ? 'text-green-600 underline font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
+                                <ion-icon name="heart-outline" class="text-lg font-extrabold"></ion-icon> My Favourites
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Social Media Links -->
+                <div class="social-media flex w-full h-16">
+                    <ul class="flex justify-evenly w-full items-center">
+                        <li>
+                            @if ($user->facebook_url)
+                                <a href="{{ $user->facebook_url }}" target="_blank" rel="noopener noreferrer">
+                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                         src="{{ asset('assets/frontend/images/facebook.png') }}" alt="Facebook">
+                                </a>
+                            @else
+                                <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                     src="{{ asset('assets/frontend/images/facebook.png') }}" alt="Facebook">
+                            @endif
+                        </li>
+                        <li>
+                            @if ($user->twitter_url)
+                                <a href="{{ $user->twitter_url }}" target="_blank" rel="noopener noreferrer">
+                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                         src="{{ asset('assets/frontend/images/twitter.png') }}" alt="Twitter">
+                                </a>
+                            @else
+                                <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                     src="{{ asset('assets/frontend/images/twitter.png') }}" alt="Twitter">
+                            @endif
+                        </li>
+                        <li>
+                            @if ($user->linkedin_url)
+                                <a href="{{ $user->linkedin_url }}" target="_blank" rel="noopener noreferrer">
+                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                         src="{{ asset('assets/frontend/images/linkedin.png') }}" alt="LinkedIn">
+                                </a>
+                            @else
+                                <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                     src="{{ asset('assets/frontend/images/linkedin.png') }}" alt="LinkedIn">
+                            @endif
+                        </li>
+                        <li>
+                            @if ($user->instagram_url)
+                                <a href="{{ $user->instagram_url }}" target="_blank" rel="noopener noreferrer">
+                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                         src="{{ asset('assets/frontend/images/instagram.png') }}" alt="Instagram">
+                                </a>
+                            @else
+                                <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
+                                     src="{{ asset('assets/frontend/images/instagram.png') }}" alt="Instagram">
+                            @endif
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                <!-- Main Content -->
-
-                <div class="w-3/4 bg-white my-6 p-6 rounded-lg shadow-md md:ml-6 max-sm:w-full">
-                    <h2 class="text-2xl font-semibold mb-6">My Profile</h2>
-                    <!-- Profile Form -->
-                    <form action={{ route('profile.update', $user) }} method="POST" enctype="multipart/form-data">
+            <!-- Main Content -->
+            <div class="w-3/4 bg-white my-6 p-6 rounded-lg shadow-md md:ml-6 max-sm:w-full">
+                <div id="my_profile" class="content-section">
+                    <h2 class="text-2xl text-gray-800 font-semibold mb-6">My Profile</h2>
+                    <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
-                                <label for="name" class="block text-lg font-medium text-black">Full Name:</label>
-                                <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
+                                <label for="name" class="block text-lg font-medium text-black">Full
+                                    Name:</label>
+                                <input type="text" id="name" name="name"
+                                    value="{{ old('name', $user->name) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    required>
+                                    >
                                 @error('name')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -101,9 +107,10 @@
 
                             <div>
                                 <label for="email" class="block text-lg font-medium text-black">Email:</label>
-                                <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}"
+                                <input type="email" id="email" name="email"
+                                    value="{{ old('email', $user->email) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    required>
+                                    >
                                 @error('email')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -111,9 +118,10 @@
 
                             <div>
                                 <label for="phone" class="block text-lg font-medium text-black">Phone:</label>
-                                <input type="text" id="phone" name="phone" value="{{ old('phone', $user->phone) }}"
+                                <input type="text" id="phone" name="phone"
+                                    value="{{ old('phone', $user->phone) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    required>
+                                    >
                                 @error('phone')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -141,13 +149,15 @@
                             </div>
 
                             <div>
-                                <label for="photo" class="block text-lg font-medium text-black">Profile Photo:</label>
+                                <label for="photo" class="block text-lg font-medium text-black">Profile
+                                    Photo:</label>
                                 <input type="file" id="photo" name="photo"
                                     class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
 
-                                @if($user->photo)
+                                @if ($user->photo)
                                     <div class="mt-2">
-                                        <img src="{{ $user->photo }}" alt="Current Profile Photo" class="rounded-lg shadow-md w-32 h-32 object-cover">
+                                        <img src="{{ $user->photo }}" alt="Current Profile Photo"
+                                            class="rounded-lg shadow-md w-32 h-32 object-cover">
                                         <p class="text-gray-600 mt-1">Current photo</p>
                                     </div>
                                 @endif
@@ -159,8 +169,10 @@
 
 
                             <div>
-                                <label for="facebook_url" class="block text-lg font-medium text-black">Facebook Url:</label>
-                                <input type="url" id="facebook_url" name="facebook_url" value="{{ old('facebook_url', $user->facebook_url) }}"
+                                <label for="facebook_url" class="block text-lg font-medium text-black">Facebook
+                                    Url:</label>
+                                <input type="url" id="facebook_url" name="facebook_url"
+                                    value="{{ old('facebook_url', $user->facebook_url) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 @error('facebook_url')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -168,8 +180,10 @@
                             </div>
 
                             <div>
-                                <label for="instagram_url" class="block text-lg font-medium text-black">Instagram Url:</label>
-                                <input type="url" id="instagram_url" name="instagram_url" value="{{ old('instagram_url', $user->instagram_url) }}"
+                                <label for="instagram_url" class="block text-lg font-medium text-black">Instagram
+                                    Url:</label>
+                                <input type="url" id="instagram_url" name="instagram_url"
+                                    value="{{ old('instagram_url', $user->instagram_url) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 @error('instagram_url')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -177,8 +191,10 @@
                             </div>
 
                             <div>
-                                <label for="linkedin_url" class="block text-lg font-medium text-black">LinkedIn Url:</label>
-                                <input type="url" id="linkedin_url" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}"
+                                <label for="linkedin_url" class="block text-lg font-medium text-black">LinkedIn
+                                    Url:</label>
+                                <input type="url" id="linkedin_url" name="linkedin_url"
+                                    value="{{ old('linkedin_url', $user->linkedin_url) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 @error('linkedin_url')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -186,21 +202,140 @@
                             </div>
 
                             <div>
-                                <label for="twitter_url" class="block text-lg font-medium text-black">Twitter Url:</label>
-                                <input type="url" id="twitter_url" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}"
+                                <label for="twitter_url" class="block text-lg font-medium text-black">Twitter
+                                    Url:</label>
+                                <input type="url" id="twitter_url" name="twitter_url"
+                                    value="{{ old('twitter_url', $user->twitter_url) }}"
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 @error('twitter_url')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-
                         <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Save
+                                class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Save
                             Changes</button>
                     </form>
+                </div>
+
+                <div id="my_properties" class="content-section hidden">
+                    <h2 class="text-2xl text-gray800 font-semibold mb-6">My Properties</h2>
+
+                   <div class="card ">
+
+                    @foreach ($properties as $property)
+                        <div
+                            class="md:w-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row ml-0 h-80 mb-4">
+                            <!-- Property Image -->
+                            <div class="md:w-1/2 overflow-hidden">
+                                <img src="{{ $property->property_photo }}" alt="Property Image"
+                                    class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
+                            </div>
+
+                            <!-- Property Details -->
+                            <div class="md:w-1/2 p-6 flex flex-col ">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex gap-4  ">
+                                        <span class="bg-gray-200 flex items-center px-3  w-fit rounded-full  capitalize">{{$property->property_type}}</span>
+
+                                            @if ($property->status === 'for_sale')
+                                            <span class="bg-green-500 flex items-center text-white text-sm px-3  w-fit rounded-full ">Sale </span>
+                                            @else
+                                            <span class="bg-orange-500 flex items-center text-white text-sm px-3 w-fit rounded-full ">Rent </span>
+                                            @endif
+
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
+                                        <!-- Share Icon -->
+                                        <a href=""><ion-icon name="share-outline"
+                                                class="cursor-pointer text-xl"></ion-icon></a>
+                                    </div>
+                                </div>
+
+                                <h2 class="text-2xl font-semibold mb-4">{{$property->property_title}}</h2>
+                                @if($property->sale_price )
+                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{$property->sale_price}}</p>
+                                @elseif ($property->rent_price )
+                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{$property->rent_price ??''}}/m</p>
+                                @endif
+                                <p class="text-gray-600 font-semibold mb-4 flex items-center "><ion-icon name="map"
+                                        class="mr-2  "></ion-icon> {{$property->address_area}}, {{$property->district?->name}}</p>
+
+                                <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
+                                    <li class="flex items-center gap-1 font-semibold"><ion-icon name="bed"></ion-icon>Bedrooms: {{$property->bedrooms}}</li>
+                                    <li class="flex items-center gap-1 font-semibold" ><ion-icon name="water"></ion-icon>Bathrooms: {{$property->bathrooms}}</li>
+                                    <li class="flex items-center gap-1 font-semibold"><ion-icon name="home"></ion-icon>Floors: {{$property->no_of_floors}}</li>
+                                </ul>
+
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <!-- Show Edit Button Only if Authenticated User is the Owner -->
+                                        @if(Auth::check() && Auth::id() === $property->user_id)
+                                            <a href="{{ route('property.edit', ['id' => $property->id]) }}"
+                                               class="bg-orange-500 h-8 font-semibold text-white py-1 px-2 rounded-lg gap-1 flex items-center hover:bg-orange-600 transition-colors">
+                                                <ion-icon name="create-outline"></ion-icon>Edit
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <a href="{{route('propertyDetail', ['id' =>$property->id])}}"
+                                        class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center hover:bg-blue-700 transition-colors">
+                                        <ion-icon name="eye"></ion-icon>View Details
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+                </div>
+
+                <div id="my_favourites" class="content-section hidden">
+                    <h2 class="text-2xl text-gray-800 font-semibold mb-6">My Favourites</h2>
+                    <!-- Sample Favourites Content -->
+                    <div class="border border-gray-300 rounded-lg p-4 mb-4">
+                        <h3 class="font-semibold">Favourite Property Title 1</h3>
+                        <p>Location: Sample Location 1</p>
+                        <p>Price: $500,000</p>
+                        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    function showContent(section, element) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach((sec) => {
+            sec.classList.add('hidden');
+        });
+
+        // Show the selected section
+        const activeSection = document.getElementById(section);
+        if (activeSection) {
+            activeSection.classList.remove('hidden');
+        }
+
+        // Remove active class from all sidebar links
+        const links = document.querySelectorAll('.sidebar-link');
+        links.forEach((link) => {
+            link.classList.remove('text-green-600', 'font-semibold');
+            link.classList.add('text-gray-800');
+        });
+
+        // Add active class to the clicked link
+        element.classList.add('text-green-600', 'font-semibold');
+        element.classList.remove('text-gray-800');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showContent('my_profile', document.querySelector('[onclick*="my_profile"]')); // Default to showing My Profile section
+    });
+</script>
 @endsection

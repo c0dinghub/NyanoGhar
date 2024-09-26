@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\AddProperty;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,20 +13,16 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
     public function edit()
     {
         $user = Auth::user();
         return view('pages.userProfile', compact('user'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // $properties = AddProperty::where
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -37,9 +34,6 @@ class UserController extends Controller
         return Redirect::route('userProfile')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -57,9 +51,6 @@ class UserController extends Controller
         return Redirect::to('/');
     }
 
-    /**
-     * Display the user's properties.
-     */
     public function properties()
     {
         $user = Auth::user();
@@ -67,13 +58,22 @@ class UserController extends Controller
         return view('pages.userProperties', compact('properties'));
     }
 
-    /**
-     * Display the user's favourites.
-     */
+
     public function favourites()
     {
         $user = Auth::user();
         $favourites = $user->favourites; // Assuming you have a relationship set up
         return view('pages.userFavourites', compact('favourites'));
     }
+
+
+public function userProfile()
+{
+    $user = Auth::user(); // Get the authenticated user
+    $properties = $user->properties; // Get properties belonging to the user
+
+    return view('pages.userProfile', compact('user', 'properties'));
+}
+
+
 }
