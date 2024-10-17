@@ -4,8 +4,8 @@
     <main>
         <article>
             <!--
-                        - #HERO
-                        -->
+                            - #HERO
+                            -->
             <section class="relative bg-cover bg-center"
                 style="background-image: url('{{ asset('assets/frontend/images/pexels-binyaminmellish-186077.jpg') }}');">
 
@@ -83,8 +83,8 @@
 
 
             <!--
-                        - #ABOUT
-                        -->
+                            - #ABOUT
+                            -->
 
             <section id="about_us" class=" bg-blue-50 py-8">
                 <div class="container mx-auto px-4">
@@ -117,8 +117,8 @@
 
 
             <!--
-                        - #SERVICE
-                        -->
+                            - #SERVICE
+                            -->
 
             <section class="py-8 bg-gray-50" id="service">
                 <div class="container mx-auto px-4">
@@ -193,8 +193,8 @@
 
 
             <!--
-                        - #FEATURES
-                        -->
+                            - #FEATURES
+                            -->
 
             <section class="featured-listings bg-gray-100 py-8">
                 <div class="container mx-auto px-4">
@@ -204,17 +204,79 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Property 1 -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="{{ asset('assets/frontend/images/house2.jpg') }}" alt="Property 1"
-                                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" />
-                            <div class="p-6">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-2">House for Sale</h3>
-                                <p class="text-gray-600 mb-4">4 Beds · 3 Baths · 1,200 sq ft</p>
-                                <p class="text-gray-800 font-bold text-xl mb-2">Rs 4 Cr</p>
+                        @foreach ($properties as $property)
+                            <div>
+                                <div class="md:w-1/2 overflow-hidden">
+                                    <img src="{{ $property->property_photo }}" alt="Property Image"
+                                        class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
+                                </div>
+                                <div class="md:w-1/2 p-6 flex flex-col ">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex gap-4  ">
+                                            <span
+                                                class="bg-gray-200 flex items-center px-3 py-[1px] w-fit rounded-full  capitalize">{{ $property->property_type }}</span>
 
-                                @if (isset($properties) && count($properties) > 0)
+                                            @if ($property->status === 'for_sale')
+                                                <span
+                                                    class="bg-green-500 flex items-center text-white px-3  w-fit rounded-full ">Sale
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full ">Rent
+                                                </span>
+                                            @endif
+
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
+                                            <!-- Share Icon -->
+                                            <a href=""><ion-icon name="share-outline"
+                                                    class="cursor-pointer text-xl"></ion-icon></a>
+                                        </div>
+                                    </div>
+
+                                    <h2 class="text-2xl font-semibold mb-4">{{ $property->property_title }}</h2>
+                                    @if ($property->sale_price)
+                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs
+                                            {{ $property->sale_price }}</p>
+                                    @elseif ($property->rent_price)
+                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs
+                                            {{ $property->rent_price ?? '' }}/m</p>
+                                    @endif
+                                    <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
+                                            class="mr-2"></ion-icon> {{ $property->address_area }},
+                                        {{ $property->district?->name }}</p>
+
+                                    <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
+                                        <li class="flex items-center gap-1 font-semibold"><ion-icon
+                                                name="bed"></ion-icon>Bedrooms: {{ $property->bedrooms }}</li>
+                                        <li class="flex items-center font-semibold"><ion-icon
+                                                name="water"></ion-icon>Bathrooms: {{ $property->bathrooms }}</li>
+                                        <li class="flex items-center gap-1 font-semibold"><ion-icon
+                                                name="home"></ion-icon>Floors: {{ $property->no_of_floors }}</li>
+                                    </ul>
+
+                                    <div class="flex justify-between items-center">
+                                        <a href="tel:+1234567890"
+                                            class="bg-green-500 font-semibold py-[6px] text-white pl-2 pr-3 rounded-lg flex items-center gap-1 transition-transform hover:scale-105 ">
+                                            <ion-icon name="call"></ion-icon> Call
+                                        </a>
+                                        <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
+                                            class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105 ">
+                                            <ion-icon name="eye"></ion-icon>View Details
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <h3 class="text-2xl font-semibold text-gray-800 mb-2">House for Sale</h3>
+                                <p class="text-gray-600 mb-4">4 Beds · 3 Baths · 1,200 sq ft</p>
+                                <p class="text-gray-800 font-bold text-xl mb-2">Rs 4 Cr</p> --}}
+
+                        {{-- @if (isset($properties) && count($properties) > 0)
                                     @foreach ($properties as $property)
                                         <div class="flex justify-end">
                                             <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
@@ -226,8 +288,8 @@
                                 @else
                                     <p>No properties available.</p>
                                 @endif
-                            </div>
-                        </div>
+                            </div> --}}
+
 
                         <!-- Property 2 -->
                         {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -270,8 +332,8 @@
 
 
             <!--
-                        - #BLOG
-                        -->
+                            - #BLOG
+                            -->
             <section class="bg-gray-50 py-8" id="blog">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
@@ -346,8 +408,8 @@
 
 
             <!--
-                        - #CTA
-                        -->
+                            - #CTA
+                            -->
 
             <section class=" py-6 bg-gray-100">
                 <div class="container1 mx-auto px-4 h-32">

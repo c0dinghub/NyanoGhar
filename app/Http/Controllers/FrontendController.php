@@ -13,8 +13,7 @@ class FrontendController extends Controller
 {
     public function addProperty()
     {
-        $provinces = Province::all();
-        return view('frontend.addProperty', compact('provinces'));
+        return view('frontend.addProperty');
     }
 
     public function searchPage()
@@ -29,19 +28,6 @@ class FrontendController extends Controller
         $property = AddProperty::findOrFail($id);
 
         return view('pages.propertyDetail', compact('property'));
-    }
-
-
-    public function getDistricts($province_Id)
-    {
-        $districts = District::where('province_id', $province_Id)->pluck('name', 'id');
-        return response()->json($districts);
-    }
-
-    public function getLocalBodies($district_Id)
-    {
-        $localBodies = LocalBody::where('district_id', $district_Id)->pluck('name', 'id');
-        return response()->json($localBodies);
     }
 
     public function storeProperty(StoreAddPropertyRequest $request)

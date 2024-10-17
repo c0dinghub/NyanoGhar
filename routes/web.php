@@ -5,11 +5,12 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\AddProperty;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-
-    return view('welcome');
+    $properties = AddProperty::latest()->take(3)->get();
+    return view('welcome',compact('properties'));
 })->name('home');
 Route::get('addProperty', [FrontendController::class, 'addProperty'])->middleware('auth')->name('addProperty');
 Route::post('storeProperty', [FrontendController::class, 'storeProperty'])->middleware('auth')->name('storeProperty');

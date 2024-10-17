@@ -7,10 +7,10 @@
 
                 <div class="relative card overflow-hidden bg-white rounded-lg w-full">
                     <div class="flex justify-between px-6 py-2">
-                        <div class="">
+                        <div class=" items-center">
                             <h2 class="text-2xl font-semibold">Bungalow House for Sale</h2>
                             <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs 12 Cr</p>
-                            <span class="bg-gray-200  px-2 w-fit rounded-full ">House</span>
+                            <span class="bg-gray-200  px-2 pb-1 w-fit rounded-full ">House</span>
                         </div>
                         <div class="flex  justify-end flex-col  ">
                             <p class="text-gray-600 flex items-center "><ion-icon name="map" class="mr-2"></ion-icon>
@@ -136,7 +136,7 @@
                     </li>
                     <li
                         class="flex justify-center bg-gray-300 items-center rounded-md hover:bg-orange-500 cursor-pointer hover:text-white transform transition duration-500 ease-in-out">
-                        <span class="flex items-center me-2 text-4xl"><ion-icon name="water-outline"></ion-icon></span>
+                        <span class="flex items-center text-4xl"><ion-icon name="water-outline"></ion-icon></span>
                         <div class="flex flex-col items-center font-semibold">
                             <h4>Bathrooms:</h4>
                             <span class=" flex items-center text-md font-semibold"> {{$property->bathrooms}}</span>

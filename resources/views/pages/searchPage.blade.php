@@ -103,12 +103,12 @@
                             <div class="md:w-1/2 p-6 flex flex-col ">
                                 <div class="flex items-center justify-between mb-4">
                                     <div class="flex gap-4  ">
-                                        <span class="bg-gray-200 flex items-center px-3  w-fit rounded-full  capitalize">{{$property->property_type}}</span>
+                                        <span class="bg-gray-200 flex items-center px-3 py-[1px] w-fit rounded-full  capitalize">{{$property->property_type}}</span>
 
                                             @if ($property->status === 'for_sale')
-                                            <span class="bg-green-500 flex items-center text-white text-sm px-3  w-fit rounded-full ">Sale </span>
+                                            <span class="bg-green-500 flex items-center text-white px-3  w-fit rounded-full ">Sale </span>
                                             @else
-                                            <span class="bg-orange-500 flex items-center text-white text-sm px-3 w-fit rounded-full ">Rent </span>
+                                            <span class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full ">Rent </span>
                                             @endif
 
                                     </div>
@@ -131,17 +131,17 @@
 
                                 <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
                                     <li class="flex items-center gap-1 font-semibold"><ion-icon name="bed"></ion-icon>Bedrooms: {{$property->bedrooms}}</li>
-                                    <li class="flex items-center gap-1 font-semibold" ><ion-icon name="rainy"></ion-icon>Bathrooms: {{$property->bathrooms}}</li>
+                                    <li class="flex items-center font-semibold" ><ion-icon name="water"></ion-icon>Bathrooms: {{$property->bathrooms}}</li>
                                     <li class="flex items-center gap-1 font-semibold"><ion-icon name="home"></ion-icon>Floors: {{$property->no_of_floors}}</li>
                                 </ul>
 
                                 <div class="flex justify-between items-center">
                                     <a href="tel:+1234567890"
-                                        class="bg-green-500 font-semibold h-9 text-white px-3 rounded-lg flex items-center gap-2 hover:bg-green-600 transition-colors">
+                                        class="bg-green-500 font-semibold py-[6px] text-white pl-2 pr-3 rounded-lg flex items-center gap-1 transition-transform hover:scale-105 ">
                                         <ion-icon name="call"></ion-icon> Call
                                     </a>
                                     <a href="{{route('propertyDetail', ['id' =>$property->id])}}"
-                                        class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center hover:bg-blue-700 transition-colors">
+                                        class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105 ">
                                         <ion-icon name="eye"></ion-icon>View Details
                                     </a>
                                 </div>

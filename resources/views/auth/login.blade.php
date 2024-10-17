@@ -5,7 +5,7 @@
     <title>Login & Registration Form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite(['resources/css/login.css', 'resources/js/login.js'])
+    @vite(['resources/css/login.css','resources/css/app.css', 'resources/js/login.js'])
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
 </head>
 
@@ -31,14 +31,14 @@
                 </label>
                 <button class="submit" type="submit">Sign In</button>
             </form>
-            <p class="forgot-pass">Forgot Password?</p>
+            <p class="forgot-pass  w-5">Forgot Password?</p>
 
             <div class="social-media">
                 <ul>
-                    <li><img src="{{ asset('assets/frontend/images/facebook.png') }}"></li>
-                    <li><img src="{{ asset('assets/frontend/images/twitter.png') }}"></li>
-                    <li><img src="{{ asset('assets/frontend/images/linkedin.png') }}"></li>
-                    <li><img src="{{ asset('assets/frontend/images/instagram.png') }}"></li>
+                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}"></li>
+                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/twitter.png') }}"></li>
+                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/linkedin.png') }}"></li>
+                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/instagram.png') }}"></li>
                 </ul>
             </div>
         </div>
