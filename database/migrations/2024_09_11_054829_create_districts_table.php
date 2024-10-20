@@ -13,18 +13,20 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->longText('name');
-            $table->foreignId('province_id')->nullable()->constrained()->nullOnDelete();
-            $table->softDeletes();
+            $table->foreignId('province_id')->constrained()->cascadeOnDelete();
+            $table->string('district')->nullable();
+            $table->string('district_en');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    // public function down(): void
-    // {
-    //     Schema::dropIfExists('districts');
-    // }
+     public function down(): void
+     {
+      Schema::dropIfExists('districts');
+     }
+
 };

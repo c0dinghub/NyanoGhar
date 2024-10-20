@@ -14,7 +14,7 @@
                         </div>
                         <div class="flex  justify-end flex-col  ">
                             <p class="text-gray-600 flex items-center "><ion-icon name="map" class="mr-2"></ion-icon>
-                                Hattigaudi, Kathmandu</p>
+                                {{$property->address_area}}, {{$property->district->district_en}}</p>
                             <span>Posted On: 29 Feb 29, 2024</span>
                         </div>
                     </div>

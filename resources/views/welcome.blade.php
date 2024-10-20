@@ -16,11 +16,11 @@
                     </div>
 
                     <div class="bg-white shadow-lg rounded-full max-w-5xl opacity-[.9] mt-6">
-                        <div class="grid grid-cols-[repeat(4,1fr),80px] ">
+                        <form action="{{ route('properties.search') }}" method="GET" class="grid grid-cols-[repeat(4,1fr),80px]">
                             <!-- Location Input -->
                             <div class="relative">
                                 {{-- <label class="block text-sm font-medium text-gray-700 mb-1">Location</label> --}}
-                                <input type="text" placeholder="Enter location..."
+                                <input type="text" placeholder="Enter location..." name="location"
                                     class="w-full border border-gray-300 rounded-l-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
                                     aria-label="Location">
                             </div>
@@ -64,13 +64,13 @@
                                     <option value="200k-500k">Rs 20 Lakh - 50</option>
                                     <option value="200k-500k">Rs 50 Lakh - 1 Cr</option>
                                     <option value="200k-500k">Rs 1 Cr - 2</option>
-                                    <option value="above500k">Above Rs 3 Cr</option>
+                                    <option value="above500k">Above Rs 2 Cr</option>
                                 </select>
                             </div>
                             <!-- Search Button -->
                             <div class="flex  items-center">
                                 <button
-                                    class="flex w-full justify-center items-center h-10 bg-blue-500 text-white font-semibold rounded-full shadow-lg hover:bg-blue-600 "
+                                    class="flex w-full justify-center items-center h-10 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 "
                                     aria-label="Search">
                                     Search
                                 </button>

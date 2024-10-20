@@ -82,45 +82,5 @@ document.getElementById("status").addEventListener("change", function () {
 //     }
 // });
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("province").addEventListener("change", function () {
-        let provinceId = this.value;
-        let districtSelect = document.getElementById("district");
-        let localBodySelect = document.getElementById("local_body");
 
-        districtSelect.disabled = true;
-        localBodySelect.disabled = true;
-
-        if (provinceId) {
-            fetch(`/get-districts/${provinceId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    districtSelect.innerHTML = '<option value="">Select District</option>';
-                    data.forEach((district) => {
-                        districtSelect.innerHTML += `<option value="${district.id}">${district.name}</option>`;
-                    });
-                    districtSelect.disabled = false;
-                });
-        }
-    });
-
-    document.getElementById("district").addEventListener("change", function () {
-        let districtId = this.value;
-        let localBodySelect = document.getElementById("local_body");
-
-        localBodySelect.disabled = true;
-
-        if (districtId) {
-            fetch(`/get-local-bodies/${districtId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    localBodySelect.innerHTML = '<option value="">Select Local Body</option>';
-                    data.forEach((localBody) => {
-                        localBodySelect.innerHTML += `<option value="${localBody.id}">${localBody.name}</option>`;
-                    });
-                    localBodySelect.disabled = false;
-                });
-        }
-    });
-});
 

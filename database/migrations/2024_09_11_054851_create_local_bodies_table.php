@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('local_bodies', function (Blueprint $table) {
             $table->id();
-            $table->longText('name');
-            $table->foreignId('district_id')->nullable()->constrained()->nullOnDelete();
-            $table->softDeletes();
+            $table->foreignId('district_id')->constrained()->cascadeOnDelete();
+            $table->string('local_body')->nullable();
+            $table->string('local_body_en');
+            $table->integer('wards')->nullable();
+            $table->string('local_body_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    // public function down(): void
-    // {
-    //     Schema::dropIfExists('local_bodies');
-    // }
+    public function down(): void
+    {
+        Schema::dropIfExists('local_bodies');
+    }
 };

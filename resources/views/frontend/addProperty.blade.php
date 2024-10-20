@@ -130,14 +130,11 @@
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
-
                     <div>
                         <label for="bathrooms" class="block text-lg font-medium text-black"> Bathrooms:<sup class="text-red-500 text-lg ">*</sup></label>
                         <input type="number" min="0" id="bathrooms" name="bathrooms"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
-
 
                     <div>
                         <label for="hall_rooms" class="block text-lg font-medium text-black"> Hall Rooms:<sup class="text-red-500 text-lg ">*</sup></label>
@@ -192,7 +189,7 @@
                 <!-- Amenities -->
                 <div class="mb-6">
                     <label for="amenities" class="block text-lg font-medium text-black">Amenities:</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                         <label class="flex items-center">
                             <input type="checkbox" name="amenity_id" value="1" class="form-checkbox">
                             <span class="ml-2">Security</span>
