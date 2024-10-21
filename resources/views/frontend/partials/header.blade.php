@@ -37,7 +37,12 @@
             </a>
 
             <nav class="hidden w-1/2 md:flex font-semibold justify-evenly">
-                <a href="/" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="home-outline" class="text-lg"></ion-icon>Home</a>
+                <div class="group relative">
+                    <a href="/" class="flex text-gray-800 hover:text-orange-500 items-center gap-1">
+                        <ion-icon name="home-outline" class="text-lg hover:outline-none"></ion-icon>
+                        Home
+                    </a>
+                </div>
                 <a href="{{ route('searchPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
                 <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="book-outline" class="text-lg"></ion-icon>Blog</a>
                 <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="headset-outline" class="text-lg"></ion-icon>Services</a>

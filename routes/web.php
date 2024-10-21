@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // Home Route
 Route::get('/', function () {
-    $properties = AddProperty::latest()->take(3)->get();
+    $properties = AddProperty::with('district')->latest()->take(3)->get();
     return view('welcome', compact('properties'));
 })->name('home');
 

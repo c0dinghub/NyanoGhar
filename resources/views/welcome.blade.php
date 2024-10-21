@@ -30,10 +30,10 @@
                                 {{-- <label class="block text-sm font-medium text-gray-700 mb-1">Purpose</label> --}}
                                 <select
                                     class="flex w-full border border-gray-300  shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                                    aria-label="Purpose">
+                                    aria-label="Purpose" name="status">
                                     <option value="">Select Purpose</option>
-                                    <option value="buy">To Buy</option>
-                                    <option value="rent">To Rent</option>
+                                    <option value="for_sale">To Buy</option>
+                                    <option value="for_rent">To Rent</option>
                                 </select>
                             </div>
 
@@ -44,8 +44,8 @@
                                     class="flex w-full border border-gray-300  shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
                                     aria-label="Property Type">
                                     <option value="">Select Property</option>
-                                    <option value="bungalow">Bungalow</option>
-                                    <option value="apartment">Villa</option>
+                                    {{-- <option value="bungalow">Bungalow</option>
+                                    <option value="apartment">Villa</option> --}}
                                     <option value="apartment">Apartment</option>
                                     <option value="house">House</option>
                                 </select>
@@ -204,15 +204,15 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Property 1 -->
                         @foreach ($properties as $property)
-                            <div>
-                                <div class="md:w-1/2 overflow-hidden">
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden  ">
+                                <div class="md:w-full overflow-hidden">
                                     <img src="{{ $property->property_photo }}" alt="Property Image"
-                                        class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
+                                        class="w-full h-64  object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
                                 </div>
-                                <div class="md:w-1/2 p-6 flex flex-col ">
+                                <div class="md:w-full p-6 flex flex-col ">
                                     <div class="flex items-center justify-between mb-4">
                                         <div class="flex gap-4  ">
                                             <span
@@ -246,10 +246,9 @@
                                             {{ $property->rent_price ?? '' }}/m</p>
                                     @endif
                                     <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
-                                            class="mr-2"></ion-icon> {{ $property->address_area }},
-                                        {{ $property->district?->name }}</p>
+                                            class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district->district_en }}</p>
 
-                                    <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
+                                    <ul class=" text-gray-600 flex gap-4 mb-8 items-center ">
                                         <li class="flex items-center gap-1 font-semibold"><ion-icon
                                                 name="bed"></ion-icon>Bedrooms: {{ $property->bedrooms }}</li>
                                         <li class="flex items-center font-semibold"><ion-icon

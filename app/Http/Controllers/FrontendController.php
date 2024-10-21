@@ -70,7 +70,7 @@ class FrontendController extends Controller
     public function search(Request $request)
     {
         $location = $request->input('location');
-        $purpose = $request->input('purpose');
+        $status = $request->input('status');
         $propertyType = $request->input('property_type');
         $budget = $request->input('budget');
 
@@ -80,8 +80,8 @@ class FrontendController extends Controller
             $properties->where('address_area', 'LIKE', "%{$location}%"); // Adjusted to use address_area
         }
 
-        if ($purpose) {
-            $properties->where('purpose', $purpose);
+        if ($status) {
+            $properties->where('status','LIKE', "%{$status}%");
         }
 
         if ($propertyType) {

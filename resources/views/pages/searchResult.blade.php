@@ -1,6 +1,6 @@
 @extends('layouts.frontendLayout') <!-- Ensure this path matches your actual layout file -->
 
-@section('content')
+@section('addcontent')
 <div class="container mx-auto mt-6">
     <h1 class="text-2xl font-bold mb-4">Search Results</h1>
 
@@ -16,10 +16,10 @@
 
             <!-- Purpose Dropdown -->
             <div class="relative">
-                <select name="purpose" class="flex w-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out" aria-label="Purpose">
+                <select name="status" class="flex w-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out" aria-label="Purpose">
                     <option value="">Select Purpose</option>
-                    <option value="buy" {{ request('purpose') == 'buy' ? 'selected' : '' }}>To Buy</option>
-                    <option value="rent" {{ request('purpose') == 'rent' ? 'selected' : '' }}>To Rent</option>
+                    <option value="for_sale" {{ request('status') == 'for_sale' ? 'selected' : '' }}>To Buy</option>
+                    <option value="for_rent" {{ request('status') == 'for_rent' ? 'selected' : '' }}>To Rent</option>
                 </select>
             </div>
 
@@ -27,8 +27,8 @@
             <div class="relative">
                 <select name="property_type" class="flex w-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Property Type">
                     <option value="">Select Property</option>
-                    <option value="bungalow" {{ request('property_type') == 'bungalow' ? 'selected' : '' }}>Bungalow</option>
-                    <option value="villa" {{ request('property_type') == 'villa' ? 'selected' : '' }}>Villa</option>
+                    {{-- <option value="bungalow" {{ request('property_type') == 'bungalow' ? 'selected' : '' }}>Bungalow</option>
+                    <option value="villa" {{ request('property_type') == 'villa' ? 'selected' : '' }}>Villa</option> --}}
                     <option value="apartment" {{ request('property_type') == 'apartment' ? 'selected' : '' }}>Apartment</option>
                     <option value="house" {{ request('property_type') == 'house' ? 'selected' : '' }}>House</option>
                 </select>
