@@ -15,11 +15,19 @@ class FrontendController extends Controller
         return view('frontend.addProperty');
     }
 
-    public function searchPage()
+    public function propertyPage(Request $request)
     {
         $properties = AddProperty::all();
+        $propertiesCount= $properties->count();
 
-        return view('pages.searchPage', compact('properties'));
+        $searchPerformed = false;  // Default to false unless a search is performed
+
+    // If any search parameters are provided
+    if ($request->has('property_type') || $request->has('location') || $request->has('status') || $request->has('budget')) {
+        $searchPerformed = true;
+    }
+
+        return view('pages.propertyPage', compact('properties','propertiesCount','searchPerformed'));
     }
 
     public function propertyDetail($id)
@@ -65,63 +73,5 @@ class FrontendController extends Controller
 
         return redirect()->route('userProfile')->with('success', 'Property updated successfully!');
     }
-
-
-    public function search(Request $request)
-    {
-        $location = $request->input('location');
-        $status = $request->input('status');
-        $propertyType = $request->input('property_type');
-        $budget = $request->input('budget');
-
-        $properties = AddProperty::query();
-
-        if ($location) {
-            $properties->where('address_area', 'LIKE', "%{$location}%"); // Adjusted to use address_area
-        }
-
-        if ($status) {
-            $properties->where('status','LIKE', "%{$status}%");
-        }
-
-        if ($propertyType) {
-            $properties->where('property_type', $propertyType);
-        }
-
-        // Adjust budget filtering based on the selected budget option
-        if ($budget) {
-            switch ($budget) {
-                case 'under50k':
-                    $properties->where('price', '<', 50000);
-                    break;
-                case '50k-100k':
-                    $properties->whereBetween('price', [50000, 100000]);
-                    break;
-                case '100k-200k':
-                    $properties->whereBetween('price', [100000, 200000]);
-                    break;
-                case '200k-500k':
-                    $properties->whereBetween('price', [200000, 500000]);
-                    break;
-                case '500k-1cr':
-                    $properties->whereBetween('price', [500000, 10000000]);
-                    break;
-                case '1cr-2cr':
-                    $properties->whereBetween('price', [10000000, 20000000]);
-                    break;
-                case 'above2cr':
-                    $properties->where('price', '>', 20000000);
-                    break;
-            }
-
-        }
-
-        $properties = $properties->get();
-
-
-        // dd($properties);
-        return view('pages.searchResult', compact('properties'));
-    }
-
 
 }

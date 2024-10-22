@@ -30,7 +30,7 @@
                                 {{-- <label class="block text-sm font-medium text-gray-700 mb-1">Purpose</label> --}}
                                 <select
                                     class="flex w-full border border-gray-300  shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                                    aria-label="Purpose" name="status">
+                                    aria-label="Purpose" id="status" name="status">
                                     <option value="">Select Purpose</option>
                                     <option value="for_sale">To Buy</option>
                                     <option value="for_rent">To Rent</option>
@@ -52,21 +52,14 @@
                             </div>
                             <!-- Budget Dropdown -->
                             <div class="relative">
-                                {{-- <label class="block text-sm font-medium text-gray-700 mb-1">Budget</label> --}}
-                                <select
+                                <select id="budget" name="budget"
                                     class="flex w-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
                                     aria-label="Budget">
+                                    <!-- Default budget options can be shown here -->
                                     <option value="">Select Budget</option>
-                                    <option value="under50k">Under Rs 50,000</option>
-                                    <option value="50k-100k">Rs 50,000 - 1 Lakh</option>
-                                    <option value="100k-200k">Rs 1 Lakh - 5</option>
-                                    <option value="200k-500k">Rs 5 Lakh - 20</option>
-                                    <option value="200k-500k">Rs 20 Lakh - 50</option>
-                                    <option value="200k-500k">Rs 50 Lakh - 1 Cr</option>
-                                    <option value="200k-500k">Rs 1 Cr - 2</option>
-                                    <option value="above500k">Above Rs 2 Cr</option>
                                 </select>
                             </div>
+
                             <!-- Search Button -->
                             <div class="flex  items-center">
                                 <button
@@ -75,7 +68,7 @@
                                     Search
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>
@@ -126,7 +119,7 @@
 
                     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <li>
-                            <a href="{{ route('searchPage') }}"
+                            <a href="{{ route('propertyPage') }}"
                                 class="relative bg-white p-6 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:border-orange-500 hover:border-b-2 hover:border-opacity-100 h-[400px] flex flex-col justify-between border-b-2 border-transparent border-opacity-0 duration-300 ease-in-out">
                                 <div class="mb-4 flex-grow">
                                     <img src="{{ asset('assets/frontend/images/service-1.png') }}" alt="Service icon"
@@ -147,7 +140,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('searchPage') }}"
+                            <a href="{{ route('propertyPage') }}"
                                 class="relative bg-white p-6 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:border-orange-500 hover:border-b-2 hover:border-opacity-100 h-[400px] flex flex-col justify-between border-b-2 border-transparent border-opacity-0 duration-300 ease-in-out">
                                 <div class="mb-4 flex-grow">
                                     <img src="{{ asset('assets/frontend/images/service-2.png') }}" alt="Service icon"
@@ -419,7 +412,7 @@
                             </p>
                         </div>
 
-                        <a href="{{ route('searchPage') }}"
+                        <a href="{{ route('propertyPage') }}"
                             class="bg-white text-orange-500 py-3 px-4 flex items-center justify-center hover:bg-gray-800 hover:text-white transition-transform duration-200 hover:scale-105">
                             <span class="mr-2  font-semibold">Explore Properties</span>
                             <ion-icon name="arrow-forward-outline" class="text-xl font-semibold"></ion-icon>

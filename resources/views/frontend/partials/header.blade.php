@@ -30,7 +30,7 @@
     </div>
 
     <!-- Sticky Navbar (Header Bottom) -->
-    <div class="bg-white shadow-md ">
+    <div class="flex sticky top-1 bg-white shadow-md ">
         <div class="container mx-auto py-1 px-2 flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-gray-800">
                 <img src="{{ asset('assets/frontend/images/logoimg.jpg') }}" alt="nyanoghar logo" class="w-40">
@@ -43,7 +43,7 @@
                         Home
                     </a>
                 </div>
-                <a href="{{ route('searchPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
+                <a href="{{ route('propertyPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
                 <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="book-outline" class="text-lg"></ion-icon>Blog</a>
                 <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="headset-outline" class="text-lg"></ion-icon>Services</a>
                 <a href="#about_us" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="information-circle-outline" class="text-lg"></ion-icon>About Us</a>
@@ -85,7 +85,7 @@
             <li><a href="/" class="text-gray-700 hover:text-blue-600">Home</a></li>
             <li><a href="#about" class="text-gray-700 hover:text-blue-600">About</a></li>
             <li><a href="#service" class="text-gray-700 hover:text-blue-600">Service</a></li>
-            <li><a href="{{ route('searchPage') }}" class="text-gray-700 hover:text-blue-600">Property</a></li>
+            <li><a href="{{ route('propertyPage') }}" class="text-gray-700 hover:text-blue-600">Property</a></li>
             <li><a href="#blog" class="text-gray-700 hover:text-blue-600">Blog</a></li>
 
             @guest
