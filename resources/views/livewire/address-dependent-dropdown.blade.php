@@ -45,15 +45,5 @@
         </select>
     </div>
 
-    <div class="ward">
-        <label for="ward" class="block text-lg font-medium text-black"> Ward :</label>
-        <input type="number" min="1" id="ward" name="ward"
-            class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-    </div>
 
-    <div class="address_area mb-6">
-        <label for="address_area" class="block text-lg font-medium text-black"> Address Area :</label>
-        <input type="text" id="address_area" name="address_area"
-            class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-    </div>
 </div>

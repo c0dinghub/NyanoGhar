@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- Property Details Section -->
-                <div class="md:w-3/4 ml-6">
+                <div class="md:w-3/4 ml-6 bg-white p-6 rounded-md shadow-md">
 
                     @if($searchPerformed)
                         <div>
@@ -98,11 +98,11 @@
                                 <div class="md:w-1/2 p-6 flex flex-col">
                                     <div class="flex items-center justify-between mb-4">
                                         <div class="flex gap-4">
-                                            <span class="bg-gray-200 flex items-center px-3 py-[1px] w-fit rounded-full capitalize">{{ $property->property_type }}</span>
+                                            <span class="bg-gray-200 flex items-center px-2  w-fit rounded-full capitalize">{{ $property->property_type }}</span>
                                             @if ($property->status === 'for_sale')
-                                                <span class="bg-green-500 flex items-center text-white px-3 w-fit rounded-full">Sale</span>
+                                                <span class="bg-green-500 flex items-center text-white px-3 py-[1px] rounded-full">Sale</span>
                                             @else
-                                                <span class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full">Rent</span>
+                                                <span class="bg-orange-500 flex items-center text-white px-3 py-[1px] rounded-full">Rent</span>
                                             @endif
                                         </div>
                                         <div class="flex items-center gap-4">
@@ -113,10 +113,11 @@
 
                                     <h2 class="text-2xl font-semibold mb-4">{{ $property->property_title }}</h2>
                                     @if($property->sale_price)
-                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ number_format($property->sale_price) }}</p>
+                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
                                     @elseif ($property->rent_price)
-                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ number_format($property->rent_price) }}/m</p>
+                                        <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                     @endif
+
                                     <p class="text-gray-600 mb-4 flex items-center"><ion-icon name="map" class="mr-2"></ion-icon>{{ $property->address_area }}, {{ $property->district?->district_en }}</p>
 
                                     <ul class="text-gray-600 flex gap-6 mb-8 items-center">

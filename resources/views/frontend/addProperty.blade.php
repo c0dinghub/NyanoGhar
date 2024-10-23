@@ -22,6 +22,7 @@
                     <div>
                         <label for="title" class="block text-lg font-medium text-black ">Property Title:<sup class="text-red-500 text-lg ">*</sup> </label>
                         <input type="text" id="property_title" name="property_title"
+                                value="{{ old('property_title', $property->property_title ?? '') }}"
                             class="mt-1 block bg-gray-50 w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
@@ -29,9 +30,9 @@
                         <label for="status" class="block text-lg font-medium text-black">Status:<sup class="text-red-500 text-lg ">*</sup></label>
                         <select id="status" name="status"
                             class="mt-1 block w-full bg-gray-50  p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <option value="" disabled selected>Select Status</option>
-                            <option value="for_rent">For Rent</option>
-                            <option value="for_sale">For Sale</option>
+                            <<option value="" disabled {{ old('status', $property->status ?? '') == '' ? 'selected' : '' }}>Select Status</option>
+                            <option value="for_rent" {{ old('status', $property->status ?? '') == 'for_rent' ? 'selected' : '' }}>For Rent</option>
+                            <option value="for_sale" {{ old('status', $property->status ?? '') == 'for_sale' ? 'selected' : '' }}>For Sale</option>
                         </select>
                     </div>
                 </div>
@@ -42,6 +43,7 @@
                     <div class="relative">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3 text-gray-500">NPR</span>
                         <input type="integer" id="rentPrice" name="rent_price" min="100"
+                                value="{{ old('rent_price', $property->rent_price ?? '') }}"
                             class="bg-gray-50 pl-14 mt-1 block w-1/2 h-9 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                 </div>
@@ -51,6 +53,7 @@
                     <div class="relative">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3 text-gray-500">NPR</span>
                         <input type="integer" id="salePrice" name="sale_price" min="100"
+                                value="{{ old('sale_price', $property->sale_price ?? '') }}"
                             class="bg-gray-50 pl-14 mt-1 block w-1/2 h-9 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                 </div>
@@ -61,27 +64,26 @@
                         <label for="property_type" class="block text-lg font-medium text-black">Property Type:<sup class="text-red-500 text-lg ">*</sup></label>
                         <select id="property_type" name="property_type"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <option value="" disabled selected>Select Property Type</option>
-                            <option value="house">House</option>
-                            <option value="apartment">Apartment</option>
-                            {{-- <option value="villa">Villa</option>
-                            <option value="bungalow">Bungalow</option> --}}
+                            <option value="" disabled selected {{ old('status', $property->status ?? '') == '' ? 'selected' : '' }}>Select Property Type</option>
+                            <option value="house" {{ old('property_type', $property->property_type ?? '') == 'house' ? 'selected' : '' }}>House</option>
+                            <option value="apartment" {{ old('property_type', $property->property_type ?? '') == 'apartment' ? 'selected' : '' }}>Apartment</option>
                         </select>
                     </div>
 
                     <div id="houseFields" class="hidden">
                         <label for="house_category" class="block text-lg font-medium text-black">House Category:<sup class="text-red-500 text-lg ">*</sup></label>
                         <select id="house_category" name="house_category"
-                            class="mt-1 block w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" >
-                            <option value="" disabled selected>Select House Category</option>
-                            <option value="2bhk">2BHK</option>
-                            <option value="duplex">Duplex</option>
-                            <option value="bungalow">Bungalow</option>
-                            <option value="villa">Villa</option>
-                            <option value="4bhk">4BHK</option>
-                            <option value="triplex">Triplex</option>
-                            <option value="others">Others</option>
+                            class="mt-1 block w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <option value="" disabled {{ old('house_category') == '' ? 'selected' : '' }}>Select House Category</option>
+                            <option value="2bhk" {{ old('house_category') == '2bhk' ? 'selected' : '' }}>2BHK</option>
+                            <option value="duplex" {{ old('house_category') == 'duplex' ? 'selected' : '' }}>Duplex</option>
+                            <option value="bungalow" {{ old('house_category') == 'bungalow' ? 'selected' : '' }}>Bungalow</option>
+                            <option value="villa" {{ old('house_category') == 'villa' ? 'selected' : '' }}>Villa</option>
+                            <option value="4bhk" {{ old('house_category') == '4bhk' ? 'selected' : '' }}>4BHK</option>
+                            <option value="triplex" {{ old('house_category') == 'triplex' ? 'selected' : '' }}>Triplex</option>
+                            <option value="others" {{ old('house_category') == 'others' ? 'selected' : '' }}>Others</option>
                         </select>
+
                     </div>
 
                     <div id="apartmentFields" class="hidden">
@@ -93,13 +95,13 @@
                         <label for="apartment_category" class="block text-lg font-medium text-black mt-4">Apartment Category:<sup class="text-red-500 text-lg ">*</sup></label>
                         <select id="apartment_category" name="apartment_category"
                             class="mt-1 block w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" >
-                            <option value="" disabled selected>Select Apartment Category</option>
-                            <option value="studio">Studio</option>
-                            <option value="2bhk">2BHK</option>
-                            <option value="3bhk">3BHK</option>
-                            <option value="duplex">Duplex</option>
-                            <option value="4bhk">4BHK</option>
-                            <option value="penthouse">Penthouse</option>
+                            <option value="" disabled {{ old('apartment_category') == '' ? 'selected' : '' }}>Select Apartment Category</option>
+                            <option value="studio" {{ old('apartment_category') == 'studio' ? 'selected' : '' }}>Studio</option>
+                            <option value="2bhk" {{ old('apartment_category') == '2bhk' ? 'selected' : '' }}>2BHK</option>
+                            <option value="3bhk" {{ old('apartment_category') == '3bhk' ? 'selected' : '' }}>3BHK</option>
+                            <option value="duplex" {{ old('apartment_category') == 'duplex' ? 'selected' : '' }}>Duplex</option>
+                            <option value="4bhk" {{ old('apartment_category') == '4bhk' ? 'selected' : '' }}>4BHK</option>
+                            <option value="penthouse" {{ old('apartment_category') == 'penthouse' ? 'selected' : '' }}>Penthouse</option>
                         </select>
                     </div>
 
@@ -185,6 +187,20 @@
                 <!-- Location Fields -->
 
                 <livewire:address-dependent-dropdown />
+
+                <div class="ward_no">
+                    <label for="ward" class="block text-lg font-medium text-black"> Ward :</label>
+                    <input type="number" min="1" id="ward_no" name="ward_no"
+                        value="{{old('ward_no', $property->ward_no ?? '' )}}"
+                        class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <div class="address_area mb-6">
+                    <label for="address_area" class="block text-lg font-medium text-black"> Address Area :</label>
+                    <input type="text" id="address_area" name="address_area"
+                        value="{{old('address_area', $property->address_area ?? '')}}"
+                        class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
                 <!-- Amenities -->
                 <div class="mb-6">

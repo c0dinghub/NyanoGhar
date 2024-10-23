@@ -4,7 +4,7 @@
             <!-- Brand and Contact -->
             <div class="footer-brand mb-6 lg:mb-0 lg:w-1/3">
                 <a href="#" class="block mb-6">
-                    <img src="./assets/frontend/images/Screenshot_2024-08-29_145616-removebg-preview.png" alt="nyanoghar logo" class="w-48" />
+                    <img src="{{asset('assets/frontend/images/Screenshot_2024-08-29_145616-removebg-preview.png')}}" alt="nyanoghar logo" class="w-48" />
                 </a>
 
                 <ul class="contact-list mb-6 space-y-4">

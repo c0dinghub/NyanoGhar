@@ -23,9 +23,9 @@ class FrontendController extends Controller
         $searchPerformed = false;  // Default to false unless a search is performed
 
     // If any search parameters are provided
-    if ($request->has('property_type') || $request->has('location') || $request->has('status') || $request->has('budget')) {
-        $searchPerformed = true;
-    }
+         if ($request->has('property_type') || $request->has('location') || $request->has('status') || $request->has('budget')) {
+            $searchPerformed = true;
+        }
 
         return view('pages.propertyPage', compact('properties','propertiesCount','searchPerformed'));
     }

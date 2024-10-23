@@ -1,21 +1,33 @@
 @extends('layouts.frontendLayout')
 @section('addcontent')
 
-    <body class="bg-gray-200">
+    <div class="bg-gray-200">
         <div class="container1 w-full py-6 px-8">
             <div class="flex flex-row md:flex-row ">
 
                 <div class="relative card overflow-hidden bg-white rounded-lg w-full">
                     <div class="flex justify-between px-6 py-2">
-                        <div class=" items-center">
-                            <h2 class="text-2xl font-semibold">Bungalow House for Sale</h2>
-                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs 12 Cr</p>
-                            <span class="bg-gray-200  px-2 pb-1 w-fit rounded-full ">House</span>
+                        <div class="flex flex-col items-start">
+                            <div class="flex gap-2">
+                                <span class="bg-gray-200 px-2 pb-1 w-fit rounded-full capitalize  ">{{$property->property_type}}</span>
+                                @if ($property->status === 'for_sale')
+                                    <span class="bg-green-500 flex items-center text-white px-3 py-[1px] rounded-full">Sale</span>
+                                @else
+                                    <span class="bg-orange-500 flex items-center text-white px-3 py-[1px] rounded-full">Rent</span>
+                                @endif
+                            </div>
+                            <h2 class="text-2xl font-semibold">{{$property->property_title}}</h2>
+
+                            @if($property->sale_price)
+                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
+                            @elseif ($property->rent_price)
+                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
+                            @endif
                         </div>
-                        <div class="flex  justify-end flex-col  ">
-                            <p class="text-gray-600 flex items-center "><ion-icon name="map" class="mr-2"></ion-icon>
+                        <div class="flex text-gray-600 justify-end items-end flex-col mb-2 ">
+                            <p class= "flex items-center "><ion-icon name="map" class="mr-2"></ion-icon>
                                 {{$property->address_area}}, {{$property->district->district_en}}</p>
-                            <span>Posted On: 29 Feb 29, 2024</span>
+                            <span>Posted On: {{$property->created_at->toFormattedDateString()}}</span>
                         </div>
                     </div>
                     <!-- Slider Images -->
@@ -229,73 +241,12 @@
                 </div>
             </div>
 
-            {{-- <div id="Reviews" class="bg-white mt-4 rounded-lg">
-                <div class="header font-semibold uppercase text-lg text-center border-b-2 pb-4 mt-6">
-                    <h2>Reviews</h2>
-                </div>
-                <div class="review-body mb-6">
-                    <div class="grid grid-cols-3 p-6 bg-gray-30 mt-4 ml-6 mr-6 rounded-lg">
-                        <div class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">
-                            <!-- User Information -->
-                            <div class="flex items-center">
-                                <img class="w-12 h-12 object-cover rounded-full" src="https://i.pravatar.cc/300" alt="User Avatar">
-                                <div class="ml-3">
-                                    <h2 class="text-gray-900 font-bold">John</h2>
-                                    <p class="text-gray-600 text-sm">3 days ago</p>
-                                </div>
-                            </div>
-
-                            <!-- Review Content -->
-                            <div class="mt-4">
-                                <p class="text-gray-700">
-                                    This is a fantastic pr! I've been using it for a while now and it has exceeded my expectations.
-                                    Great customer support as well!
-                                </p>
-                            </div>
-
-                            <!-- Rating Stars -->
-                            <div class="flex items-center mt-4">
-                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.09 3.368a1 1 0 00.95.691h3.516c.969 0 1.372 1.24.588 1.81l-2.853 2.074a1 1 0 00-.364 1.118l1.09 3.368c.3.921-.755 1.688-1.54 1.118L10 13.011l-2.853 2.074c-.784.57-1.838-.197-1.54-1.118l1.09-3.368a1 1 0 00-.364-1.118L3.48 8.796c-.784-.57-.38-1.81.588-1.81h3.516a1 1 0 00.95-.691l1.09-3.368z" />
-                                </svg>
-                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.09 3.368a1 1 0 00.95.691h3.516c.969 0 1.372 1.24.588 1.81l-2.853 2.074a1 1 0 00-.364 1.118l1.09 3.368c.3.921-.755 1.688-1.54 1.118L10 13.011l-2.853 2.074c-.784.57-1.838-.197-1.54-1.118l1.09-3.368a1 1 0 00-.364-1.118L3.48 8.796c-.784-.57-.38-1.81.588-1.81h3.516a1 1 0 00.95-.691l1.09-3.368z" />
-                                </svg>
-                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.09 3.368a1 1 0 00.95.691h3.516c.969 0 1.372 1.24.588 1.81l-2.853 2.074a1 1 0 00-.364 1.118l1.09 3.368c.3.921-.755 1.688-1.54 1.118L10 13.011l-2.853 2.074c-.784.57-1.838-.197-1.54-1.118l1.09-3.368a1 1 0 00-.364-1.118L3.48 8.796c-.784-.57-.38-1.81.588-1.81h3.516a1 1 0 00.95-.691l1.09-3.368z" />
-                                </svg>
-                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.09 3.368a1 1 0 00.95.691h3.516c.969 0 1.372 1.24.588 1.81l-2.853 2.074a1 1 0 00-.364 1.118l1.09 3.368c.3.921-.755 1.688-1.54 1.118L10 13.011l-2.853 2.074c-.784.57-1.838-.197-1.54-1.118l1.09-3.368a1 1 0 00-.364-1.118L3.48 8.796c-.784-.57-.38-1.81.588-1.81h3.516a1 1 0 00.95-.691l1.09-3.368z" />
-                                </svg>
-                                <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.09 3.368a1 1 0 00.95.691h3.516c.969 0 1.372 1.24.588 1.81l-2.853 2.074a1 1 0 00-.364 1.118l1.09 3.368c.3.921-.755 1.688-1.54 1.118L10 13.011l-2.853 2.074c-.784.57-1.838-.197-1.54-1.118l1.09-3.368a1 1 0 00-.364-1.118L3.48 8.796c-.784-.57-.38-1.81.588-1.81h3.516a1 1 0 00.95-.691l1.09-3.368z" />
-                                </svg>
-                            </div>
-
-                            <!-- Overall Rating -->
-                            <div class="mt-2">
-                                <span class="text-gray-900 font-bold text-lg">4.0/5</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div> --}}
-
 
 
         </div>
 
 
 
-    </body>
+    </div>
 
 @endsection

@@ -40,6 +40,7 @@ class AddProperty extends Model
         'province_id',
         'district_id',
         'local_body_id',
+        'ward_no',
         'address_area',
         'amenity_id',
         'car_parking_spaces',

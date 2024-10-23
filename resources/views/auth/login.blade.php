@@ -31,7 +31,7 @@
                 </label>
                 <button class="submit" type="submit">Sign In</button>
             </form>
-            <p class="forgot-pass  w-5">Forgot Password?</p>
+            <p class="forgot-pass">Forgot Password?</p>
 
             <div class="social-media">
                 <ul>

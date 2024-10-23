@@ -192,46 +192,13 @@
                 </div>
 
 
-                <div class="mb-6">
-                    <label for="location" class="mb-6 block text-lg font-medium text-black">Property Location:</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-                        <div>
-                            <label for="province" class="block text-lg font-medium text-black">Province:</label>
-                            <select id="province" name="province_id"
-                                class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <option value="" disabled {{ !old('province_id', $property->province_id) ? 'selected' : '' }}>Select Province</option>
-                                {{-- @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}" {{ old('province_id', $property->province_id) ? 'selected' : '' }} onclick="selectedProvince({{ $province->id }})">
-                                        {{ $province->name }}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
+                <!-- Location Fields -->
 
-                        <div>
-                            <label for="district" class="block text-lg font-medium text-black">District:</label>
-                            <select id="district" name="district_id"
-                                class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <option value="" disabled {{ !old('district_id', $property->district_id) ? 'selected' : '' }}>Select District</option>
-
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="local_body" class="block text-lg font-medium text-black">Local Body:</label>
-                            <select id="local_body" name="local_body_id"
-                                class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <option value="" disabled {{ !old('local_body_id', $property->local_body_id) ? 'selected' : '' }}>Select Local Body</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="address_area" class="block text-lg font-medium text-black">Address Area:</label>
-                            <input type="text" id="address_area" name="address_area"
-                                 value="{{ old('address_area', $property->address_area) }}"
-                                class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
-                    </div>
-                </div>
+                <livewire:address-dependent-dropdown
+                :selectedProvince="$enterprise->province_id ?? null"
+                :selectedDistrict="$enterprise->district_id ?? null"
+                :selectedLocalBody="$enterprise->local_body_id ?? null"
+                />
 
                 <div class="mb-6">
                     <label for="amenities" class="block text-lg font-medium text-black">Amenities:</label>

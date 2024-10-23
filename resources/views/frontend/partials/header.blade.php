@@ -30,7 +30,7 @@
     </div>
 
     <!-- Sticky Navbar (Header Bottom) -->
-    <div class="flex sticky top-1 bg-white shadow-md ">
+    <div class=" bg-white shadow-md ">
         <div class="container mx-auto py-1 px-2 flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-gray-800">
                 <img src="{{ asset('assets/frontend/images/logoimg.jpg') }}" alt="nyanoghar logo" class="w-40">

@@ -236,7 +236,7 @@
                                             {{ $property->sale_price }}</p>
                                     @elseif ($property->rent_price)
                                         <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs
-                                            {{ $property->rent_price ?? '' }}/m</p>
+                                            {{ $property->rent_price ?? '' }}/month</p>
                                     @endif
                                     <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
                                             class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district->district_en }}</p>
