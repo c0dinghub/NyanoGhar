@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="bg-white shadow-lg rounded-full max-w-5xl opacity-[.9] mt-6">
-                        <form action="{{ route('properties.search') }}" method="GET" class="grid grid-cols-[repeat(4,1fr),80px]">
+                        <form action="{{ route('propertyPage') }}" method="GET" class="grid grid-cols-[repeat(4,1fr),80px]">
                             <!-- Location Input -->
                             <div class="relative">
                                 {{-- <label class="block text-sm font-medium text-gray-700 mb-1">Location</label> --}}

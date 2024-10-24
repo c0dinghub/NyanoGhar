@@ -9,7 +9,7 @@
                 <!-- Sidebar for Search -->
                 <div class="md:w-1/4 h-fit bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0 sticky top-6">
                     <h3 class="text-xl font-semibold mb-4">Search Properties</h3>
-                    <form action="{{ route('properties.search') }}" method="GET" class="grid grid-cols-1 gap-4">
+                    <form action="{{ route('propertyPage') }}" method="GET" class="grid grid-cols-1 gap-4">
 
                          <!-- Property Type Dropdown -->
                         <div class="">
@@ -61,24 +61,35 @@
                 </div>
 
                 <!-- Property Details Section -->
-                <div class="md:w-3/4 ml-6 bg-white p-6 rounded-md shadow-md">
-
-                    @if($searchPerformed)
+                <div class="md:w-3/4 ml-6 bg-white p-4 rounded-md shadow-md">
+                    <div class="flex bg-white shadow-sm rounded-md border border-gray-300 p-1 justify-between mb-3 sticky top-0 z-50">
                         <div>
-                         <h2 class="flex bg-white shadow-sm rounded-md border border-gray-300 p-2 pl-4 text-xl font-semibold mb-2">
-                            Search Results :
-                            <p class="flex font-normal ml-2 text-base items-center ">
-                                (Found {{ $propertiesCount }} properties)
-                            </p>
-                         </h2>
+                            @if($searchPerformed)
+                                <h2 class="flex bg-white  pl-4 text-xl font-semibold mb-2">
+                                    Search Results :
+                                    <p class="flex font-normal ml-2 text-base items-center ">
+                                        (Found {{ $propertiesCount }} properties)
+                                    </p>
+                                </h2>
+                            @else
+                                <h2 class="flex p-1 items-center pl-4 text-xl font-semibold ">Available Properties :
+                                    <p class="flex font-normal ml-2 text-base items-center">(Total {{ $propertiesCount }} properties)</p>
+                                </h2>
+                            @endif
                         </div>
-                      @else
-                         <div>
-                            <h2 class="flex bg-white shadow-sm rounded-md border border-gray-300 p-2 pl-4 text-xl font-semibold mb-2">Available Properties :
-                             <p class="flex font-normal ml-2 text-base items-center">(Total {{ $propertiesCount }} properties)</p>
-                            </h2>
-                        </div>
-                   @endif
+                        <!-- Sorting Options -->
+                     <div class="flex items-center">
+                        <label for="sort" class="block text-base  font-medium text-gray-800">Sort By : </label>
+                        <select id="sort" name="sort" onchange="location = this.value;" class="block w-40 ml-1 h-9 border-gray-300 rounded-md shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="{{ route('propertyPage', ['sort' => 'latest', 'property_type' => request('property_type'), 'location' => request('location'), 'status' => request('status'), 'budget' => request('budget')]) }}" {{ $sortBy == 'latest' ? 'selected' : '' }}>Recently Added</option>
+                            <option value="{{ route('propertyPage', ['sort' => 'lowest_price', 'property_type' => request('property_type'), 'location' => request('location'), 'status' => request('status'), 'budget' => request('budget')]) }}" {{ $sortBy == 'lowest_price' ? 'selected' : '' }}>Lowest Sale Price</option>
+                            <option value="{{ route('propertyPage', ['sort' => 'highest_price', 'property_type' => request('property_type'), 'location' => request('location'), 'status' => request('status'), 'budget' => request('budget')]) }}" {{ $sortBy == 'highest_price' ? 'selected' : '' }}>Highest Sale Price</option>
+                            <option value="{{ route('propertyPage', ['sort' => 'lowest_rent_price', 'property_type' => request('property_type'), 'location' => request('location'), 'status' => request('status'), 'budget' => request('budget')]) }}" {{ $sortBy == 'lowest_rent_price' ? 'selected' : '' }}>Lowest Rent Price</option>
+                            <option value="{{ route('propertyPage', ['sort' => 'highest_rent_price', 'property_type' => request('property_type'), 'location' => request('location'), 'status' => request('status'), 'budget' => request('budget')]) }}" {{ $sortBy == 'highest_rent_price' ? 'selected' : '' }}>Highest Rent Price</option>
+                        </select>
+
+                     </div>
+                    </div>
 
                     @if($properties->isEmpty())
                         <p class="text-center text-xl font-semibold">No properties found matching your search criteria.</p>
@@ -161,20 +172,5 @@
             </div>
         </section>
     </body>
-    {{-- <script>
-        document.getElementById('status').addEventListener('change', function() {
-            toggleSearch(this.value);
-        });
-        function toggleSearch(type) {
-            const rentFields = document.getElementById('rent-fields');
-            const buyFields = document.getElementById('buy-fields');
-            if (type === 'for_rent') {
-                rentFields.classList.remove('hidden');
-                buyFields.classList.add('hidden');
-            } else {
-                rentFields.classList.add('hidden');
-                buyFields.classList.remove('hidden');
-            }
-        }
-    </script> --}}
+
 @endsection

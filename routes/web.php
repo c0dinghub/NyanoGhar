@@ -24,8 +24,7 @@ Route::middleware('auth')->group(function() {
 // Public Routes
 Route::get('/property/{id}', [FrontendController::class, 'propertyDetail'])->name('propertyDetail');
 Route::get('propertyPage', [FrontendController::class, 'propertyPage'])->name('propertyPage');  // Public access to search page
-Route::get('/properties/search', [SearchPropertyController::class, 'search'])->name('properties.search');
-// Route::get('/properties/propertyPage', [SearchPropertyController::class, 'search'])->name('properties.search');
+// Route::get('/properties/search', [FrontendController::class, 'search'])->name('properties.search');
 
 // User Profile Routes
 Route::middleware('auth')->group(function () {
