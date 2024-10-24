@@ -12,6 +12,7 @@ class FrontendController extends Controller
 {
     public function addProperty()
     {
+
         return view('frontend.addProperty');
     }
 
@@ -45,8 +46,9 @@ class FrontendController extends Controller
         // dd($propertyData);
         $newProperty = AddProperty::create($propertyData);
 
-        return redirect()->route('home')
-            ->with('success', 'Property added successfully!');
+        toast('Your Property has been submited!','success');
+
+        return redirect()->route('home');
     }
 
     public function edit($id)
@@ -56,6 +58,8 @@ class FrontendController extends Controller
         if (Auth::id() !== $property->user_id) {
             return redirect()->route('userProfile')->with('error', 'You do not have permission to edit this property.');
         }
+
+        toast('Your Property has been submited!','success');
 
         return view('frontend.editUserProperty', compact('property'));
     }
@@ -71,7 +75,25 @@ class FrontendController extends Controller
         // dd($request);
         $property->update($request->validated());
 
-        return redirect()->route('userProfile')->with('success', 'Property updated successfully!');
+        toast('Your Property has been submited!','success');
+        return redirect()->route('userProfile');
+    }
+
+    public function destroy($id)
+    {
+        // Find the property by ID
+        $property = AddProperty::findOrFail($id);
+
+        // Check if the authenticated user is the owner of the property
+        if (Auth::id() === $property->user_id) {
+            // Delete the property
+            $property->delete();
+
+            // Redirect back with a success message
+            return redirect()->route('userProfile')->with('success', 'Property deleted successfully.');
+        }
+
+        return redirect()->route('userProfile')->with('error', 'You do not have permission to delete this property.');
     }
 
 }

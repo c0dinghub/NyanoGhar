@@ -189,7 +189,7 @@
                 <livewire:address-dependent-dropdown />
 
                 <div class="ward_no">
-                    <label for="ward" class="block text-lg font-medium text-black"> Ward :</label>
+                    <label for="ward_no" class="block text-lg font-medium text-black"> Ward :</label>
                     <input type="number" min="1" id="ward_no" name="ward_no"
                         value="{{old('ward_no', $property->ward_no ?? '' )}}"
                         class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">

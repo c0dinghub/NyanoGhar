@@ -98,11 +98,11 @@
                                 <div class="md:w-1/2 p-6 flex flex-col">
                                     <div class="flex items-center justify-between mb-4">
                                         <div class="flex gap-4">
-                                            <span class="bg-gray-200 flex items-center px-2  w-fit rounded-full capitalize">{{ $property->property_type }}</span>
+                                            <span class="bg-gray-200 flex items-center px-2 pb-[2.5px] w-fit rounded-full capitalize">{{ $property->property_type }}</span>
                                             @if ($property->status === 'for_sale')
-                                                <span class="bg-green-500 flex items-center text-white px-3 py-[1px] rounded-full">Sale</span>
+                                                <span class="bg-green-500 flex items-center text-white px-3 pb-[2px] rounded-full">Sale</span>
                                             @else
-                                                <span class="bg-orange-500 flex items-center text-white px-3 py-[1px] rounded-full">Rent</span>
+                                                <span class="bg-orange-500 flex items-center text-white px-3 pb-[2px] rounded-full">Rent</span>
                                             @endif
                                         </div>
                                         <div class="flex items-center gap-4">

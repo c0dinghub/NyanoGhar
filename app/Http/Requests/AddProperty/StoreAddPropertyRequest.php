@@ -41,7 +41,8 @@ class StoreAddPropertyRequest extends FormRequest
             'no_of_floors' => ['required'],
             'province_id' => ['nullable', 'exists:provinces,id'], // Checks that the province exists
             'district_id' => ['nullable', 'exists:districts,id'], // Checks that the district exists
-            'local_body_id' => ['nullable', 'exists:local_bodies,id'], // Checks that the local bodies exists
+            'local_body_id' => ['nullable', 'exists:local_bodies,id'],
+            'ward_no'=> ['required','string'],
             'address_area' => ['required', 'string'],
             'amenity_id' => ['nullable'],
             'car_parking_spaces' => ['required', 'integer'],

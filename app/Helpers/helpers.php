@@ -5,7 +5,7 @@ if (!function_exists('formatPrice')) {
     {
         if ($price >= 10000000) {
             // Convert to crores
-            return round($price / 10000000, 2) . 'cr';
+            return round($price / 10000000, 2) . ' cr';
         } elseif ($price >= 100000) {
             // Convert to lakhs
             return round($price / 100000, 2) . 'lakhs';

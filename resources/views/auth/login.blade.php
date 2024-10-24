@@ -35,9 +35,13 @@
 
             <div class="social-media">
                 <ul>
+                    <li>
+                        <a href="{{ route('google.login') }}">
+                            <img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/Google.jpeg') }}" alt="Google">
+                        </a>
+                    </li>
                     <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}"></li>
                     <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/twitter.png') }}"></li>
-                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/linkedin.png') }}"></li>
                     <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/instagram.png') }}"></li>
                 </ul>
             </div>

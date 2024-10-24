@@ -256,12 +256,10 @@
                                         </div>
 
                                         <h2 class="text-2xl font-semibold mb-4">{{ $property->property_title }}</h2>
-                                        @if ($property->sale_price)
-                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs
-                                                {{ $property->sale_price }}</p>
+                                        @if($property->sale_price)
+                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
                                         @elseif ($property->rent_price)
-                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs
-                                                {{ $property->rent_price ?? '' }}/month</p>
+                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                         @endif
                                         <p class="text-gray-600 font-semibold mb-4 flex items-center "><ion-icon
                                                 name="map" class="mr-2  "></ion-icon> {{ $property->address_area }},
@@ -277,19 +275,28 @@
                                         </ul>
 
                                         <div class="flex justify-between items-center">
-                                            <div>
+                                            <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
+                                                class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105 ">
+                                                <ion-icon name="eye"></ion-icon>View Details
+                                            </a>
+                                            <div class="flex gap-2">
                                                 <!-- Show Edit Button Only if Authenticated User is the Owner -->
                                                 @if (Auth::check() && Auth::id() === $property->user_id)
                                                     <a href="{{ route('property.edit', ['id' => $property->id]) }}"
                                                         class="bg-orange-500 h-8 font-semibold text-white py-1 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
                                                         <ion-icon name="create-outline"></ion-icon>Edit
                                                     </a>
+                                                    <!-- Delete Button -->
+                                                    <form action="{{ route('property.delete', ['id' => $property->id]) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this property?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="bg-red-600 h-8 font-semibold text-white py-1 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
+                                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </div>
-                                            <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
-                                                class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105 ">
-                                                <ion-icon name="eye"></ion-icon>View Details
-                                            </a>
+
                                         </div>
 
                                     </div>

@@ -1,3 +1,9 @@
+@props([
+    'selectedProvince'=>null,
+    'selectedDistrict'=>null,
+    'selectedLocalBody'=>null
+])
+
 <div class="relative grid grid-cols-2 gap-6">
     <div class="province col-span-1">
         <label for="provinces" class="block text-lg font-medium mb-2 text-black">Select Province <sup class="text-red-500 text-lg ">*</sup></label>
@@ -6,7 +12,7 @@
             class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
             <option value="">Select a Province</option>
             @foreach($provinces as $province)
-                <option value="{{ $province->id }}" {{ $selectedProvince == $province->id ? 'selected' : '' }}>
+                <option value="{{ $province->id }}" {{$selectedProvince == $province->id ? 'selected' : '' }}>
                     {{ $province->province_en }}
                 </option>
             @endforeach
@@ -29,11 +35,11 @@
         </select>
     </div>
 
-    <div class="local_body ">
+    <div class="local_body">
         <label for="local_bodies" class="block text-lg font-medium mb-2 text-black">Local Body</label>
         <select id="local_bodies" name="local_body_id"
-                wire:model.live="selectedLocalBody"
-                class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
+            wire:model.live="selectedLocalBody"
+            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
             <option value="">Select Local Body</option>
             @if($local_bodies)
                 @foreach($local_bodies as $local_body)
@@ -44,6 +50,4 @@
             @endif
         </select>
     </div>
-
-
 </div>

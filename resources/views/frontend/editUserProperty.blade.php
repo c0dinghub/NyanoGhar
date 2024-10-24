@@ -193,12 +193,28 @@
 
 
                 <!-- Location Fields -->
-
+                {{-- {{$property->province_id}} --}}
                 <livewire:address-dependent-dropdown
-                :selectedProvince="$enterprise->province_id ?? null"
-                :selectedDistrict="$enterprise->district_id ?? null"
-                :selectedLocalBody="$enterprise->local_body_id ?? null"
+                :selectedProvince="$property->province_id ?? null"
+                :selectedDistrict="$property->district_id ?? null"
+                :selectedLocalBody="$property->local_body_id ?? null"
                 />
+
+                <div  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-4">
+                    <div class="ward_no">
+                        <label for="ward_no" class="block text-lg font-medium text-black"> Ward :</label>
+                        <input type="number" min="1" id="ward_no" name="ward_no"
+                            value="{{old('ward_no', $property->ward_no ?? '' )}}"
+                            class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <div class="address_area mb-6">
+                        <label for="address_area" class="block text-lg font-medium text-black"> Address Area :</label>
+                        <input type="text" id="address_area" name="address_area"
+                            value="{{old('address_area', $property->address_area ?? '')}}"
+                            class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
 
                 <div class="mb-6">
                     <label for="amenities" class="block text-lg font-medium text-black">Amenities:</label>

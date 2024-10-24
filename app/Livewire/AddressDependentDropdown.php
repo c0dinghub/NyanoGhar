@@ -2,12 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\Address\District;
-use App\Models\Address\LocalBody;
-use App\Models\Address\Province;
-
 use Livewire\Component;
-
+use App\Models\Address\District;
+use App\Models\Address\Province;
+use App\Models\Address\LocalBody;
 
 class AddressDependentDropdown extends Component
 {
@@ -19,17 +17,13 @@ class AddressDependentDropdown extends Component
     public $selectedDistrict = null;
     public $selectedLocalBody = null;
 
-    public function mount($defaultProvince = null, $defaultDistrict = null, $defaultLocalBody = null)
+    public function mount($selectedProvince = null, $selectedDistrict = null, $selectedLocalBody = null)
     {
-        // Load all provinces once when the component is mounted
-        $this->provinces = Province::all();
+        $this->provinces = Province::all(['id', 'province_en']);
+        $this->selectedProvince = $selectedProvince;
+        $this->selectedDistrict = $selectedDistrict;
+        $this->selectedLocalBody = $selectedLocalBody;
 
-        // Set default values if provided
-        $this->selectedProvince = $defaultProvince;
-        $this->selectedDistrict = $defaultDistrict;
-        $this->selectedLocalBody = $defaultLocalBody;
-
-        // Preload districts and local bodies based on selected values
         if ($this->selectedProvince) {
             $this->loadDistricts($this->selectedProvince);
         }
@@ -38,6 +32,7 @@ class AddressDependentDropdown extends Component
             $this->loadLocalBodies($this->selectedDistrict);
         }
     }
+
 
     public function updatedSelectedProvince($province_id)
     {

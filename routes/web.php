@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SearchPropertyController;
 use App\Http\Controllers\UserController;
@@ -29,9 +30,9 @@ Route::get('/properties/search', [SearchPropertyController::class, 'search'])->n
 // User Profile Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'userProfile'])->name('userProfile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
-});
+    Route::delete('/property/{id}', [FrontendController::class, 'destroy'])->name('property.delete');});
 
 // Dashboard Route
 Route::get('/dashboard', function () {
@@ -40,4 +41,9 @@ Route::get('/dashboard', function () {
 
 // Include auth routes
 require __DIR__ . '/auth.php';
+
+//google login routes
+Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+
 

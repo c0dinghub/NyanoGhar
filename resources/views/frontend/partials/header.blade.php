@@ -33,7 +33,7 @@
     <div class=" bg-white shadow-md ">
         <div class="container mx-auto py-1 px-2 flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-gray-800">
-                <img src="{{ asset('assets/frontend/images/logoimg.jpg') }}" alt="nyanoghar logo" class="w-40">
+                <img src="{{ asset('assets/frontend/images/logoimg.jpg') }}" alt="nyanoghar logo" class="w-44">
             </a>
 
             <nav class="hidden w-1/2 md:flex font-semibold justify-evenly">
@@ -56,10 +56,10 @@
                             <img src="{{ Auth::user()->photo }}" alt="Photo" class="h-12 w-12 rounded-full object-cover">
                         </button>
                         <div class="hidden group-hover:block absolute -right-9 top-[52px] z-10 w-32 bg-white shadow-md rounded-lg ">
-                            <a href="{{ route('userProfile') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">My Profile</a>
+                            <a href="{{ route('userProfile') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Log Out</button>
+                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Log out</button>
                             </form>
                         </div>
                     </div>
