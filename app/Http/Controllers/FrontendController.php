@@ -134,8 +134,10 @@ class FrontendController extends Controller
                 break;
         }
 
+        $filteredPropertiesCount = $query->count();
+
         // Get the filtered and sorted properties
-        $properties = AddProperty::latest()->paginate(3);
+        $properties = $query->paginate(5);
         $allProperties = AddProperty::all();
         $propertiesCount = $allProperties->count();
 
@@ -143,8 +145,8 @@ class FrontendController extends Controller
             'properties' => $properties,
             'propertiesCount' => $propertiesCount,
             'sortBy' => $sortBy,
+            'filteredPropertiesCount' => $filteredPropertiesCount,
             'searchPerformed' => $searchPerformed,
-
         ]);
     }
 

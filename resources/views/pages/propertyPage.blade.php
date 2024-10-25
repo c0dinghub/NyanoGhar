@@ -66,17 +66,15 @@
                     <div
                         class="flex bg-white shadow-sm rounded-md border border-gray-300 p-1 justify-between mb-3 sticky top-0 z-40">
                         <div>
-                            @if ($searchPerformed)
-                                <h2 class="flex bg-white  pl-4 text-xl font-semibold mb-2">
-                                    Search Results :
-                                    <p class="flex font-normal ml-2 text-base items-center ">
-                                        (Found {{ $propertiesCount }} properties)
-                                    </p>
+                            @if ($searchPerformed || $sortBy != 'latest')
+                                <h2 class="flex p-1 items-center pl-4 text-xl font-semibold">
+                                    Available Properties:<p class="flex font-normal ml-2 text-base items-center">(Total {{ $filteredPropertiesCount }} properties)</p>
+
                                 </h2>
                             @else
-                                <h2 class="flex p-1 items-center pl-4 text-xl font-semibold ">Available Properties :
-                                    <p class="flex font-normal ml-2 text-base items-center">(Total {{ $propertiesCount }}
-                                        properties)</p>
+                                <h2 class="flex p-1 items-center pl-4 text-xl font-semibold">
+                                    Available Properties:
+                                    <p class="flex font-normal ml-2 text-base items-center">(Total {{ $propertiesCount }} properties)</p>
                                 </h2>
                             @endif
                         </div>
