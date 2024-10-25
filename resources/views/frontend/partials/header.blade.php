@@ -17,12 +17,17 @@
             <!-- Social Media Icons & Add Property Button -->
             <div class="flex space-x-4 items-center">
                 <ul class="flex space-x-4">
-                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-pinterest"></ion-icon></a></li>
+                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-facebook"></ion-icon></a>
+                    </li>
+                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-twitter"></ion-icon></a>
+                    </li>
+                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </li>
+                    <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-pinterest"></ion-icon></a>
+                    </li>
                 </ul>
-                <a href="{{ route('addProperty') }}" class="bg-orange-500 text-white font-semibold px-4 py-2 hover:bg-orange-600">
+                <a href="{{ route('addProperty') }}"
+                    class="bg-orange-500 text-white font-semibold px-4 py-2 hover:bg-orange-600">
                     Add Property
                 </a>
             </div>
@@ -38,35 +43,49 @@
 
             <nav class="hidden w-1/2 md:flex font-semibold justify-evenly">
                 <div class="group relative">
-                    <a href="/" class="flex text-gray-800 hover:text-orange-500 items-center gap-1">
-                        <ion-icon name="home-outline" class="text-lg hover:outline-none"></ion-icon>
-                        Home
+                    <a href="/" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('/') ? 'text-orange-500' : '' }}">
+                        <ion-icon name="home-outline" class="text-lg"></ion-icon> Home
                     </a>
                 </div>
-                <a href="{{ route('propertyPage') }}" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="business-outline" class="text-lg"></ion-icon>Property</a>
-                <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="book-outline" class="text-lg"></ion-icon>Blog</a>
-                <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1"><ion-icon name="headset-outline" class="text-lg"></ion-icon>Services</a>
-                <a href="#about_us" class="flex text-gray-800 hover:text-orange-500 items-center gap-1"><ion-icon name="information-circle-outline" class="text-lg"></ion-icon>About Us</a>
+                <a href="{{ route('propertyPage') }}" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('propertyPage') ? 'text-orange-500' : '' }}">
+                    <ion-icon name="business-outline" class="text-lg"></ion-icon> Property
+                </a>
+                <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-110 {{ request()->is('blog') ? 'text-orange-500' : '' }}">
+                    <ion-icon name="book-outline" class="text-lg"></ion-icon> Blog
+                </a>
+                <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-105 {{ request()->is('service') ? 'text-orange-500' : '' }}">
+                    <ion-icon name="headset-outline" class="text-lg"></ion-icon> Services
+                </a>
+                <a href="#about_us" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('about_us') ? 'text-orange-500' : '' }}">
+                    <ion-icon name="information-circle-outline" class="text-lg"></ion-icon> About Us
+                </a>
             </nav>
+
 
             <div class="flex space-x-4 items-center">
                 @auth
                     <div class="relative group rounded-full">
-                        <button class="bg-gray-200 rounded-full border-[3px] border-green-500 focus:outline-none active:bg-orange-500 flex items-center transition ease-in duration-150">
+                        <button
+                            class="bg-gray-200 rounded-full border-[3px] border-green-500 focus:outline-none active:bg-orange-500 flex items-center transition ease-in duration-150">
                             <img src="{{ Auth::user()->photo }}" alt="Photo" class="h-12 w-12 rounded-full object-cover">
                         </button>
-                        <div class="hidden group-hover:block absolute -right-9 top-[52px] z-10 w-32 bg-white shadow-md rounded-lg ">
-                            <a href="{{ route('userProfile') }}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Profile</a>
+                        <div
+                            class="hidden group-hover:block absolute -right-9 top-[52px] z-50  w-32 bg-white shadow-md rounded-lg ">
+                            <a href="{{ route('userProfile') }}"
+                                class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Log out</button>
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Log
+                                    out</button>
                             </form>
                         </div>
                     </div>
                 @endauth
 
                 @guest
-                    <a href="{{ route('login') }}" class="hidden md:flex items-center text-gray-900 font-semibold hover:text-orange-500">
+                    <a href="{{ route('login') }}"
+                        class="hidden md:flex items-center text-gray-900 font-semibold hover:text-orange-500">
                         <ion-icon name="log-in-outline" class="mr-1 font-bold text-lg"></ion-icon>Login
                     </a>
                 @endguest
