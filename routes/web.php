@@ -38,11 +38,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 // Include auth routes
 require __DIR__ . '/auth.php';
 
 //google login routes
-Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 
