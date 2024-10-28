@@ -1,16 +1,16 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleLoginController;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\SearchPropertyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FrontendController;
 use App\Models\AddProperty;
 use Illuminate\Support\Facades\Route;
 
 // Home Route
 Route::get('/', function () {
+    $favourites= getUserFavourites();
     $properties = AddProperty::with('district')->latest()->take(3)->get();
-    return view('welcome', compact('properties'));
+    return view('welcome', compact('properties','favourites'));
 })->name('home');
 
 // Routes that require authentication
@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favourites/add/{property}', [UserController::class, 'addToFavourites'])->name('favourites.add');
+    Route::post('/favourites/remove/', [UserController::class, 'removeFromFavourites'])->name('favourites.remove');
+    Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
+});
 
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);

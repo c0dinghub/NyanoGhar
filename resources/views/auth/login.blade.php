@@ -33,18 +33,23 @@
             </form>
             <p class="forgot-pass">Forgot Password?</p>
 
+
             <div class="social-media">
+
                 <ul>
-                    <li>
-                        <a href="{{ route('google.login') }}">
-                            <img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/Google.jpeg') }}" alt="Google">
-                        </a>
+                    <li class="flex ">
+                        <p class="flex items-center">or Sign in using <a href="{{ route('google.login') }}">
+                            <img class="transition-transform hover:scale-110 ml-2" src="{{ asset('assets/frontend/images/Google.jpeg') }}" alt="Google">
+                        </a></p>
+
                     </li>
-                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}"></li>
+                    {{-- <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/facebook.png') }}"></li>
                     <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/twitter.png') }}"></li>
-                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/instagram.png') }}"></li>
+                    <li><img class="transition-transform hover:scale-110" src="{{ asset('assets/frontend/images/instagram.png') }}"></li> --}}
                 </ul>
+
             </div>
+
         </div>
 
         <div class="sub-cont">

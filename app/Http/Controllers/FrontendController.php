@@ -18,6 +18,7 @@ class FrontendController extends Controller
 
     public function propertyPage(Request $request)
     {
+        $favourites = getUserFavourites();
         // Get sorting option from request or default to 'latest'
         $sortBy = $request->query('sort', 'latest');
         $searchPerformed = false; // Default to false unless a search is performed
@@ -147,6 +148,7 @@ class FrontendController extends Controller
             'sortBy' => $sortBy,
             'filteredPropertiesCount' => $filteredPropertiesCount,
             'searchPerformed' => $searchPerformed,
+            'favourites'=>$favourites,
         ]);
     }
 
@@ -197,7 +199,8 @@ class FrontendController extends Controller
         $property->update($request->validated());
 
         toast('Your Property has been submited!','success');
-        return redirect()->route('userProfile');
+        // return redirect()->route('userProfile');
+        return redirect(route('userProfile'));
     }
 
     public function destroy($id)

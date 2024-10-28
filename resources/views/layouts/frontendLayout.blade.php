@@ -16,6 +16,9 @@
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css"
+    rel="stylesheet" />
 
     <!--
     - google font link

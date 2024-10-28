@@ -22,13 +22,13 @@
                             </li>
                             <li class="w-full">
                                 <a href="javascript:void(0);" onclick="showContent('my_properties', this)"
-                                    class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold text-nowrap px-4 py-2 text-gray-800 {{ request()->is('properties') ? 'text-green-600 underline font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
+                                    class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold text-nowrap px-4 py-2 text-gray-800 {{ request()->is('properties') ? 'text-green-600  font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
                                     <ion-icon name="business-outline"></ion-icon> My Properties
                                 </a>
                             </li>
                             <li class="w-full border-y">
-                                <a href="javascript:void(0);" onclick="showContent('my_favourites', this)"
-                                    class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold px-4 py-2 text-gray-800 {{ request()->is('favourites') ? 'text-green-600 underline font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
+                                <a href="javascript:void(0); {{route('favourites.index')}}" onclick="showContent('my_favourites', this)"
+                                    class="flex w-full justify-center gap-1 items-center hover:text-green-600 font-semibold px-4 py-2 text-gray-800 {{ request()->is('favourites') ? 'text-green-600   font-semibold' : '' }} transition duration-300 ease-in sidebar-link">
                                     <ion-icon name="heart-outline" class="text-lg font-extrabold"></ion-icon> My Favourites
                                 </a>
                             </li>
@@ -308,14 +308,93 @@
                     </div>
 
                     <div id="my_favourites" class="content-section hidden">
-                        <h2 class="text-2xl text-gray-800 font-semibold mb-6">My Favourites</h2>
-                        <!-- Sample Favourites Content -->
-                        <div class="border border-gray-300 rounded-lg p-4 mb-4">
-                            <h3 class="font-semibold">Favourite Property Title 1</h3>
-                            <p>Location: Sample Location 1</p>
-                            <p>Price: $500,000</p>
-                            <a href="#" class="text-blue-600 hover:underline">View Details</a>
+                        <h2 class="text-2xl text-gray800 font-semibold mb-6">My Favourite Properties</h2>
+
+                        <div class="card">
+                            @foreach ($favourites as $property)
+                            {{-- {{$property}} --}}
+                                 <div class="md:w-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row ml-0 h-80 mb-4">
+                                    <!-- Property Image -->
+                                    <div class="md:w-1/2 overflow-hidden">
+                                        <img src="{{ $property->property_photo }}" alt="Property Image"
+                                             class="w-full h-80 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer">
+                                    </div>
+
+                                    <!-- Property Details -->
+                                    <div class="md:w-1/2 p-6 flex flex-col">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex gap-4">
+                                                <span class="bg-gray-200 flex items-center px-3 w-fit rounded-full capitalize">{{ $property->property_type }}</span>
+
+                                                @if ($property->status === 'for_sale')
+                                                    <span class="bg-green-500 flex items-center text-white px-3 w-fit rounded-full">Sale</span>
+                                                @else
+                                                    <span class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full">Rent</span>
+                                                @endif
+                                            </div>
+
+                                            <div class="flex items-center gap-4">
+                                                <!-- Toggle Favorite Form -->
+                                                <form action="{{ route($favourites->contains($property->id) ? 'favourites.remove' : 'favourites.add', $property->id) }}" method="POST">
+                                                    @csrf
+                                                    @if($favourites->contains($property->id))
+                                                        <!-- Filled Heart if Favorited -->
+                                                        <button type="submit" class="text-red-500"><ion-icon name="heart" class="text-2xl"></ion-icon></button>
+                                                    @else
+                                                        <!-- Outline Heart if Not Favorited -->
+                                                        <button type="submit" class="text-gray-500"><ion-icon name="heart-outline" class="text-2xl"></ion-icon></button>
+                                                    @endif
+                                                </form>
+
+                                                <!-- Share Icon -->
+                                                <a href="#">
+                                                    <ion-icon name="share-outline" class="cursor-pointer text-2xl"></ion-icon>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <h2 class="text-2xl font-semibold mb-4">{{ $property->property_title }}</h2>
+                                        @if($property->sale_price)
+                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
+                                        @elseif ($property->rent_price)
+                                            <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
+                                        @endif
+                                        <p class="text-gray-600 font-semibold mb-4 flex items-center">
+                                            <ion-icon name="map" class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district?->name }}
+                                        </p>
+
+                                        <ul class="text-gray-600 flex gap-6 mb-8 items-center">
+                                            <li class="flex items-center gap-1 font-semibold"><ion-icon name="bed"></ion-icon>Bedrooms: {{ $property->bedrooms }}</li>
+                                            <li class="flex items-center font-semibold"><ion-icon name="water"></ion-icon>Bathrooms: {{ $property->bathrooms }}</li>
+                                            <li class="flex items-center gap-1 font-semibold"><ion-icon name="home"></ion-icon>Floors: {{ $property->no_of_floors }}</li>
+                                        </ul>
+
+                                        <div class="flex justify-between items-center">
+                                            <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
+                                               class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
+                                                <ion-icon name="eye"></ion-icon>View Details
+                                            </a>
+                                            <div class="flex gap-2">
+                                                @if (Auth::check() && Auth::id() === $property->user_id)
+                                                    <a href="{{ route('property.edit', ['id' => $property->id]) }}"
+                                                       class="bg-orange-500 h-8 font-semibold text-white py-1 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
+                                                        <ion-icon name="create-outline"></ion-icon>Edit
+                                                    </a>
+                                                    <form action="{{ route('property.delete', ['id' => $property->id]) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this property?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="bg-red-600 h-8 font-semibold text-white py-1 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
+                                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+
 
                     </div>
                 </div>
@@ -353,5 +432,12 @@
             showContent('my_profile', document.querySelector(
             '[onclick*="my_profile"]')); // Default to showing My Profile section
         });
+
+        // $(document).ready(function() {
+        //     $('.my_favourites').on('click', function() {
+        //         const url = $(this).data('url');
+        //         window.location.href = url; // Redirect to the favorites page
+        //     });
+        // });
     </script>
 @endsection

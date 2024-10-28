@@ -219,10 +219,25 @@
 
                                         </div>
                                         <div class="flex items-center gap-4">
-                                            <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
-                                            <!-- Share Icon -->
-                                            <a href=""><ion-icon name="share-outline"
-                                                    class="cursor-pointer text-xl"></ion-icon></a>
+                                            @if (in_array($property->id, $favourites))
+                                                <button
+                                                    class="btn btn-success favorite-button"
+                                                    data-property-id="{{ $property->id }}">
+                                                    <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                </button>
+                                            @else
+                                                <form action="{{ route('favourites.add', $property) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="ri-heart-3-line text-2xl"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+
+                                            <a href="">
+                                                <ion-icon name="share-outline"
+                                                    class="cursor-pointer text-2xl"></ion-icon>
+                                            </a>
                                         </div>
                                     </div>
 

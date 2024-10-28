@@ -77,6 +77,11 @@ class AddProperty extends Model
         return $this->belongsTo(User::class); // Define the relationship to User
     }
 
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
 
     //public function getPropertyPhotoAttribute($value)
     // {
