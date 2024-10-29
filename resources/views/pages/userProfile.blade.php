@@ -60,14 +60,14 @@
                                 @endif
                             </li>
                             <li>
-                                @if ($user->linkedin_url)
-                                    <a href="{{ $user->linkedin_url }}" target="_blank" rel="noopener noreferrer">
-                                        <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
-                                            src="{{ asset('assets/frontend/images/linkedin.png') }}" alt="LinkedIn">
+                                @if ($user->whatsapp)
+                                    <a href="{{ $user->whatsapp}}" target="_blank" rel="noopener noreferrer">
+                                        <img class="h-9 bg-white rounded-xl cursor-pointer transition-transform hover:scale-110"
+                                            src="{{ asset('assets/frontend/images/whatsapp.jpeg') }}" alt="Whatsapp">
                                     </a>
                                 @else
-                                    <img class="h-8 bg-white rounded-lg cursor-pointer transition-transform hover:scale-110"
-                                        src="{{ asset('assets/frontend/images/linkedin.png') }}" alt="LinkedIn">
+                                    <img class="h-9 bg-white rounded-xl cursor-pointer transition-transform hover:scale-110"
+                                        src="{{ asset('assets/frontend/images/whatsapp.jpeg') }}" alt="Whatsapp">
                                 @endif
                             </li>
                             <li>
@@ -188,12 +188,12 @@
                                 </div>
 
                                 <div>
-                                    <label for="linkedin_url" class="block text-lg font-medium text-black">LinkedIn
-                                        Url:</label>
-                                    <input type="url" id="linkedin_url" name="linkedin_url"
-                                        value="{{ old('linkedin_url', $user->linkedin_url) }}"
+                                    <label for="whatsapp" class="block text-lg font-medium text-black">Whatsapp
+                                        :</label>
+                                    <input type="number" id="whatsapp" name="whatsapp"
+                                        value="{{ old('whatsapp', $user->whatsapp) }}"
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    @error('linkedin_url')
+                                    @error('whatsapp')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -250,10 +250,14 @@
                                                     @csrf
                                                     @if($favourites->contains($property->id))
                                                         <!-- Filled Heart if Favorited -->
-                                                        <button type="submit" class="text-red-500"><ion-icon name="heart" class="text-2xl"></ion-icon></button>
+                                                        <button type="submit" class="btn btn-success favorite-button" title="Remove from favourites">
+                                                            <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                        </button>
                                                     @else
                                                         <!-- Outline Heart if Not Favorited -->
-                                                        <button type="submit" class="text-gray-500"><i class="ri-heart-3-line text-2xl"></i></button>
+                                                        <button type="submit" class="btn btn-primary" title="Add to favourites">
+                                                            <i class="ri-heart-3-line text-2xl"></i>
+                                                        </button>
                                                     @endif
                                                 </form>
 
@@ -349,10 +353,14 @@
                                                     @csrf
                                                     @if($favourites->contains($property->id))
                                                         <!-- Filled Heart if Favorited -->
-                                                        <button type="submit" class="text-red-500"><ion-icon name="heart" class="text-2xl"></ion-icon></button>
+                                                        <button type="submit" class="btn btn-success favorite-button" title="Remove from favourites">
+                                                            <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                        </button>
                                                     @else
                                                         <!-- Outline Heart if Not Favorited -->
-                                                        <button type="submit" class="text-gray-500"><i class="ri-heart-3-line text-2xl"></i></button>
+                                                        <button type="submit" class="btn btn-primary" title="Add to favourites">
+                                                            <i class="ri-heart-3-line text-2xl"></i>
+                                                        </button>
                                                     @endif
                                                 </form>
 
@@ -370,7 +378,7 @@
                                             <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                         @endif
                                         <p class="text-gray-600 font-semibold mb-4 flex items-center">
-                                            <ion-icon name="map" class="mr-2"></ion-icon> {{ $property->address_area }},{{ $property->district?->district_en }}
+                                            <ion-icon name="map" class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district?->district_en }}
                                         </p>
 
                                         <ul class="text-gray-600 flex gap-6 mb-8 items-center">

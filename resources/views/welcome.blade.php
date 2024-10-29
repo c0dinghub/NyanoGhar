@@ -223,12 +223,12 @@
                                                 @csrf
                                                 @if(in_array($property->id, $favourites))
                                                     <!-- Filled Heart if Favorited -->
-                                                    <button type="submit" class="btn btn-success favorite-button">
-                                                        <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                    <button type="submit" class=" btn btn-success favorite-button" title="Remove from favourites">
+                                                        <i class=" ri-heart-3-fill text-2xl text-red-600"></i>
                                                     </button>
                                                 @else
                                                     <!-- Outline Heart if Not Favorited -->
-                                                    <button type="submit" class="btn btn-primary">
+                                                    <button type="submit" class="btn btn-primary" title="Add to favourites">
                                                         <i class="ri-heart-3-line text-2xl"></i>
                                                     </button>
                                                 @endif
@@ -247,7 +247,7 @@
                                     @elseif ($property->rent_price)
                                         <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                     @endif
-                                    <p class="text-gray-600 mb-4 flex items-center "><ion-icon name="map"
+                                    <p class="text-gray-600 mb-4 flex items-center font-semibold "><ion-icon name="map"
                                             class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district->district_en ?? '' }}</p>
 
                                     <ul class=" text-gray-600 flex gap-4 mb-8 items-center ">

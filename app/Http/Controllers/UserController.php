@@ -55,7 +55,7 @@ class UserController extends Controller
     public function properties()
     {
         $user = Auth::user();
-        $properties = $user->properties; // Assuming you have a relationship set up
+        $properties = $user->properties;
         return view('pages.userProperties', compact('properties'));
     }
 
@@ -89,8 +89,8 @@ class UserController extends Controller
     public function removeFromFavourites($propertyId)
     {
         Favourite::where('user_id', Auth::id())
-                 ->where('property_id', $propertyId)
-                 ->delete();
+            ->where('property_id', $propertyId)
+            ->delete();
 
         return redirect()->back()->with('success', 'Removed from favourites!');
     }

@@ -56,28 +56,24 @@
             <div class="footer-link-box lg:w-2/3 flex flex-wrap justify-between">
                 <ul class="footer-list space-y-2">
                     <li><p class="font-semibold text-gray-400 mb-2 text-lg">Company</p></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">About Us</a></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">Blog</a></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">All Properties</a></li>
+                    <li><a href="#about_us" class="footer-link hover:text-gray-300">About Us</a></li>
+                    <li><a href="#blog" class="footer-link hover:text-gray-300">Blog</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">FAQ</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">Contact us</a></li>
                 </ul>
 
                 <ul class="footer-list space-y-2">
                     <li><p class="font-semibold text-gray-400 mb-2 text-lg">Services</p></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">Wish List</a></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">Login</a></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">My account</a></li>
+                    <li><a href="{{ route('propertyPage') }}" class="footer-link hover:text-gray-300">All Properties</a></li>
+                    <li><a href="{{ route('userProfile') }}" class="footer-link hover:text-gray-300">My Profile</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">Terms & Conditions</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">Promotional Offers</a></li>
                 </ul>
 
                 <ul class="footer-list space-y-2">
                     <li><p class="font-semibold text-gray-400 mb-2 text-lg">Customer Care</p></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">Login</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">My account</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">Wish List</a></li>
-                    <li><a href="#" class="footer-link hover:text-gray-300">FAQ</a></li>
                     <li><a href="#" class="footer-link hover:text-gray-300">Contact us</a></li>
                 </ul>
             </div>

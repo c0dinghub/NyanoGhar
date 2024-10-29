@@ -135,29 +135,74 @@
                                         </div>
                                         {{-- {{$property}} --}}
                                         <div class="flex items-center gap-4">
-                                            {{-- <a href="{{route('favourites.add',$property)}}">
-                                                <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
-                                            </a> --}}
 
                                             <form action="{{ in_array($property->id, $favourites) ? route('favourites.remove', $property->id) : route('favourites.add', $property->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @if(in_array($property->id, $favourites))
                                                     <!-- Filled Heart if Favorited -->
-                                                    <button type="submit" class="btn btn-success favorite-button">
+                                                    <button type="submit" class="btn btn-success favorite-button" title="Remove from favourites">
                                                         <i class="ri-heart-3-fill text-2xl text-red-600"></i>
                                                     </button>
                                                 @else
                                                     <!-- Outline Heart if Not Favorited -->
-                                                    <button type="submit" class="btn btn-primary">
+                                                    <button type="submit" class="btn btn-primary" title="Add to favourites">
                                                         <i class="ri-heart-3-line text-2xl"></i>
                                                     </button>
                                                 @endif
                                             </form>
 
-                                            <a href="">
-                                                <ion-icon name="share-outline"
-                                                    class="cursor-pointer text-2xl"></ion-icon>
-                                            </a>
+                                                    <!-- Share Icon -->
+                                                    <a href="javascript:void(0);" onclick="openShareModal({{ $property->id }})">
+                                                        <ion-icon name="share-outline" class="cursor-pointer text-2xl"></ion-icon>
+                                                    </a>
+
+                                                    <!-- Modal HTML -->
+                                                    <div id="shareModal-{{ $property->id }}" class="fixed inset-0 flex items-center justify-center hidden z-50 bg-gray-800 bg-opacity-50">
+                                                        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                                                            <h3 class="text-lg font-semibold mb-4">Share this Property</h3>
+
+                                                            <div class="flex justify-around space-x-4 ">
+                                                                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank">
+                                                                        <i class="ri-facebook-circle-fill text-3xl text-blue-700 "></i>
+                                                                    </a>
+                                                                    <span class="text-sm mt-2">Facebook</span>
+                                                                </div>
+
+                                                                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}" target="_blank">
+                                                                        <i class="ri-twitter-x-line text-3xl text-black"></i>
+                                                                    </a>
+                                                                    <span class="text-sm mt-2">Twitter</span>
+                                                                </div>
+
+                                                                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                                                                    <a href="https://wa.me/?text={{ urlencode(request()->fullUrl()) }}" target="_blank">
+                                                                        <i class="ri-whatsapp-fill text-3xl text-green-700"></i>
+                                                                    </a>
+                                                                    <span class="text-sm mt-2">WhatsApp</span>
+                                                                </div>
+
+                                                                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                                                                    <a href="mailto:?subject=Check out this property&body={{ request()->fullUrl() }}" target="_blank">
+                                                                        <i class="ri-mail-fill text-3xl text-red-600"></i>
+                                                                    </a>
+                                                                    <span class="text-sm mt-2">Email</span>
+                                                                </div>
+
+                                                                <div class="flex flex-col items-center transition-transform hover:scale-110">
+                                                                    <a href="javascript:void(0);" onclick="copyLink('{{ route('propertyDetail', $property->id) }}')">
+                                                                        <i class="ri-links-fill text-3xl text-gray-700"></i>
+                                                                    </a>
+                                                                    <span class="text-sm mt-2">Copy Link</span>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <button onclick="closeShareModal({{ $property->id }})" class="mt-4 bg-red-600 text-white px-3 py-[6px] rounded transition-transform hover:scale-105">Close</button>
+                                                        </div>
+                                                    </div>
+
                                         </div>
                                     </div>
 
@@ -228,5 +273,23 @@
             </div>
         </section>
     </body>
+    <script>
+        function openShareModal(propertyId) {
+            document.getElementById(`shareModal-${propertyId}`).classList.remove('hidden');
+        }
+
+        function closeShareModal(propertyId) {
+            document.getElementById(`shareModal-${propertyId}`).classList.add('hidden');
+        }
+
+        function copyLink(link) {
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+        </script>
+
 
 @endsection
