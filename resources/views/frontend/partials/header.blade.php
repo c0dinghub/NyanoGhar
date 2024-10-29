@@ -1,7 +1,7 @@
-<header class="bg-white shadow-md">
+<header class="bg-white shadow-md sticky -top-14 z-50">
     <!-- Header Top (Static) -->
     <div class="bg-gray-900 text-white py-2">
-        <div class="container mx-auto flex justify-between items-center">
+        <div class="container mx-auto flex justify-between items-center ">
             <!-- Contact Info -->
             <ul class="flex space-x-6 text-sm">
                 <li class="flex items-center">

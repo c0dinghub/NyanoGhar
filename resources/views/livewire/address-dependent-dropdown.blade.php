@@ -9,7 +9,7 @@
         <label for="provinces" class="block text-lg font-medium mb-2 text-black">Select Province <sup class="text-red-500 text-lg ">*</sup></label>
         <select id="provinces" name="province_id"
             wire:model.live="selectedProvince"
-            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
+            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">
             <option value="">Select a Province</option>
             @foreach($provinces as $province)
                 <option value="{{ $province->id }}" {{$selectedProvince == $province->id ? 'selected' : '' }}>
@@ -23,7 +23,7 @@
         <label for="districts" class="block text-lg font-medium mb-2 text-black">Select District</label>
         <select id="districts" name="district_id"
             wire:model.live="selectedDistrict"
-            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
+            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">
             <option value="">Select a District</option>
             @if($districts)
                 @foreach($districts as $district)
@@ -39,7 +39,7 @@
         <label for="local_bodies" class="block text-lg font-medium mb-2 text-black">Local Body</label>
         <select id="local_bodies" name="local_body_id"
             wire:model.live="selectedLocalBody"
-            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md text-sm focus:border-blue-600 focus:ring-0">
+            class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">
             <option value="">Select Local Body</option>
             @if($local_bodies)
                 @foreach($local_bodies as $local_body)

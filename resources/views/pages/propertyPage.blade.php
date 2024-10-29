@@ -1,7 +1,7 @@
 @extends('layouts.frontendLayout')
 @section('addcontent')
 
-    <body class="bg-gray-200 ">
+    <div class="bg-slate-100 ">
         <!-- Main Container -->
         <div class="container mx-auto p-6">
             <div class="flex flex-col md:flex-row">
@@ -105,7 +105,7 @@
                     </div>
 
                     @if ($properties->isEmpty())
-                        <p class="text-center text-xl font-semibold">No properties found matching your search criteria.</p>
+                        <p class="text-center text-xl font-semibold mt-10">No properties found.</p>
                     @else
                         {{-- <div>
                             <h2 class="flex bg-white shadow-sm rounded-md border border-gray-300 p-2 text-xl font-semibold mb-2">Search Results :<p class="flex font-normal ml-2 text-base items-center ">(Found {{ $propertiesCount }} properties)</p></h2>
@@ -272,7 +272,7 @@
                 </div>
             </div>
         </section>
-    </body>
+    </div>
     <script>
         function openShareModal(propertyId) {
             document.getElementById(`shareModal-${propertyId}`).classList.remove('hidden');

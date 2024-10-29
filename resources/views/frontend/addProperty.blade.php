@@ -1,8 +1,8 @@
 @extends('layouts.frontendLayout')
 @section('addcontent')
 
-    <body class="bg-slate-100 ">
-        <div class="container mx-auto m-8 p-6 bg-white rounded-lg shadow-md  max-w-5xl">
+    <div class="bg-slate-100 shadow-lg ">
+        <div class="container mx-auto  p-8 max-w-6xl ">
             <h1 class="text-2xl font-semibold mb-6">Add Property</h1>
 
             @if ($errors->any())
@@ -284,6 +284,6 @@
                 </div>
             </form>
         </div>
-    </body>
+    </div>
 
 @endsection
