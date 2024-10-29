@@ -33,16 +33,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/property/{id}', [FrontendController::class, 'destroy'])->name('property.delete');});
 
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/favourites/add/{property}', [UserController::class, 'addToFavourites'])->name('favourites.add');
+        Route::post('/favourites/remove/{property}', [UserController::class, 'removeFromFavourites'])->name('favourites.remove');
+        Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
+    });
+
 // Dashboard Route
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
-    Route::post('/favourites/add/{property}', [UserController::class, 'addToFavourites'])->name('favourites.add');
-    Route::post('/favourites/remove/', [UserController::class, 'removeFromFavourites'])->name('favourites.remove');
-    Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
-});
 
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);

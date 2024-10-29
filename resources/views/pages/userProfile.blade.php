@@ -232,26 +232,35 @@
                                     <!-- Property Details -->
                                     <div class="md:w-1/2 p-6 flex flex-col ">
                                         <div class="flex items-center justify-between mb-4">
-                                            <div class="flex gap-4  ">
+                                            <div class="flex gap-4">
                                                 <span
-                                                    class="bg-gray-200 flex items-center px-3  w-fit rounded-full  capitalize">{{ $property->property_type }}</span>
-
+                                                    class="bg-gray-200 flex items-center px-2 pb-[2.5px] w-fit rounded-full capitalize">{{ $property->property_type }}</span>
                                                 @if ($property->status === 'for_sale')
                                                     <span
-                                                        class="bg-green-500 flex items-center text-white px-3 w-fit rounded-full ">Sale
-                                                    </span>
+                                                        class="bg-green-500 flex items-center text-white px-3 pb-[2px] rounded-full">Sale</span>
                                                 @else
                                                     <span
-                                                        class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full ">Rent
-                                                    </span>
+                                                        class="bg-orange-500 flex items-center text-white px-3 pb-[2px] rounded-full">Rent</span>
                                                 @endif
-
                                             </div>
+
                                             <div class="flex items-center gap-4">
-                                                <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
+                                                <!-- Toggle Favorite Form -->
+                                                <form action="{{ route($favourites->contains($property->id) ? 'favourites.remove' : 'favourites.add', $property->id) }}" method="POST">
+                                                    @csrf
+                                                    @if($favourites->contains($property->id))
+                                                        <!-- Filled Heart if Favorited -->
+                                                        <button type="submit" class="text-red-500"><ion-icon name="heart" class="text-2xl"></ion-icon></button>
+                                                    @else
+                                                        <!-- Outline Heart if Not Favorited -->
+                                                        <button type="submit" class="text-gray-500"><i class="ri-heart-3-line text-2xl"></i></button>
+                                                    @endif
+                                                </form>
+
                                                 <!-- Share Icon -->
-                                                <a href=""><ion-icon name="share-outline"
-                                                        class="cursor-pointer text-xl"></ion-icon></a>
+                                                <a href="#">
+                                                    <ion-icon name="share-outline" class="cursor-pointer text-2xl"></ion-icon>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -262,8 +271,7 @@
                                             <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                         @endif
                                         <p class="text-gray-600 font-semibold mb-4 flex items-center "><ion-icon
-                                                name="map" class="mr-2  "></ion-icon> {{ $property->address_area }},
-                                            {{ $property->district?->name }}</p>
+                                                name="map" class="mr-2  "></ion-icon> {{ $property->address_area }}, {{ $property->district?->district_en }}</p>
 
                                         <ul class=" text-gray-600 flex gap-6 mb-8 items-center ">
                                             <li class="flex items-center gap-1 font-semibold"><ion-icon
@@ -324,12 +332,14 @@
                                     <div class="md:w-1/2 p-6 flex flex-col">
                                         <div class="flex items-center justify-between mb-4">
                                             <div class="flex gap-4">
-                                                <span class="bg-gray-200 flex items-center px-3 w-fit rounded-full capitalize">{{ $property->property_type }}</span>
-
+                                                <span
+                                                    class="bg-gray-200 flex items-center px-2 pb-[2.5px] w-fit rounded-full capitalize">{{ $property->property_type }}</span>
                                                 @if ($property->status === 'for_sale')
-                                                    <span class="bg-green-500 flex items-center text-white px-3 w-fit rounded-full">Sale</span>
+                                                    <span
+                                                        class="bg-green-500 flex items-center text-white px-3 pb-[2px] rounded-full">Sale</span>
                                                 @else
-                                                    <span class="bg-orange-500 flex items-center text-white px-3 w-fit rounded-full">Rent</span>
+                                                    <span
+                                                        class="bg-orange-500 flex items-center text-white px-3 pb-[2px] rounded-full">Rent</span>
                                                 @endif
                                             </div>
 
@@ -342,7 +352,7 @@
                                                         <button type="submit" class="text-red-500"><ion-icon name="heart" class="text-2xl"></ion-icon></button>
                                                     @else
                                                         <!-- Outline Heart if Not Favorited -->
-                                                        <button type="submit" class="text-gray-500"><ion-icon name="heart-outline" class="text-2xl"></ion-icon></button>
+                                                        <button type="submit" class="text-gray-500"><i class="ri-heart-3-line text-2xl"></i></button>
                                                     @endif
                                                 </form>
 
@@ -360,7 +370,7 @@
                                             <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                                         @endif
                                         <p class="text-gray-600 font-semibold mb-4 flex items-center">
-                                            <ion-icon name="map" class="mr-2"></ion-icon> {{ $property->address_area }}, {{ $property->district?->name }}
+                                            <ion-icon name="map" class="mr-2"></ion-icon> {{ $property->address_area }},{{ $property->district?->district_en }}
                                         </p>
 
                                         <ul class="text-gray-600 flex gap-6 mb-8 items-center">

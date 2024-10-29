@@ -219,20 +219,20 @@
 
                                         </div>
                                         <div class="flex items-center gap-4">
-                                            @if (in_array($property->id, $favourites))
-                                                <button
-                                                    class="btn btn-success favorite-button"
-                                                    data-property-id="{{ $property->id }}">
-                                                    <i class="ri-heart-3-fill text-2xl text-red-600"></i>
-                                                </button>
-                                            @else
-                                                <form action="{{ route('favourites.add', $property) }}" method="POST" style="display: inline;">
-                                                    @csrf
+                                            <form action="{{ in_array($property->id, $favourites) ? route('favourites.remove', $property->id) : route('favourites.add', $property->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @if(in_array($property->id, $favourites))
+                                                    <!-- Filled Heart if Favorited -->
+                                                    <button type="submit" class="btn btn-success favorite-button">
+                                                        <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                    </button>
+                                                @else
+                                                    <!-- Outline Heart if Not Favorited -->
                                                     <button type="submit" class="btn btn-primary">
                                                         <i class="ri-heart-3-line text-2xl"></i>
                                                     </button>
-                                                </form>
-                                            @endif
+                                                @endif
+                                            </form>
 
                                             <a href="">
                                                 <ion-icon name="share-outline"
@@ -273,60 +273,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- <h3 class="text-2xl font-semibold text-gray-800 mb-2">House for Sale</h3>
-                                <p class="text-gray-600 mb-4">4 Beds · 3 Baths · 1,200 sq ft</p>
-                                <p class="text-gray-800 font-bold text-xl mb-2">Rs 4 Cr</p> --}}
 
-                        {{-- @if (isset($properties) && count($properties) > 0)
-                                    @foreach ($properties as $property)
-                                        <div class="flex justify-end">
-                                            <a href="{{ route('propertyDetail', ['id' => $property->id]) }}"
-                                                class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
-                                                <ion-icon name="eye"></ion-icon>View Details
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p>No properties available.</p>
-                                @endif
-                            </div> --}}
-
-
-                        <!-- Property 2 -->
-                        {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="{{ asset('assets/frontend/images/house1.jpg') }}" alt="Property 2"
-                                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" />
-                            <div class="p-6 flex flex-col">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Bungalow House for Sale</h3>
-                                <p class="text-gray-600 mb-4">7 Beds · 2 Baths · 2,500 sq ft</p>
-                                <p class="text-gray-800 font-bold text-xl mb-2">Rs 12 Cr</p>
-
-                                <div class="flex justify-end">
-                                    <a href="{{ route('propertyDetail',['id' => $property->id]) }}"
-                                        class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
-                                        <ion-icon name="eye"></ion-icon>View Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div> --}}
-
-                        <!-- Property 3 -->
-                        {{-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="{{ asset('assets/frontend/images/house3.jpg') }}" alt="Property 3"
-                                class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" />
-                            <div class="p-6">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-2">House for Rent</h3>
-                                <p class="text-gray-600 mb-4">5 Beds · 2 Baths · 1,800 sq ft</p>
-                                <p class="text-gray-800 font-bold text-xl mb-2">Rs 1 Lakh/month</p>
-
-                                <div class="flex justify-end">
-                                    <a href="{{ route('propertyDetail') }}"
-                                        class="flex bg-blue-600 h-9 font-semibold text-white py-2  w-32 px-2 rounded-lg gap-1  items-center hover:bg-blue-700 transition-colors">
-                                        <ion-icon name="eye"></ion-icon>View Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </section>

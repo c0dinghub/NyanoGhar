@@ -139,20 +139,20 @@
                                                 <ion-icon name="heart-outline" class="heart-icon text-xl"></ion-icon>
                                             </a> --}}
 
-                                            @if (in_array($property->id, $favourites))
-                                                <button
-                                                    class="btn btn-success favorite-button"
-                                                    data-property-id="{{ $property->id }}">
-                                                    <i class="ri-heart-3-fill text-2xl text-red-600"></i>
-                                                </button>
-                                            @else
-                                                <form action="{{ route('favourites.add', $property) }}" method="POST" style="display: inline;">
-                                                    @csrf
+                                            <form action="{{ in_array($property->id, $favourites) ? route('favourites.remove', $property->id) : route('favourites.add', $property->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @if(in_array($property->id, $favourites))
+                                                    <!-- Filled Heart if Favorited -->
+                                                    <button type="submit" class="btn btn-success favorite-button">
+                                                        <i class="ri-heart-3-fill text-2xl text-red-600"></i>
+                                                    </button>
+                                                @else
+                                                    <!-- Outline Heart if Not Favorited -->
                                                     <button type="submit" class="btn btn-primary">
                                                         <i class="ri-heart-3-line text-2xl"></i>
                                                     </button>
-                                                </form>
-                                            @endif
+                                                @endif
+                                            </form>
 
                                             <a href="">
                                                 <ion-icon name="share-outline"
@@ -170,11 +170,11 @@
                                             {{ formatPrice($property->rent_price) }}/month</p>
                                     @endif
 
-                                    <p class="text-gray-600 mb-4 flex items-center"><ion-icon name="map"
+                                    <p class="text-gray-600 mb-4 flex font-semibold items-center"><ion-icon name="map"
                                             class="mr-2"></ion-icon>{{ $property->address_area }},
                                         {{ $property->district?->district_en }}</p>
 
-                                    <span class="text-gray-700 mb-4 flex items-center"><ion-icon name="calendar"
+                                    <span class="text-gray-700 mb-4 flex font-semibold items-center"><ion-icon name="calendar"
                                         class="mr-2"></ion-icon>Posted On: {{$property->created_at->toFormattedDateString()}}</span>
 
                                     <ul class="text-gray-600 flex gap-6 mb-7 items-center">
