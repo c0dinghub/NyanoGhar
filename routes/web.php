@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
     });
 
 // Dashboard Route
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('admin-page', function () {
+    return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
