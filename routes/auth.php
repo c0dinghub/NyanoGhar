@@ -61,4 +61,4 @@ Route::middleware('auth')->group(function () {
 
 
 // Route::resource('admin',AdminController::class);
-Route::get('admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+// Route::get('admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
