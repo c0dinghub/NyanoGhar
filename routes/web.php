@@ -39,10 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
     });
 
-// Dashboard Route
-Route::get('admin', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
@@ -50,6 +47,5 @@ Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleC
 // Include auth routes
 require __DIR__ . '/auth.php';
 
-//google login routes
-
+require __DIR__ . '/admin.php';
 
