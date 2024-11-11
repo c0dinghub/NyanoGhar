@@ -83,7 +83,7 @@ class UserController extends Controller
             'owner_id' => $property->user_id,
         ]);
 
-        return redirect()->back()->with('success', 'Added to favourites!');
+        return back()->with('success', 'Added to favourites!');
     }
 
     public function removeFromFavourites($propertyId)
@@ -92,6 +92,6 @@ class UserController extends Controller
             ->where('property_id', $propertyId)
             ->delete();
 
-        return redirect()->back()->with('success', 'Removed from favourites!');
+        return back()->with('success', 'Removed from favourites!');
     }
 }
