@@ -1,0 +1,71 @@
+@extends('admin.layouts.app')
+@section('content')
+    <div class="container-fluid py-5">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">All Properties</h5>
+                <div class="card-tools">
+                    <a href="#" class="btn btn-primary">Add New Property</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.dashboard') }}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="{{ route('admin.allProperties.index') }}">All Properties</a>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>S.No.</th>
+                                <th>ID</th>
+                                <th>Property Photo</th>
+                                <th>Property Title</th>
+                                <th>Build Year</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($allProperties as $property)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $property->id ?? 'N/A' }}</td>
+                                    <td>
+                                        <img src="{{ $property->property_photo ?? 'path/to/default-image.jpg' }}"
+                                             alt="Property Photo" class="img-thumbnail" style="width: 150px; height: 90px;">
+                                    </td>
+                                    <td>{{ $property->property_title ?? 'N/A' }}</td>
+                                    <td>{{ $property->build_year ?? 'N/A' }} {{ strtoupper($property->year_type ?? 'N/A') }}</td>                                    <td class="d-flex justify-content-around">
+                                        <a href="{{ route('admin.pages.propertyDetail', ['id' => $property->id]) }}" class="btn btn-success btn-sm" title="View Property">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <form action="" method="POST" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Property">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                {{-- Pagination --}}
+                {{-- <div class="mt-4 d-flex justify-content-center">
+                    {{ $allProperties->links('vendor.pagination.bootstrap-5') }}
+                </div> --}}
+            </div>
+        </div>
+    </div>
+@endsection

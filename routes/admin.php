@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,3 +18,7 @@ Route::middleware(['admin_auth'])->group(function(){
     Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::get('/admin/logout',[DashboardController::class,'logout'])->name('admin.logout');
 });
+
+Route::get('/admin/allProperties',[PropertyController::class,'allProperty'])->name('admin.allProperties.index');
+Route::get('/admin/property/{id}', [PropertyController::class, 'propertyDetail'])->name('admin.pages.propertyDetail');
+
