@@ -6,7 +6,7 @@
 
 <div class="relative grid grid-cols-2 gap-6">
     <div class="province col-span-1">
-        <label for="provinces" class="block text-lg font-medium mb-2 text-black">Select Province <sup class="text-red-500 text-lg ">*</sup></label>
+        <label for="provinces" class="block text-md font-semibold mb-2 text-[#2a3844]">Select Province <sup class="text-red-500 text-lg ">*</sup></label>
         <select id="provinces" name="province_id"
             wire:model.live="selectedProvince"
             class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="district">
-        <label for="districts" class="block text-lg font-medium mb-2 text-black">Select District</label>
+        <label for="districts" class="block text-md font-semibold  mb-2 text-[#2a3844]">Select District</label>
         <select id="districts" name="district_id"
             wire:model.live="selectedDistrict"
             class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">
@@ -36,7 +36,7 @@
     </div>
 
     <div class="local_body">
-        <label for="local_bodies" class="block text-lg font-medium mb-2 text-black">Local Body</label>
+        <label for="local_bodies" class="block text-md font-semibold mb-2 text-[#2a3844]">Local Body</label>
         <select id="local_bodies" name="local_body_id"
             wire:model.live="selectedLocalBody"
             class="py-2 px-4 block w-full bg-gray-50 border-gray-200 rounded-md shadow-sm text-sm focus:border-blue-600 focus:ring-0">

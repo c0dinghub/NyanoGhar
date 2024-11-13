@@ -35,14 +35,14 @@
                 <!-- Basic Info -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label for="title" class="block text-lg font-medium text-[#343A40] ">Property Title:<sup class="text-red-500 text-lg ">*</sup> </label>
+                        <label for="title" class="block text-md font-medium text-[#2a3844] ">Property Title:<sup class="text-red-500 text-md ">*</sup> </label>
                         <input type="text" id="property_title" name="property_title"
                                 value="{{ old('property_title', $property->property_title ?? '') }}"
                             class="mt-1 block bg-gray-50 w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="status" class="block text-lg font-medium text-[#343A40]">Status:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="status" class="block text-md font-medium text-[#2a3844]">Status:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="status" name="status"
                             class="mt-1 block w-full bg-gray-50  p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <<option value="" disabled {{ old('status', $property->status ?? '') == '' ? 'selected' : '' }}>Select Status</option>
@@ -54,7 +54,7 @@
 
                 <!-- Conditional Fields -->
                 <div id="rentFields" class="hidden mb-6">
-                    <label for="rentPrice" class="block text-lg font-medium text-[#343A40]">Monthly Rent Price:</label>
+                    <label for="rentPrice" class="block text-md font-medium text-[#2a3844]">Monthly Rent Price:</label>
                     <div class="relative">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3 text-gray-500">NPR</span>
                         <input type="integer" id="rentPrice" name="rent_price" min="100"
@@ -64,7 +64,7 @@
                 </div>
 
                 <div id="saleFields" class="hidden mb-6">
-                    <label for="salePrice" class="block text-lg font-medium text-[#343A40]">Sale Price:</label>
+                    <label for="salePrice" class="block text-md font-medium text-[#2a3844]">Sale Price:</label>
                     <div class="relative">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3 text-gray-500">NPR</span>
                         <input type="integer" id="salePrice" name="sale_price" min="100"
@@ -76,7 +76,7 @@
                 <!-- Common Fields -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label for="property_type" class="block text-lg font-medium text-[#343A40]">Property Type:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="property_type" class="block text-md font-medium text-[#2a3844]">Property Type:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="property_type" name="property_type"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="" disabled selected {{ old('status', $property->status ?? '') == '' ? 'selected' : '' }}>Select Property Type</option>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div id="houseFields" class="hidden">
-                        <label for="house_category" class="block text-lg font-medium text-[#343A40]">House Category:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="house_category" class="block text-md font-medium text-[#2a3844]">House Category:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="house_category" name="house_category"
                             class="mt-1 block w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="" disabled {{ old('house_category') == '' ? 'selected' : '' }}>Select House Category</option>
@@ -102,12 +102,12 @@
                     </div>
 
                     <div id="apartmentFields" class="hidden">
-                        <label for="apartment_name" class="block text-lg font-medium text-[#343A40]">Apartment Name:</label>
+                        <label for="apartment_name" class="block text-md font-medium text-[#2a3844]">Apartment Name:</label>
                         <input type="text" id="apartment_name" name="apartment_name"
                             class="bg-gray-50 mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Enter Apartment Name" >
 
-                        <label for="apartment_category" class="block text-lg font-medium text-[#343A40] mt-4">Apartment Category:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="apartment_category" class="block text-md font-medium text-[#2a3844] mt-4">Apartment Category:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="apartment_category" name="apartment_category"
                             class="mt-1 block w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" >
                             <option value="" disabled {{ old('apartment_category') == '' ? 'selected' : '' }}>Select Apartment Category</option>
@@ -122,7 +122,7 @@
 
                     <!-- Build Year Fields -->
                     <div class="">
-                        <label for="build-year" class="block text-lg font-medium text-[#343A40]">Build Year:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="build-year" class="block text-md font-medium text-[#2a3844]">Build Year:<sup class="text-red-500 text-md ">*</sup></label>
                         <div class="flex">
                             <input type="number" id="build-year" name="build_year"
                                 class="mt-1 block w-2/3 bg-gray-50 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -136,37 +136,37 @@
                     </div>
 
                     <div>
-                        <label for="area" class="block text-lg font-medium text-[#343A40]">Area (sq ft):<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="area" class="block text-md font-medium text-[#2a3844]">Area (sq ft):<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" min="0" id="property_area" name="property_area"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="bedrooms" class="block text-lg font-medium text-[#343A40]"> Bedrooms:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="bedrooms" class="block text-md font-medium text-[#2a3844]"> Bedrooms:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" min="0" id="bedrooms" name="bedrooms"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="bathrooms" class="block text-lg font-medium text-[#343A40]"> Bathrooms:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="bathrooms" class="block text-md font-medium text-[#2a3844]"> Bathrooms:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" min="0" id="bathrooms" name="bathrooms"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="hall_rooms" class="block text-lg font-medium text-[#343A40]"> Hall Rooms:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="hall_rooms" class="block text-md font-medium text-[#2a3844]"> Hall Rooms:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" min="0" id="hall_rooms" name="hall_rooms"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="total_rooms" class="block text-lg font-medium text-[#343A40]"> Total Rooms:</label>
+                        <label for="total_rooms" class="block text-md font-medium text-[#2a3844]"> Total Rooms:</label>
                         <input type="number" min="0" id="total_rooms" name="total_rooms"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div>
-                        <label for="house_facing" class="block text-lg font-medium text-[#343A40]">House Facing:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="house_facing" class="block text-md font-medium text-[#2a3844]">House Facing:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="house_facing" name="house_facing"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="" disabled selected>Select House Facing</option>
@@ -182,8 +182,8 @@
                     </div>
 
                     <div>
-                        <label for="number_of_floors" class="block text-lg font-medium text-[#343A40]">Number of
-                            Floors:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="number_of_floors" class="block text-md font-medium text-[#2a3844]">Number of
+                            Floors:<sup class="text-red-500 text-md ">*</sup></label>
                         <select id="no_of_floors" name="no_of_floors"
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="" disabled selected>Select Number of Floors</option>
@@ -205,14 +205,14 @@
 
                 <div  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-4">
                     <div class="ward_no">
-                        <label for="ward_no" class="block text-lg font-medium text-[#343A40]"> Ward :</label>
+                        <label for="ward_no" class="block text-md font-medium text-[#2a3844]"> Ward :</label>
                         <input type="number" min="1" id="ward_no" name="ward_no"
                             value="{{old('ward_no', $property->ward_no ?? '' )}}"
                             class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <div class="address_area mb-6">
-                        <label for="address_area" class="block text-lg font-medium text-[#343A40]"> Address Area :</label>
+                        <label for="address_area" class="block text-md font-medium text-[#2a3844]"> Address Area :</label>
                         <input type="text" id="address_area" name="address_area"
                             value="{{old('address_area', $property->address_area ?? '')}}"
                             class="bg-gray-50 mt-2 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
@@ -221,8 +221,8 @@
 
                 <!-- Amenities -->
                 <div class="mb-6">
-                    <label for="amenities" class="block text-lg font-medium text-[#343A40]">Amenities:</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+                    <label for="amenities" class="block text-md font-medium text-[#2a3844]">Amenities:</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2 text-[#374958] ml-4">
                         <label class="flex items-center">
                             <input type="checkbox" name="amenity_id" value="1" class="form-checkbox">
                             <span class="ml-2">Security</span>
@@ -249,15 +249,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <!-- Car Parking Spaces -->
                     <div>
-                        <label for="car_parking" class="block text-lg font-medium text-[#343A40]">Car Parking Spaces:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="car_parking" class="block text-md font-medium text-[#2a3844]">Car Parking Spaces:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" id="car_parking" name="car_parking_spaces" min="0" value="0"
                             class="mt-1 block w-full bg-gray-50 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
                     <!-- Bike Parking Spaces -->
                     <div>
-                        <label for="bike_parking" class="block text-lg font-medium text-[#343A40]">Bike Parking
-                            Spaces:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="bike_parking" class="block text-md font-medium text-[#2a3844]">Bike Parking
+                            Spaces:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="number" id="bike_parking" name="bike_parking_spaces" min="0"
                             value="0"
                             class="mt-1 block w-full bg-gray-50 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
@@ -269,7 +269,7 @@
 
                     <!-- Image Upload -->
                     <div class="mb-6">
-                        <label for="image" class="block text-lg font-medium text-[#343A40]">Upload Image:<sup class="text-red-500 text-lg ">*</sup></label>
+                        <label for="image" class="block text-md font-medium text-[#2a3844]">Upload Image:<sup class="text-red-500 text-md ">*</sup></label>
                         <input type="file" id="image" name="property_photo" accept="image/*"
                             class="bg-gray-50 mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         <small class="text-gray-500">Only one image can be uploaded.</small>
@@ -277,7 +277,7 @@
 
 
                     <div>
-                        <label for="video" class="block text-lg font-medium text-[#343A40]">Property Video:</label>
+                        <label for="video" class="block text-md font-medium text-[#2a3844]">Property Video:</label>
                         <input type="file" id="video" name="property_video" accept="video/*"
                             class="bg-gray-50 mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         <small class="text-gray-500">Upload a video tour of the property (optional).</small>
@@ -286,7 +286,7 @@
 
                 <!-- Description -->
                 <div class="mb-6">
-                    <label for="description" class="block text-lg font-medium text-[#343A40]">Description:</label>
+                    <label for="description" class="block text-md font-medium text-[#2a3844]">Description:</label>
                     <textarea id="description" name="description" rows="5"
                         class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                 </div>
@@ -294,7 +294,7 @@
                 <!-- Submit Button -->
                 <div>
                     <button type="submit"
-                        class="w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">Submit
+                        class="w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 mb-10 px-4 rounded-lg shadow-md">Submit
                         </button>
                 </div>
             </form>
