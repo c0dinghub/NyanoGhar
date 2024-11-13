@@ -2,7 +2,18 @@
 @section('content')
 
     <div class="bg-gray-200">
-        <div class="container1 w-full py-6 px-8">
+
+        <div class="bg-slate-50  container1 w-full py-6 px-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a href="{{ route('admin.allProperties.index') }}">All Properties</a>
+                    </li>
+                </ol>
+            </nav>
             <div class="flex flex-row md:flex-row ">
 
                 <div class="relative card overflow-hidden bg-white rounded-lg w-full">
@@ -112,7 +123,7 @@
                 </div>
             </div>
             <div
-                class="flex text-xl underline gap-20 border-t-2 border-orange-600 py-2 mt-4 bg-white  font-semibold text-orange-600 justify-center">
+                class="flex text-lg underline gap-20 border-t-2 border-orange-600 py-2 mt-4 bg-white  font-semibold text-orange-600 justify-center">
                 <a href="#Overiew" class="hover:text-orange-500">Overview</a>
                 <a href="#Description" class="hover:text-orange-500">Description</a>
                 <a href="#Amenities" class="hover:text-orange-500">Amenities</a>

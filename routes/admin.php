@@ -21,4 +21,9 @@ Route::middleware(['admin_auth'])->group(function(){
 
 Route::get('/admin/allProperties',[PropertyController::class,'allProperty'])->name('admin.allProperties.index');
 Route::get('/admin/property/{id}', [PropertyController::class, 'propertyDetail'])->name('admin.pages.propertyDetail');
+Route::delete('/admin/properties/{id}', [PropertyController::class, 'destroy'])->name('admin.allProperties.destroy');
+Route::get('/admin/addProperty', [PropertyController::class, 'addProperty'])->name('admin.pages.addProperty');
+Route::post('storeProperty', [PropertyController::class, 'storeProperty'])->name('storeProperty');
+
+
 

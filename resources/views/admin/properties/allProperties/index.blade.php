@@ -1,25 +1,26 @@
 @extends('admin.layouts.app')
 @section('content')
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-4 px-8">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('admin.dashboard') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="{{ route('admin.allProperties.index') }}">All Properties</a>
+                </li>
+            </ol>
+        </nav>
+
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">All Properties</h5>
                 <div class="card-tools">
-                    <a href="#" class="btn btn-primary">Add New Property</a>
+                    <a href="{{route('admin.pages.addProperty')}}" class="btn btn-primary">Add New Property</a>
                 </div>
             </div>
 
             <div class="card-body">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('admin.dashboard') }}">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <a href="{{ route('admin.allProperties.index') }}">All Properties</a>
-                        </li>
-                    </ol>
-                </nav>
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
@@ -47,13 +48,14 @@
                                         <a href="{{ route('admin.pages.propertyDetail', ['id' => $property->id]) }}" class="btn btn-success btn-sm" title="View Property">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <form action="" method="POST" class="d-inline-block">
+                                        <form action="{{ route('admin.allProperties.destroy', ['id' => $property->id]) }}" method="POST" class="d-inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Property">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Property" onclick="return confirm('Are you sure you want to delete this property?');">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
+
                                     </td>
                                 </tr>
                             @endforeach
