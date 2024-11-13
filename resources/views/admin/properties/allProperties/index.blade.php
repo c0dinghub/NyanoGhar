@@ -31,7 +31,7 @@
                                 <th>Property Photo</th>
                                 <th>Property Title</th>
                                 <th>Build Year</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,8 +45,11 @@
                                     </td>
                                     <td>{{ $property->property_title ?? 'N/A' }}</td>
                                     <td>{{ $property->build_year ?? 'N/A' }} {{ strtoupper($property->year_type ?? 'N/A') }}</td>                                    <td class="d-flex justify-content-around">
-                                        <a href="{{ route('admin.pages.propertyDetail', ['id' => $property->id]) }}" class="btn btn-success btn-sm" title="View Property">
+                                        <a href="{{ route('admin.pages.propertyDetail', ['id' => $property->id]) }}" class="btn btn-primary btn-sm" title="View Property">
                                             <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.pages.editProperty', ['id' => $property->id]) }}" class="btn btn-success btn-sm" title="Edit Property">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <form action="{{ route('admin.allProperties.destroy', ['id' => $property->id]) }}" method="POST" class="d-inline-block">
                                             @csrf
