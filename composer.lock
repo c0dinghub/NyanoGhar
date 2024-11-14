@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "053ebd12b73d552e227d9def1f054c34",
+    "content-hash": "b2f1dd63c978bcd685cce2f0a713285b",
     "packages": [
         {
             "name": "brick/math",
@@ -209,6 +209,52 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
             "time": "2024-07-08T12:26:09+00:00"
+        },
+        {
+            "name": "dipesh79/laravel-esewa",
+            "version": "v1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dipesh79/LaravelEsewa.git",
+                "reference": "c424044f607278bddbb1f4745b8b1b30ef6a3f3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dipesh79/LaravelEsewa/zipball/c424044f607278bddbb1f4745b8b1b30ef6a3f3f",
+                "reference": "c424044f607278bddbb1f4745b8b1b30ef6a3f3f",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dipesh79\\LaravelEsewa\\EsewaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dipesh79\\LaravelEsewa\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dipesh79",
+                    "email": "dipeshkhanal79@gmail.com",
+                    "homepage": "https://www.khanaldipesh.com.np",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Esewa - A simple laravel package to integrate esewa payment.",
+            "support": {
+                "issues": "https://github.com/Dipesh79/LaravelEsewa/issues",
+                "source": "https://github.com/Dipesh79/LaravelEsewa/tree/v1"
+            },
+            "time": "2022-12-11T06:08:52+00:00"
         },
         {
             "name": "doctrine/inflector",

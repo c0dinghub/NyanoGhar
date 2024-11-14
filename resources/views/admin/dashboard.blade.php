@@ -4,18 +4,40 @@
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+    <div class="flex gap-4 container-fluid p-3">
+
+        <div class="lg:w-1/3 w-1/2">
+            <!-- small box -->
+            <div class="bg-info p-2 rounded-lg shadow-lg flex flex-col items-center">
+                <div class="flex flex-col items-center">
+                    <div class="mt-2 text-white mb-2">
+                        <i class="fas fa-home text-5xl"></i> <!-- Home icon for properties -->
+                    </div>
+                    <p class="text-white mb-2">Total Properties</p>
+                    <h3 class="text-3xl font-semibold text-white">{{ $propertyCount }}</h3> <!-- Pass the property count from your controller -->
+                </div>
+                <a href="{{ route('admin.allProperties.index') }}" class="mt-4 text-white flex items-center hover:text-gray-200 mb-2">
+                    More info <i class="fas fa-arrow-circle-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="lg:w-1/3 w-1/2">
+            <div class="bg-success p-6 rounded-lg shadow-lg flex flex-col items-center">
+                <div class="mt-2 text-white mb-2">
+                    <i class="fas fa-users text-5xl"></i> <!-- User icon for total accounts -->
+                </div>
+                <div class="flex flex-col items-center">
+                    <p class="text-white mb-2">Total Users</p>
+                    <h3 class="text-3xl font-semibold text-white">{{ $userCount }}</h3>
+                </div>
+                <a href="{{ route('admin.allUsers.index') }}" class="mt-4 text-white flex items-center hover:text-gray-200">
+                    More info <i class="fas fa-arrow-circle-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->

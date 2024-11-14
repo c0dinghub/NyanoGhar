@@ -53,7 +53,7 @@
                 <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-110 {{ request()->is('blog') ? 'text-orange-500' : '' }}">
                     <ion-icon name="book-outline" class="text-lg"></ion-icon> Blog
                 </a>
-                <a href="#service" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-105 {{ request()->is('service') ? 'text-orange-500' : '' }}">
+                <a href="{{route('services')}}" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-105 {{ request()->is('services') ? 'text-orange-500' : '' }}">
                     <ion-icon name="headset-outline" class="text-lg"></ion-icon> Services
                 </a>
                 <a href="#about_us" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('about_us') ? 'text-orange-500' : '' }}">

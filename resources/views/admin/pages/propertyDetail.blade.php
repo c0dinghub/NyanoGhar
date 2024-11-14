@@ -30,9 +30,9 @@
                             <h2 class="text-2xl font-semibold">{{$property->property_title}}</h2>
 
                             @if($property->sale_price)
-                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
+                                <p class="text-lg text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->sale_price) }}</p>
                             @elseif ($property->rent_price)
-                                <p class="text-xl text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
+                                <p class="text-lg text-[#f5663b] font-semibold mb-2">Rs {{ formatPrice($property->rent_price) }}/month</p>
                             @endif
                         </div>
                         <div class="flex text-gray-600 justify-end items-end flex-col mb-2 ">

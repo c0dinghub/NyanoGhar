@@ -82,4 +82,6 @@ class PropertyController extends Controller
         toast('Your Property has been updated!', 'success');
         return redirect()->route('admin.allProperties.index');
     }
+
+
 }

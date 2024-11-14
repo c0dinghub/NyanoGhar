@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +20,17 @@ Route::middleware(['admin_auth'])->group(function(){
     Route::get('/admin/logout',[DashboardController::class,'logout'])->name('admin.logout');
 });
 
+Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+
+//user controller
+Route::prefix('admin')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('admin.allUsers.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('admin.allUsers.show');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.allUsers.destroy');
+
+});
+
+//property controller
 Route::get('/admin/allProperties',[PropertyController::class,'allProperty'])->name('admin.allProperties.index');
 Route::get('/admin/property/{id}', [PropertyController::class, 'propertyDetail'])->name('admin.pages.propertyDetail');
 Route::delete('/admin/property/{id}', [PropertyController::class, 'destroy'])->name('admin.allProperties.destroy');

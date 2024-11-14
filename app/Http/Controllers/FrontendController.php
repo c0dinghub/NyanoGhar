@@ -16,6 +16,12 @@ class FrontendController extends Controller
         return view('frontend.addProperty');
     }
 
+    public function services()
+    {
+
+        return view('pages.services');
+    }
+
     public function propertyPage(Request $request)
     {
         $favourites = getUserFavourites();

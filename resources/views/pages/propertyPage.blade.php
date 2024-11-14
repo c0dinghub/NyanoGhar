@@ -241,7 +241,12 @@
                                             class="bg-blue-600 h-9 font-semibold text-white py-2 px-2 rounded-lg gap-1 flex items-center transition-transform hover:scale-105">
                                             <ion-icon name="eye"></ion-icon> View Details
                                         </a>
+                                        <a href="{{ route('booking.create', ['property' => $property->id]) }}"
+                                            class="bg-orange-500 font-semibold py-[5.5px] text-white pl-2 pr-3 rounded-lg flex items-center gap-1 transition-transform hover:scale-105">
+                                            <ion-icon name="calendar"></ion-icon> Book Now
+                                        </a>
                                     </div>
+
                                 </div>
                             </div>
                         @endforeach
