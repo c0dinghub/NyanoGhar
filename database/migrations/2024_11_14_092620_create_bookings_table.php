@@ -13,14 +13,16 @@ return new class extends Migration
 {
     Schema::create('bookings', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('property_id')->constrained()->onDelete('cascade');
-        $table->string('name');
-        $table->string('email');
-        $table->string('phone');
-        $table->date('booking_date');
-        $table->text('message')->nullable();
+        $table->foreignId('property_id')->constrained('add_properties')->onDelete('cascade');
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->decimal('amount', 10, 2); // Total booking amount
+        $table->decimal('booking_fee', 10, 2)->default(0); // Booking fee
+        $table->enum('status', ['confirmed', 'cancelled'])->default('confirmed');
+        $table->timestamp('booked_at')->nullable();
+        $table->timestamp('cancelled_at')->nullable();
         $table->timestamps();
     });
+
 }
 
 

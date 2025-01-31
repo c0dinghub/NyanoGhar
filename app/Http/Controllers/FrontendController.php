@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
 
 
 use App\Http\Requests\AddProperty\StoreAddPropertyRequest;
 use App\Http\Requests\AddProperty\UpdateAddPropertyRequest;
 use App\Models\AddProperty;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +14,8 @@ class FrontendController extends Controller
 {
     public function addProperty()
     {
-
-        return view('frontend.addProperty');
+        $agents = User::where('role', 'agent')->get(); // Assuming agents are users with the 'agent' role
+        return view('frontend.addProperty', compact('agents'));
     }
 
     public function services()
@@ -45,13 +47,13 @@ class FrontendController extends Controller
             // Apply filters based on search criteria
             if ($location) {
                 $locationSegments = array_map('trim', explode(',', strtolower($location)));
-                $query->where(function($q) use ($locationSegments) {
+                $query->where(function ($q) use ($locationSegments) {
                     foreach ($locationSegments as $segment) {
-                        $q->orWhere(function($subQuery) use ($segment) {
+                        $q->orWhere(function ($subQuery) use ($segment) {
                             $subQuery->where('address_area', 'like', '%' . $segment . '%')
-                                    ->orWhereHas('district', function($q) use ($segment) {
-                                        $q->where('district_en', 'like', '%' . $segment . '%');
-                                    });
+                                ->orWhereHas('district', function ($q) use ($segment) {
+                                    $q->where('district_en', 'like', '%' . $segment . '%');
+                                });
                         });
                     }
                 });
@@ -154,15 +156,14 @@ class FrontendController extends Controller
             'sortBy' => $sortBy,
             'filteredPropertiesCount' => $filteredPropertiesCount,
             'searchPerformed' => $searchPerformed,
-            'favourites'=>$favourites,
+            'favourites' => $favourites,
         ]);
     }
 
 
-
     public function propertyDetail($id)
     {
-        $property = AddProperty::with('district')->findOrFail($id);
+        $property = AddProperty::with('district','agent')->findOrFail($id);
 
         return view('pages.propertyDetail', compact('property'));
     }
@@ -172,10 +173,13 @@ class FrontendController extends Controller
         $propertyData = $request->validated();
         $propertyData['user_id'] = Auth::user()->id;
 
-        // dd($propertyData);
+        // Add agent_id from the request (admin will assign this)
+        $propertyData['agent_id'] = $request->agent_id;
+
+        // Create the new property
         $newProperty = AddProperty::create($propertyData);
 
-        toast('Your Property has been submited!','success');
+        toast('Your Property has been submitted!', 'success');
 
         return redirect()->route('propertyPage');
     }
@@ -184,14 +188,20 @@ class FrontendController extends Controller
     {
         $property = AddProperty::findOrFail($id);
 
+        // Check if the logged-in user is the owner of the property
         if (Auth::id() !== $property->user_id) {
             return redirect()->route('userProfile')->with('error', 'You do not have permission to edit this property.');
         }
 
-        toast('Your Property has been submited!','success');
+        // Fetch the list of agents (assuming you have a 'role' column or similar in the User model)
+        $agents = User::where('role', 'agent')->get();
 
-        return view('frontend.editUserProperty', compact('property'));
+        toast('Your Property has been submited!', 'success');
+
+        // Pass the property and agents to the view
+        return view('frontend.editUserProperty', compact('property', 'agents'));
     }
+
 
     public function update(UpdateAddPropertyRequest $request, $id)
     {
@@ -201,11 +211,14 @@ class FrontendController extends Controller
             return redirect()->route('userProfile')->with('error', 'You do not have permission to update this property.');
         }
 
-        // dd($request);
-        $property->update($request->validated());
+        // Add agent_id from the request (admin will assign this)
+        $propertyData = $request->validated();
+        $propertyData['agent_id'] = $request->agent_id;
 
-        toast('Your Property has been submited!','success');
-        // return redirect()->route('userProfile');
+        // Update the property
+        $property->update($propertyData);
+
+        toast('Your Property has been updated!', 'success');
         return redirect(route('userProfile'));
     }
 
@@ -225,5 +238,4 @@ class FrontendController extends Controller
 
         return redirect()->route('userProfile')->with('error', 'You do not have permission to delete this property.');
     }
-
 }

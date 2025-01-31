@@ -48,6 +48,7 @@ class AddProperty extends Model
         'property_photo',
         'property_video',
         'description',
+        'agent_id'
 
     ];
 
@@ -81,6 +82,13 @@ class AddProperty extends Model
     {
         return $this->hasMany(Favourite::class);
     }
+
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
+
 
 
     //public function getPropertyPhotoAttribute($value)

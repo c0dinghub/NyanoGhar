@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProperty\StoreAddPropertyRequest;
 use App\Http\Requests\AddProperty\UpdateAddPropertyRequest;
 use App\Models\AddProperty;
+use App\Models\Agent;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PropertyController extends Controller
 {
@@ -15,13 +18,16 @@ class PropertyController extends Controller
     {
         $allProperties = AddProperty::all();
         $totalProperties = $allProperties->count();
+        $agents = Agent::all(); // Retrieve all agents
 
-        return view('admin.properties.allProperties.index', compact('allProperties', 'totalProperties'));
+
+        return view('admin.properties.allProperties.index', compact('allProperties', 'totalProperties', 'agents'));
     }
 
     public function propertyDetail($id)
     {
         $property = AddProperty::with('district')->findOrFail($id);
+
 
         return view('admin.pages.propertyDetail', compact('property'));
     }
@@ -45,43 +51,65 @@ class PropertyController extends Controller
 
     public function storeProperty(StoreAddPropertyRequest $request)
     {
+        // Step 1: Validate the incoming data
         $propertyData = $request->validated();
-        $propertyData['user_id'] = Auth::user()->id;
 
-        // dd($propertyData);
-        $newProperty = AddProperty::create($propertyData);
+        // Step 2: Fetch the last assigned agent ID from cache
+        $lastAssignedAgentId = Cache::get('last_assigned_agent_id', 0);
 
-        toast('Your Property has been submited!', 'success');
+        // Step 3: Find the next agent in round-robin order
+        $nextAgent = User::whereHas('roles', function ($query) {
+            $query->where('name', 'agent');
+        })->where('id', '>', $lastAssignedAgentId)
+          ->orderBy('id')
+          ->first();
 
+
+
+        // Step 4: If no agent is found, loop back to the first agent
+        if (!$nextAgent) {
+            $nextAgent = User::whereHas('roles', function ($query) {
+                $query->where('name', 'agent');
+            })->orderBy('id')->first();
+        }
+
+        // Step 5: Assign the agent if available
+        if ($nextAgent) {
+            Cache::put('last_assigned_agent_id', $nextAgent->id);
+            $propertyData['agent_id'] = $nextAgent->id; // Assign the agent to the property
+        } else {
+            return redirect()->route('admin.allProperties.index')->with('error', 'No agents available to assign.');
+        }
+
+        // Step 6: Create the property
+        AddProperty::create($propertyData);
+
+        toast('Your Property has been submitted!', 'success');
         return redirect()->route('admin.allProperties.index');
     }
+
 
     public function edit($id)
     {
         $property = AddProperty::findOrFail($id);
+        $agents = Agent::all(); // Retrieve all agents
 
-        // if (Auth::id() !== $property->user_id) {
-        //     return redirect()->route('admin.allProperties.index')->with('error', 'You do not have permission to edit this property.');
-        // }
-
-        return view('admin.pages.editProperty', compact('property'));
+        return view('admin.pages.editProperty', compact('property', 'agents'));
     }
+
 
     public function update(UpdateAddPropertyRequest $request, $id)
-    {
-        $property = AddProperty::findOrFail($id);
+{
+    $property = AddProperty::findOrFail($id);
 
-        // Only allow if admin or the user who owns the property
-        if (Auth::id() !== $property->user_id && !Auth::user()->is_admin) {
-            return redirect()->route('admin.allProperties.index')->with('error', 'You do not have permission to update this property.');
-        }
+    // dd($request->all()); // Debug request data
 
-        // Validate and update property details
-        $property->update($request->validated());
+    $property->update($request->validated());
 
-        toast('Your Property has been updated!', 'success');
-        return redirect()->route('admin.allProperties.index');
-    }
+    // dd($property->toArray()); // Debug property data after update
 
+    toast('Property updated successfully!', 'success');
+    return redirect()->route('admin.allProperties.index');
+}
 
 }

@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminGuestMiddleware
@@ -16,9 +15,7 @@ class AdminGuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-            return redirect()->route('admin.dashboard');
-        }
-        return $next($request);
+        // Removed the authentication check and redirect functionality
+        return $next($request); // Just pass the request through
     }
 }

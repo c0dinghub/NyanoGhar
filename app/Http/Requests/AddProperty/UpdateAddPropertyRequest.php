@@ -48,7 +48,8 @@ class UpdateAddPropertyRequest extends FormRequest
             'bike_parking_spaces' => ['nullable', 'integer'],
             'property_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'property_video' => ['nullable', 'mimes:mp4'],
-            'description' => ['nullable', 'string']
+            'description' => ['nullable', 'string'],
+            'agent_id' => 'nullable|exists:users,id'
         ];
 
     }

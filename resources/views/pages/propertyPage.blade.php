@@ -7,7 +7,7 @@
             <div class="flex flex-col md:flex-row">
 
                 <!-- Sidebar for Search -->
-                <div class="md:w-1/4 h-fit bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0 sticky top-6">
+                <div class="md:w-1/4 h-fit bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0 sticky top-[116px] ">
                     <h3 class="text-xl font-semibold mb-4">Search Properties</h3>
                     <form action="{{ route('propertyPage') }}" method="GET" class="grid grid-cols-1 gap-4">
 
@@ -64,7 +64,7 @@
                 <!-- Property Details Section -->
                 <div class="md:w-3/4 ml-6 bg-white p-4 rounded-md shadow-md">
                     <div
-                        class="flex bg-white shadow-sm rounded-md border border-gray-300 p-1 justify-between mb-3 sticky top-0 z-40">
+                        class="flex bg-white shadow-sm rounded-md border border-gray-300 p-1 justify-between mb-3 sticky top-[97px] z-40">
                         <div>
                             @if ($searchPerformed || $sortBy != 'latest')
                                 <h2 class="flex p-1 items-center pl-4 text-xl font-semibold">
@@ -144,7 +144,7 @@
                                                         <i class="ri-heart-3-fill text-2xl text-red-600"></i>
                                                     </button>
                                                 @else
-                                                    <!-- Outline Heart if Not Favorited -->
+                                                    <!-- Outline Heart if Not Favourited -->
                                                     <button type="submit" class="btn btn-primary" title="Add to favourites">
                                                         <i class="ri-heart-3-line text-2xl"></i>
                                                     </button>
@@ -294,7 +294,7 @@
                 console.error('Could not copy text: ', err);
             });
         }
-        </script>
+    </script>
 
 
 @endsection

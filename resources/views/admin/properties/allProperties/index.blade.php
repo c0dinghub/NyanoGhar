@@ -31,6 +31,7 @@
                                 <th>Property Photo</th>
                                 <th>Property Title</th>
                                 <th>Purpose</th>
+                                <th>Agent</th>
                                 <th>Build Year</th>
                                 <th>Actions</th>
                             </tr>
@@ -47,6 +48,7 @@
                                     <td>{{ $property->property_title ?? 'N/A' }}</td>
                                     {{-- <td>{{ $property->status ? ucwords(str_replace('_', ' ', $property->status)) : 'N/A' }}</td> --}}
                                     <td>{{ $property->status=='for_sale'?"For Sale":"For Rent"}}</td>
+                                    <td>{{ $property->agent ? $property->agent->name : 'Not Assigned' }}</td>
                                     <td>{{ $property->build_year ?? 'N/A' }} {{ strtoupper($property->year_type ?? 'N/A') }}</td>                                    <td class="d-flex justify-content-around">
                                         <a href="{{ route('admin.pages.propertyDetail', ['id' => $property->id]) }}" class="btn btn-primary btn-sm" title="View Property">
                                             <i class="fas fa-eye"></i>
@@ -63,6 +65,7 @@
                                         </form>
 
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

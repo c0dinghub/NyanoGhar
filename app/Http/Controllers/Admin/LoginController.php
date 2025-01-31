@@ -15,18 +15,38 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email'=>'required|email',
-            'password'=>'required'
+        // Validate the login form
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
-        if(Auth::attempt($request->only('email','password')))
-        {
+        // Attempt to login the user
+        if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
+            $user = Auth::user();
+
+            // Check if the user has the admin role
+            if ($user->role !== 'admin') {
+                // Log the user out if they are not an admin
+                Auth::logout();
+
+                // Redirect to login page with error message
+                return redirect()->route('admin.login.page')->withErrors(['admin_access' => 'You do not have admin access.']);
+            }
+            // if ($user->role == 'user') {
+            //     // Log the user out if they are not an admin
+            //     Auth::logout();
+
+            //     // Redirect to login page with error message
+            //     return redirect()->route('login')->withErrors(['Your ' => 'You do not have admin access.']);
+            // }
+
+            // Redirect to the admin dashboard if the user is an admin
             return redirect()->route('admin.dashboard');
         }
 
-        return back()->withErrors([
-            'email'=>'The provided credentials does not match our records.'
-        ]);
+        // If authentication fails, redirect back to login with an error
+        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
+
 }

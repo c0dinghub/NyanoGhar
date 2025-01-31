@@ -275,7 +275,7 @@
                     </div>
 
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                         <div class="mb-6">
                             <label for="image" class="block text-md font-medium text-[#2a3844]">Upload Image:</label>
@@ -309,11 +309,24 @@
                             class="bg-gray-50 mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                     </div>
 
+                    <div class="form-group mb-6 w-1/2">
+                        <label for="agent_id" class="block  text-md font-medium text-[#2a3844]">Assign Agent</label>
+                        <select name="agent_id" id="agent_id" class="form-control">
+                            <option value="">Select Agent</option>
+                            @foreach ($agents as $agent)
+                                <option value="{{ $agent->id }}" {{ $property->agent_id == $agent->id ? 'selected' : '' }}>
+                                    {{ $agent->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div>
                         <button type="submit"
                             class="w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 mb-10 px-4 rounded-lg shadow-md">Submit
                             </button>
                     </div>
+
                 </form>
             </div>
     </div>

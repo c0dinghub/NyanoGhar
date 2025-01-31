@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +25,13 @@ class User extends Authenticatable
         'phone',
         'photo',
         'date_of_birth',
+        'role',
         'address',
         'facebook_url',
         'instagram_url',
         'linkedin_url',
         'twitter_url',
+
     ];
 
     public function userProfile()
@@ -65,6 +68,10 @@ class User extends Authenticatable
         return $this->hasMany(Favourite::class);
     }
 
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class,'role_user');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

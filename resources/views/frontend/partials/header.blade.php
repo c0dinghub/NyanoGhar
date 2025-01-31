@@ -26,6 +26,10 @@
                     <li><a href="" class="hover:text-orange-400"><ion-icon name="logo-pinterest"></ion-icon></a>
                     </li>
                 </ul>
+                <a href="{{route('admin.login')}}" class="flex items-center gap-1 text-white hover:text-orange-500 }}">
+                    <ion-icon name="log-in-outline" class="mr-1 font-extrabold text-lg"></ion-icon> Admin Login
+                </a>
+
                 <a href="{{ route('addProperty') }}"
                     class="bg-orange-500 text-white font-semibold px-4 py-2 hover:bg-orange-600">
                     Add Property
@@ -47,18 +51,19 @@
                         <ion-icon name="home-outline" class="text-lg"></ion-icon> Home
                     </a>
                 </div>
-                <a href="{{ route('propertyPage') }}" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('propertyPage') ? 'text-orange-500' : '' }}">
+                <a href="{{ route('propertyPage') }}" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-105 {{ request()->is('propertyPage') ? 'text-orange-500' : '' }}">
                     <ion-icon name="business-outline" class="text-lg"></ion-icon> Property
                 </a>
-                <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-110 {{ request()->is('blog') ? 'text-orange-500' : '' }}">
+                <a href="#blog" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-105 {{ request()->is('blog') ? 'text-orange-500' : '' }}">
                     <ion-icon name="book-outline" class="text-lg"></ion-icon> Blog
                 </a>
                 <a href="{{route('services')}}" class="text-gray-800 hover:text-orange-500 flex items-center gap-1 transition-transform duration-200 hover:scale-105 {{ request()->is('services') ? 'text-orange-500' : '' }}">
                     <ion-icon name="headset-outline" class="text-lg"></ion-icon> Services
                 </a>
-                <a href="#about_us" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-110 {{ request()->is('about_us') ? 'text-orange-500' : '' }}">
+                <a href="#about_us" class="flex items-center gap-1 text-gray-800 hover:text-orange-500 transition-transform duration-200 hover:scale-105 {{ request()->is('about_us') ? 'text-orange-500' : '' }}">
                     <ion-icon name="information-circle-outline" class="text-lg"></ion-icon> About Us
                 </a>
+
             </nav>
 
 
@@ -86,7 +91,7 @@
                 @guest
                     <a href="{{ route('login') }}"
                         class="hidden md:flex items-center text-gray-900 font-semibold hover:text-orange-500">
-                        <ion-icon name="log-in-outline" class="mr-1 font-bold text-lg"></ion-icon>Login
+                        <ion-icon name="log-in-outline" class="mr-1 font-bold text-lg"></ion-icon>User Login
                     </a>
                 @endguest
 

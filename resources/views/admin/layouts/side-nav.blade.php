@@ -104,6 +104,15 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('admin.agent.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Agents
+                        </p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-dollar-sign"></i>
                         <p>
@@ -117,18 +126,10 @@
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Reports & Analysis
-                            <i class="fas fa-angle-left right"></i>
+                            {{-- <i class="fas fa-angle-left right"></i> --}}
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/forms/general.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>General Elements</p>
-                            </a>
-                        </li>
 
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

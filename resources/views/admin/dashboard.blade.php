@@ -37,6 +37,21 @@
             </div>
         </div>
 
+        <div class="lg:w-1/3 w-1/2">
+            <!-- small box -->
+            <div class="bg-info p-2 rounded-lg shadow-lg flex flex-col items-center">
+                <div class="flex flex-col items-center">
+                    <div class="mt-2 text-white mb-2">
+                        <i class="fas fa-user text-5xl"></i> <!-- Agent icon for properties -->
+                    </div>
+                    <p class="text-white mb-2">Total Agents</p>
+                    <h3 class="text-3xl font-semibold text-white">{{ $agentCount }}</h3> <!-- Pass the property count from your controller -->
+                </div>
+                <a href="{{ route('admin.agent.index') }}" class="mt-4 text-white flex items-center hover:text-gray-200 mb-2">
+                    More info <i class="fas fa-arrow-circle-right ml-2"></i>
+                </a>
+            </div>
+        </div>
 
     </div><!-- /.container-fluid -->
 </div>

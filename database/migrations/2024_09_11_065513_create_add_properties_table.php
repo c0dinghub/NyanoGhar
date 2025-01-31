@@ -41,6 +41,10 @@ return new class extends Migration
             $table->string('property_photo');
             $table->string('property_video')->nullable();
             $table->string('description')->nullable();
+            $table->enum('property_status',['pending','approved','rejected'])->default('pending');
+            $table->unsignedBigInteger('agent_id')->nullable();
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('set null');
+            $table->boolean('is_booked')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

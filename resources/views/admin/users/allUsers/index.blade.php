@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+
 @section('content')
     <div class="container-fluid py-4 px-8">
         <nav aria-label="breadcrumb">
@@ -15,9 +16,6 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title font-semibold">All Users</h5>
-                <div class="card-tools">
-                    {{-- <a href="{{ route('admin.pages.addUser') }}" class="btn btn-primary">Add New User</a> --}}
-                </div>
             </div>
 
             <div class="card-body">
@@ -31,6 +29,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -46,7 +45,20 @@
                                     <td>{{ $user->name ?? 'N/A' }}</td>
                                     <td>{{ $user->email ?? 'N/A' }}</td>
                                     <td>{{ $user->phone ?? 'N/A' }}</td>
-                                    {{-- <td>{{ ucwords(str_replace('_', ' ', $user->role ?? 'N/A')) }}</td> --}}
+                                    <td>
+                                        <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="d-flex align-items-center">
+                                                <select name="role" class="form-select form-select-sm">
+                                                    <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                                                    <option value="agent" {{ $user->role == 'agent' ? 'selected' : '' }}>Agent</option>
+                                                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-sm btn-success ms-2">Update</button>
+                                            </div>
+                                        </form>
+                                    </td>
                                     <td class="d-flex justify-content-around">
                                         <a href="{{ route('admin.allUsers.show', ['id' => $user->id]) }}" class="btn btn-primary btn-sm" title="View User">
                                             <i class="fas fa-eye"></i>

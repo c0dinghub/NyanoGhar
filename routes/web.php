@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
@@ -9,13 +10,13 @@ use Illuminate\Support\Facades\Route;
 
 // Home Route
 Route::get('/', function () {
-    $favourites= getUserFavourites();
+    $favourites = getUserFavourites();
     $properties = AddProperty::with('district')->latest()->take(3)->get();
-    return view('welcome', compact('properties','favourites'));
+    return view('welcome', compact('properties', 'favourites'));
 })->name('home');
 
 // Routes that require authentication
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('addProperty', [FrontendController::class, 'addProperty'])->name('addProperty');
     Route::post('storeProperty', [FrontendController::class, 'storeProperty'])->name('storeProperty');
     Route::get('/property/{id}/edit', [FrontendController::class, 'edit'])->name('property.edit');
@@ -36,15 +37,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'userProfile'])->name('userProfile');
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
-    Route::delete('/property/{id}', [FrontendController::class, 'destroy'])->name('property.delete');});
+    Route::delete('/property/{id}', [FrontendController::class, 'destroy'])->name('property.delete');
+});
 
-    Route::middleware(['auth'])->group(function () {
-        Route::post('/favourites/add/{property}', [UserController::class, 'addToFavourites'])->name('favourites.add');
-        Route::post('/favourites/remove/{property}', [UserController::class, 'removeFromFavourites'])->name('favourites.remove');
-        Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
-    });
+// Booking confirmation route
+Route::get('/booking/confirm/{propertyId}', [BookingController::class, 'confirmBooking'])->name('booking.confirm');
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favourites/add/{property}', [UserController::class, 'addToFavourites'])->name('favourites.add');
+    Route::post('/favourites/remove/{property}', [UserController::class, 'removeFromFavourites'])->name('favourites.remove');
+    Route::get('/favourites', [UserController::class, 'showFavourites'])->name('favourites.index');
+});
 
 
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
@@ -53,4 +58,3 @@ Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleC
 require __DIR__ . '/auth.php';
 
 require __DIR__ . '/admin.php';
-

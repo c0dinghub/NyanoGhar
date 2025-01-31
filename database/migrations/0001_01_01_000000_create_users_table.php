@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
             $table->string('date_of_birth')->nullable();
+            $table->string('role')->default('user');
             $table->string('address')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('instagram_url')->nullable();

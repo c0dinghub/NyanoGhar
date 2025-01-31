@@ -297,6 +297,17 @@
                         class="w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 mb-10 px-4 rounded-lg shadow-md">Submit
                         </button>
                 </div>
+
+                <select name="agent_id" class="form-control">
+                    <option value="">Select Agent</option>
+                    @foreach($agents as $agent)
+                        <option value="{{ $agent->id }}" {{ old('agent_id', $property->agent_id ?? '') == $agent->id ? 'selected' : '' }}>
+                            {{ $agent->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+
             </form>
         </div>
     </div>

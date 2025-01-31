@@ -4,7 +4,7 @@
         <div class="container1 mx-auto rounded-lg max-w-7xl">
             <div class="flex max-sm:flex-col w-full">
                 <!-- Sidebar -->
-                <div class="sm:w-1/4 rounded-lg bg-white mt-6 mb-6 sm:shadow-md max-sm:mb-4 sticky top-5 h-96">
+                <div class="sm:w-1/4 rounded-lg bg-white mt-6 mb-6 sm:shadow-md max-sm:mb-4 sticky top-[116px] h-96">
                     <div class="flex flex-col items-center">
                         <div class="h-32 w-32 mt-3 mb-2">
                             <img class="h-full w-full object-cover border-[3px] border-green-500 rounded-full"
