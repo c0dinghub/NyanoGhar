@@ -95,10 +95,10 @@
                                     {{ $sortBy == 'highest_sale_price' ? 'selected' : '' }}>Highest Sale Price</option>
                                 <option
                                     value="{{ route('propertyPage', ['sort' => 'lowest_rent_price', 'property_type' => request('budget')]) }}"
-                                    {{ $sortBy == 'lowest_rent_price' ? 'selected' : '' }}>Lowest Rent Price</option>
+                                    {{ $sortBy == 'lowest_rent_price' ? 'selected' : '' }}>Highest Rent Price</option>
                                 <option
                                     value="{{ route('propertyPage', ['sort' => 'highest_rent_price', 'property_type' => request('budget')]) }}"
-                                    {{ $sortBy == 'highest_rent_price' ? 'selected' : '' }}>Highest Rent Price</option>
+                                    {{ $sortBy == 'highest_rent_price' ? 'selected' : '' }}>Lowest Rent Price</option>
                             </select>
 
                         </div>

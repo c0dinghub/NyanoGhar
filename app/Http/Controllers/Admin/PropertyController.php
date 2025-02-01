@@ -51,65 +51,69 @@ class PropertyController extends Controller
 
     public function storeProperty(StoreAddPropertyRequest $request)
     {
-        // Step 1: Validate the incoming data
         $propertyData = $request->validated();
+        $propertyData['user_id'] = Auth::user()->id;
 
-        // Step 2: Fetch the last assigned agent ID from cache
-        $lastAssignedAgentId = Cache::get('last_assigned_agent_id', 0);
+        // Add agent_id from the request (admin will assign this)
+        $propertyData['agent_id'] = $this->getNextAgentId();
 
-        // Step 3: Find the next agent in round-robin order
-        $nextAgent = User::whereHas('roles', function ($query) {
-            $query->where('name', 'agent');
-        })->where('id', '>', $lastAssignedAgentId)
-          ->orderBy('id')
-          ->first();
-
-
-
-        // Step 4: If no agent is found, loop back to the first agent
-        if (!$nextAgent) {
-            $nextAgent = User::whereHas('roles', function ($query) {
-                $query->where('name', 'agent');
-            })->orderBy('id')->first();
-        }
-
-        // Step 5: Assign the agent if available
-        if ($nextAgent) {
-            Cache::put('last_assigned_agent_id', $nextAgent->id);
-            $propertyData['agent_id'] = $nextAgent->id; // Assign the agent to the property
-        } else {
-            return redirect()->route('admin.allProperties.index')->with('error', 'No agents available to assign.');
-        }
-
-        // Step 6: Create the property
-        AddProperty::create($propertyData);
+        // Create the new property
+        $newProperty = AddProperty::create($propertyData);
 
         toast('Your Property has been submitted!', 'success');
-        return redirect()->route('admin.allProperties.index');
+
+        return redirect()->route('propertyPage');
     }
+
+    private function getNextAgentId()
+    {
+        // Get all agents
+        $agents = Agent::all();
+
+        // If no agents exist, show error and return
+        if ($agents->isEmpty()) {
+            toast('No agents available to assign!', 'error');
+            return redirect()->back();
+        }
+
+        // Get the last assigned agent
+        $lastAssignedAgent = AddProperty::latest()->first();
+
+        // Calculate the index for the next agent to be assigned
+        if ($lastAssignedAgent) {
+            $lastAssignedAgentId = $lastAssignedAgent->agent_id;
+            // Find the index of the last assigned agent
+            $nextAgentIndex = ($agents->search(fn($agent) => $agent->id === $lastAssignedAgentId) + 1) % $agents->count();
+        } else {
+            $nextAgentIndex = 0; // Start from the first agent if no agent was assigned previously
+        }
+
+        // Return the ID of the next agent in the round-robin sequence
+        return $agents[$nextAgentIndex]->id;
+    }
+
 
 
     public function edit($id)
     {
         $property = AddProperty::findOrFail($id);
         $agents = Agent::all(); // Retrieve all agents
+        $propertyStatus = ['pending','rejected','approved'];
 
-        return view('admin.pages.editProperty', compact('property', 'agents'));
+        return view('admin.pages.editProperty', compact('property', 'agents','propertyStatus'));
     }
 
 
     public function update(UpdateAddPropertyRequest $request, $id)
-{
-    $property = AddProperty::findOrFail($id);
+    {
+        $property = AddProperty::findOrFail($id);
 
-    // dd($request->all()); // Debug request data
+        // dd($property->toArray());
+        // dd($request->toArray());
+        $property->update($request->validated());
 
-    $property->update($request->validated());
-
-    // dd($property->toArray()); // Debug property data after update
-
-    toast('Property updated successfully!', 'success');
-    return redirect()->route('admin.allProperties.index');
-}
+        toast('Property status updated to Approved!', 'success');
+        return redirect()->route('admin.allProperties.index');
+    }
 
 }

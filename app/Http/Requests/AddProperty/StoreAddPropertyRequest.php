@@ -47,7 +47,6 @@ class StoreAddPropertyRequest extends FormRequest
             'amenity_id' => ['nullable'],
             'car_parking_spaces' => ['required', 'integer'],
             'bike_parking_spaces' => ['required', 'integer'],
-            'property_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'property_video' => ['nullable', 'mimes:mp4'],
             'description' => ['nullable', 'string'],
             'agent_id' => 'nullable|exists:users,id',

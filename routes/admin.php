@@ -44,7 +44,7 @@ Route::delete('/admin/property/{id}', [PropertyController::class, 'destroy'])->n
 Route::get('/admin/addProperty', [PropertyController::class, 'addProperty'])->name('admin.pages.addProperty');
 Route::post('/admin/storeProperty', [PropertyController::class, 'storeProperty'])->name('admin.storeProperty');
 Route::get('/admin/property/{id}/edit', [PropertyController::class, 'edit'])->name('admin.pages.editProperty');
-Route::put('/property/{id}', [PropertyController::class, 'update'])->name('property.update');
+Route::put('/admin/property/{id}', [PropertyController::class, 'update'])->name('admin.property.update');
 
 
 

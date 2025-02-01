@@ -48,7 +48,8 @@ class AddProperty extends Model
         'property_photo',
         'property_video',
         'description',
-        'agent_id'
+        'property_status',
+        'agent_id',
 
     ];
 

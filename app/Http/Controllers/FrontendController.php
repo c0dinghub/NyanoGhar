@@ -163,7 +163,7 @@ class FrontendController extends Controller
 
     public function propertyDetail($id)
     {
-        $property = AddProperty::with('district','agent')->findOrFail($id);
+        $property = AddProperty::with('district', 'agent')->findOrFail($id);
 
         return view('pages.propertyDetail', compact('property'));
     }
@@ -172,17 +172,20 @@ class FrontendController extends Controller
     {
         $propertyData = $request->validated();
         $propertyData['user_id'] = Auth::user()->id;
-
-        // Add agent_id from the request (admin will assign this)
         $propertyData['agent_id'] = $request->agent_id;
 
-        // Create the new property
-        $newProperty = AddProperty::create($propertyData);
+        // Handle single image upload
+        if ($request->hasFile('property_photo')) {
+            $propertyData['property_photo'] = $request->file('property_photo')->store('property', 'public');
+        }
+
+        // Create the new property record
+        AddProperty::create($propertyData);
 
         toast('Your Property has been submitted!', 'success');
-
         return redirect()->route('propertyPage');
     }
+
 
     public function edit($id)
     {

@@ -33,6 +33,7 @@
 
 <body>
     @include('frontend.partials.header')
+    @include('sweetalert::alert')
 
     @yield('addcontent')
 

@@ -39,6 +39,7 @@ return new class extends Migration
             $table->integer('car_parking_spaces')->nullable();
             $table->integer('bike_parking_spaces')->nullable();
             $table->string('property_photo');
+            // $table->json('property_photo')->nullable();
             $table->string('property_video')->nullable();
             $table->string('description')->nullable();
             $table->enum('property_status',['pending','approved','rejected'])->default('pending');

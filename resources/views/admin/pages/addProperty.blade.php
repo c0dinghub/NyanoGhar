@@ -30,7 +30,7 @@
                 </div>
             @endif
 
-            <form id="propertyForm" action="{{ route('storeProperty') }}" method="POST" enctype="multipart/form-data">
+            <form id="propertyForm" action="{{ route('admin.storeProperty') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Basic Info -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

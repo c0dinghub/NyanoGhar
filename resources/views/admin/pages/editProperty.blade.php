@@ -30,7 +30,7 @@
                     </div>
                 @endif
 
-                <form id="propertyForm" action="{{ route('property.update',['id' =>$property->id]) }}" method="POST" enctype="multipart/form-data">
+                <form id="propertyForm" action="{{ route('admin.property.update',['id' =>$property->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -320,11 +320,22 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group mb-6 w-1/2">
+                        <label for="property_status" class="block text-md font-medium text-[#2a3844]">Assign Agent</label>
+                        <select name="property_status" id="property_status" class="form-control">
+                            <option value="">Change Property Status</option>
+                            @foreach ($propertyStatus as $status)
+                                <option value="{{ $status }}" {{ $property->property_status == $status ? 'selected' : '' }}>
+                                    {{ ($status) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div>
                         <button type="submit"
                             class="w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 mb-10 px-4 rounded-lg shadow-md">Submit
-                            </button>
+                        </button>
                     </div>
 
                 </form>
