@@ -32,7 +32,7 @@ class FrontendController extends Controller
         $searchPerformed = false; // Default to false unless a search is performed
 
         // Create a query builder for properties
-        $query = AddProperty::query();
+        $query = AddProperty::where('property_status', 'approved');
 
         // Check for search parameters
         if ($request->has('property_type') || $request->has('location') || $request->has('status') || $request->has('budget')) {
@@ -147,7 +147,7 @@ class FrontendController extends Controller
 
         // Get the filtered and sorted properties
         $properties = $query->paginate(5);
-        $allProperties = AddProperty::all();
+        $allProperties = AddProperty::where('property_status', 'approved');
         $propertiesCount = $allProperties->count();
 
         return view('pages.propertyPage', [
